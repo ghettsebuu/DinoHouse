@@ -10,8 +10,10 @@ const HomeScreen = () => {
       <button className="play-button">
         <i class="fa-solid fa-play"></i>
       </button>
-      <div className="dinosaur-animation left"></div>
+      <img src="/img/dinonaranja1.png"  alt="Casita" className="dinonaranja-image" />
+      <div className="dinosaur-animation left2"></div>
       <div className="dinosaur-animation right"></div>
+      <div className="dinosaur-animation right2"></div>
     </div>
   );
 };
