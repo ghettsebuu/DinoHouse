@@ -1,161 +1,140 @@
-/* Estilos para el fondo y el contenedor principal */
 body{
-  background-color: #fcede6;
+  margin :0 ;
 }
 .home-screen {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  height: 100vh;
-  
+  justify-content: flex-start;
+  height: 100vh; /* Ocupa toda la altura de la pantalla */
+  background-color: #fcede6 ; /* Color de fondo */
+  background-image: url("/img/montaña10.png"); /* Imagen de fondo */
+  background-size: cover; /* Ajusta la imagen para cubrir todo el contenedor */
+  position: relative; /* Permite posicionar elementos hijos */
 }
 
-/*  .background {
+.overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('/public/img/fondo.png');
-  opacity: 0.5;
-  background-size: cover;
-  background-color: #fcede6;
-  z-index: -1;
-}  */
-/* Estilos para el fondo */
-.background {
-  position: absolute;
-  top: 16px;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url('/img/montaña10.png');
-  background-color:#fcede6 ;
-  opacity: 0.3;
-  background-size: cover;
-  background-position: center;
-  z-index: -1;
+  background-color: rgba(255, 255, 255, 0.5); /* Color blanco semi-transparente */
+  z-index: 0; /* Coloca la superposición detrás de otros elementos */
 }
 
-/* Estilos para la imagen de la casita */
-.house-image {
-  width: 35%;
+.title-container {
+  text-align: center; /* Centra el texto */
+  padding-top: 15px; /* Espacio superior */
+  top: -10%;
+  position: relative;
+  z-index: 1;
 }
 
-/* Estilos para el botón de reproducción */
-/* .play-button {
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: #99cb33;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  padding: 20px 40px;
-  font-size: 24px;
-  cursor: pointer;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
-} */
-/* Estilos para el botón de reproducción */
+.title {
+  font-size: 65px; /* Tamaño grande */
+  color: #fead76; /* Color naranja */
+  font-family: 'Comic Sans MS', cursive; /* Fuente estilo infantil */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Sombra de texto */
+}
 
-.play-button {
-  width: 80px; /* Tamaño grande */
-  height: 80px; /* Tamaño grande */
-  border-radius: 50%; /* Botón redondo */
-  background-color: #99cb33;
-  color: white;
-  font-size: 30px;
-  cursor: pointer;
-  border: none;
+
+.centro-elementos{
   display: flex;
   justify-content: center;
+  flex-direction: column;
   align-items: center;
-  z-index: 2; /* Asegura que esté por encima de otros elementos */
-  position: absolute; /* Posición absoluta para superponerlo a la casita */
-  top: 50%; /* Centra verticalmente */
-  left: 50%; /* Centra horizontalmente */
-  transform: translate(-50%, -50%); /* Centra el botón */
+  
+}
+.house-image {
+  width: 35%;
+  height: auto;
+  position: relative; /* Asegura que los dinosaurios se superpongan sobre esta imagen */
+  z-index: 1; /* Eleva la casita para que esté por debajo de los dinosaurios */
+}
+.play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70px;
+  height: 70px;
+  background-color: #99cb33;
+  border-radius: 50%; /* Hace el botón redondo */
+  border: none;
+  outline: none;
+  cursor: pointer;
+  z-index: 3; /* Eleva el botón sobre la casita y los dinosaurios */
+  font-size: 30px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s; /* Agrega transición para suavizar el cambio */
 }
 
-/* Estilos y animaciones para las ilustraciones de los dinosaurios */
-.dinosaur-animation {
+.play-button:hover {
+  /* Estilos cuando el ratón está sobre el botón */
+  transform: translate(-50%, -50%) scale(1.1); /* Agrandar el botón */
+  background-color: #7ea82a; /* Cambiar el color */
+}
+
+.play-button i {
   position: absolute;
-  width: 100px; /* Ajusta el tamaño según tus necesidades */
-  height: 100px; /* Ajusta el tamaño según tus necesidades */
-  /* Añade estilos de fondo e imágenes para las ilustraciones de los dinosaurios */
+  top: 52%;
+  left: 52%;
+  transform: translate(-50%, -50%);
+  color: white; /* Color del icono */
+  
 }
 
-/* Estilos para el dinosaurio de la izquierda */
-.left ,
- .left2 {
-  position: absolute;
-  bottom: 0;
-  background-size: contain; /* Ajusta el tamaño de la imagen para que se ajuste dentro del contenedor */
-  background-repeat: no-repeat; /* Evita que la imagen se repita */
-  background-position: center; /* Centra la imagen dentro del contenedor */
-  background-size: cover;
-  animation: serpentineAnimation 5s ease infinite alternate; /* Aplica la animación */
-  }
-
- /*  .left{
-    left: 20%;
-    width: 20%;
-    height: 43%;
-    background-image: url('/img/dinonaranja1.png');
-  } */
-
-  .dinonaranja-image{
-    width: 25%;
-  }
-
-  .left2 {
-    left: 3%;
-    width:20%;
-    height: 43%;
-    background-image: url('/img/dinoverde.png'); /* Cambia la ruta a la imagen del dinosaurio de la izquierda */
- /* Aplica la animación */
-    }
-
-/* Estilos para el dinosaurio de la derecha */
-.right ,
-.right2 {
-  position: absolute;
-  bottom: 0;
-  background-size: contain; /* Ajusta el tamaño de la imagen para que se ajuste dentro del contenedor */
-  background-repeat: no-repeat; /* Evita que la imagen se repita */
-  background-position: center; /* Centra la imagen dentro del contenedor */
-  background-size: cover;
-  animation: serpentineAnimation 5s ease infinite alternate; /* Aplica la animación */
+.dinos-elementos {
+  display: flex;
+  justify-content: center;
+  flex-direction: row-reverse;
+  align-items: flex-end;
+  position: relative; /* Permite que los dinosaurios se superpongan sobre esta fila */
+  z-index: 2; /* Eleva la fila de dinosaurios sobre la casita */
+  top: 20%;
 }
 
-.right{
-  right: 23%;
-  width: 13%;
-  height: 43%;
-  background-image: url('/img/dinoazul.png');
+.rex-image{
+  width: 11%;
 }
 
-.right2{
-  right: 23%;
-  width: 13%;
-  height: 43%;
-  background-image: url('/img/dinover.png');
+.Ali-image{
+  width: 22%;
 }
+
+.dina-image{
+  width: 17%;
+}
+
+.Tito-image{
+  width: 12%;
+}
+
+.dados{
+  width: 10%;
+}
+
+.dinos{
+  margin: 10px 20px;
+}
+ .dinos:hover {
+    animation: serpentear 0.5s infinite alternate; /* Aplicar la animación de serpentear */
+ }
+
 
 
 /* Estilos para la animación de los dinosaurios */
-@keyframes serpentineAnimation {
+@keyframes serpentear {
   0% {
-    transform: translateX(0);
+    transform: rotate(0);
   }
   50% {
-    transform: translateX(10px); /* Mueve la imagen hacia la derecha */
+    transform: rotate(5deg);
   }
   100% {
-    transform: translateX(0);
+    transform: rotate(-5deg);
   }
 }
+
 
