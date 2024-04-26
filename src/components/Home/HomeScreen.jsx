@@ -26,8 +26,6 @@ const HomeScreen = () => {
         <DinaImage />
         <TitoImage />
       </div>
-      
-      
     </div>
   );
 };
