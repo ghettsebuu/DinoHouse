@@ -6,12 +6,9 @@ import Dashboard from './components/Dashboard/dashboard'; // Importa tu componen
 function App() {
   return (
     <div className="App">
-     {/* <HomeScreen/>*/}
-      <Dashboard />  
+         <Dashboard /> {/*   <HomeScreen/> */}
     </div>
   );
 }
 
 export default App;
-
-
