@@ -1,3 +1,6 @@
+body{
+  margin :0 ;
+}
 /* Estilos para el dashboard */
 .dashboard {
     display: flex;
