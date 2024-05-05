@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './ActividadLv1.css'; // Archivo de estilos
 
+
 const ActividadLv1 = () => {
     const [draggedLetter, setDraggedLetter] = useState(''); // Estado para la letra arrastrada
     const [droppedLetter, setDroppedLetter] = useState(''); // Estado para la letra soltada en la casilla

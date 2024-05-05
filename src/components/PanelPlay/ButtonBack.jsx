@@ -1,11 +1,21 @@
 // BackButtonComponent.js
 import React from 'react';
 import './PanelPlay.css';
+import { UserAuth } from '../../Services/AuthContext';
 
 const BackButtonComponent = () => {
+  const {user,logOut} =UserAuth();
+  const cerrarSesion= async ()=>{
+    try {
+        await logOut();
+    } catch (error) {
+        console.log(error)
+    }
+  }
   return (
-    <button className="back-button">
-      <i class="fa-solid fa-chevron-left"></i>
+    
+    <button onClick={cerrarSesion} className="back-button button">
+      <i class="fa-solid fa-right-from-bracket"></i>
     </button>
   );
 };

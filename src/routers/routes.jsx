@@ -5,8 +5,10 @@ import Inicio from '../components/Inicio/Inicio';
 import LoginEstudiante from '../components/Login/LoginEstudiante';
 import LoginMaestro from '../components/Login/LoginMaestro';
 import SelectLogin from '../components/Login/SelectLogin';
+
 import { UserAuth } from "../Services/AuthContext";
 import { ProtectorRuta } from "./ProtectorRuta";
+
 
 
 export function Rutas(){
@@ -28,6 +30,10 @@ export function Rutas(){
             <Route path="/PanelM" element={<RequireAuth>
                 <PanelM />
             </RequireAuth>} />
+            {/* <Route path="/ActividadLv1" element={<ProtectorRuta>
+                <ActividadLv1/>
+            </ProtectorRuta>} /> */}
+
           </Routes>
         </BrowserRouter>
     )

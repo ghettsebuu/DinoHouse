@@ -14,7 +14,6 @@ const PanelPlay = () => {
         username="Getsemani" 
         level={1} 
       />
-      
       <SceneComponent />
      
     </div>
