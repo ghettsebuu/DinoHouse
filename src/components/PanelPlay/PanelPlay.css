@@ -134,6 +134,8 @@ body{
   /* Estilos para el escenario */
   .scene {
     flex: 1;
+    display: flex;
+    justify-content: center;
     margin: 20px;
     background-color: #99d1c8;
     border-radius: 3%;

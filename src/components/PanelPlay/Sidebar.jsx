@@ -2,7 +2,7 @@
 import React from 'react';
 import HomeButtonComponent from './ButtonHome'; // Ajusta la ruta según la ubicación del archivo
 import BackButtonComponent from './ButtonBack';
-import './dashboard.css';
+import './PanelPlay.css';
 
 const SidebarComponent = ({ avatar, username, level }) => {
   return (

@@ -11,6 +11,8 @@ const Nivel1 = () => {
         <img src="/img/level1.jpg" alt="Fondo-nivel1"  className='background-image'/>
         
         <img src="/img/dinoazul2.png" alt="Rex" className='foreground-image D-Nivel1' />
+        <img src="/img/dados.png" alt="playjuego" className='foreground-image Dado' />
+       
         
     </div>
    

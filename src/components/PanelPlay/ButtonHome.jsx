@@ -1,6 +1,7 @@
 // HomeButtonComponent.js
 import React from 'react';
-import './dashboard.css';
+import './PanelPlay.css';
+
 
 const HomeButtonComponent = () => {
   return (
