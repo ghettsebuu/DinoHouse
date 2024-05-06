@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import './PanelPlay.css';
 import Nivel1 from '../Niveles/Nivel1.jsx';

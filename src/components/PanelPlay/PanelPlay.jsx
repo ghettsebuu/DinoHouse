@@ -2,9 +2,11 @@
 import React from 'react';
 import SidebarComponent from './Sidebar';
 import SceneComponent from './Scene';
-import './dashboard.css';
+import './PanelPlay.css';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 
-const Dashboard = () => {
+const PanelPlay = () => {
   return (
     <div className="dashboard">
       <SidebarComponent 
@@ -13,8 +15,9 @@ const Dashboard = () => {
         level={1} 
       />
       <SceneComponent />
+     
     </div>
   );
 };
 
-export default Dashboard;
+export default PanelPlay;

@@ -1,0 +1,134 @@
+/* styles.css */
+
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Estilos para el contenedor principal de selectLogin */
+  .select-login-container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 100vh;
+    background-color: #e9a15e;
+  }
+  
+  /* Estilos para los botones de selección */
+  .login-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 10px;
+    cursor: pointer;
+    transition: transform 0.2s;
+    text-decoration: none !important; /* Asegura que el subrayado se elimine */
+    color: inherit !important; /* Asegura que el color del texto se herede */
+    
+  }
+  .boton1{
+    background-color: #afd2d5;
+  }
+  
+  .boton2{
+    background-color: #f7ca88;
+  }
+
+  .login-button:hover {
+    transform: scale(1.05);
+  }
+  
+  .login-button img {
+    width: 150px; /* Ajusta el tamaño según sea necesario */
+    height: 150px; /* Ajusta el tamaño según sea necesario */
+    display: block;
+    margin: 0 auto;
+  }
+
+
+  
+  /* Estilos para el contenedor principal de LoginMaestro */
+  .login-maestro-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #5ebde9;
+  }
+  
+  /* Estilos para el botón de inicio de sesión con Google */
+.google-login-button {
+  border: none;
+  background-color: #ffffff; /* Color característico de Google */
+  color: #070707;
+  border-radius: 30px;
+  padding: 15px 45px;
+  cursor: pointer;
+  font-size: 20px;
+  transition: background-color 0.3s;
+  position: relative; /* Para que el icono se posicione correctamente */
+}
+
+.google-login-button:hover {
+  background-color: #dadada; /* Cambia el color al pasar el cursor */
+}
+
+/* Estilos para el icono */
+.google-icon {
+  width: 30px; /* Ajusta el tamaño según sea necesario */
+  height: 30px; /* Ajusta el tamaño según sea necesario */
+  background-image: url('/src/assets/icons8-google-48.svg'); /* Ruta al icono en tus activos */
+  background-size: cover;
+  position: absolute;
+  left: 10px; /* Ajusta la posición del icono dentro del botón */
+  top: 50%; /* Centra verticalmente el icono */
+  transform: translateY(-50%); /* Centra verticalmente el icono */
+}
+  
+  /* Estilos para el contenedor principal de LoginEstudiante */
+  .login-estudiante-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  /* Estilos para el campo de entrada y botón de enviar código */
+  input[type="text"] {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 80%;
+    max-width: 300px;
+    text-align: center; /* Centra el texto */
+  }
+  
+  .submit-code-button {
+    border: none;
+    background-color: #4caf50; /* Color verde */
+    color: #ffffff;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+  }
+  
+  .submit-code-button:hover {
+    background-color: #45a049; /* Cambia el color al pasar el cursor */
+  }
+  
+  /* Estilos para el texto informativo */
+  .info-text {
+    font-size: 14px;
+    color: #666;
+  }
+  

@@ -1,3 +1,16 @@
+@font-face {
+  font-family: 'Cute Dino';
+  src: url('/fonts/cute_dino-webfont.woff2') format('woff2'),
+       url('/fonts/cute_dino-webfont.woff') format('woff');
+  /* Añade otros formatos de fuente aquí si los tienes */
+  font-weight: normal;
+  font-style: normal;
+}
+
+h1{
+  font-family: 'Cute Dino', sans-serif; 
+}
+
 body{
   margin :0 ;
 }
@@ -26,7 +39,7 @@ body{
 .title-container {
   text-align: center; /* Centra el texto */
   padding-top: 15px; /* Espacio superior */
-  top: -10%;
+  /* top: -10%; */
   position: relative;
   z-index: 1;
 }
@@ -34,7 +47,6 @@ body{
 .title {
   font-size: 65px; /* Tamaño grande */
   color: #fead76; /* Color naranja */
-  font-family: 'Comic Sans MS', cursive; /* Fuente estilo infantil */
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Sombra de texto */
 }
 

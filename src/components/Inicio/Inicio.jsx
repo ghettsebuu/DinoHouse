@@ -1,6 +1,6 @@
 // HomeScreen.jsx
 import React from 'react';
-import './HomeScreen.css';
+import './Inicio.css';
 import HouseImage from './HouseImage';
 import PlayButton from './PlayButton';
 import DinaImage from './DinaImage';
@@ -9,7 +9,7 @@ import RexImage from './RexImage';
 import  AliImage from './AliImage';
 import  DadosImage from './DadosImage';
 
-const HomeScreen = () => {
+const Inicio = () => {
   return (
     <div className="home-screen">
       <div className="title-container">
@@ -30,4 +30,4 @@ const HomeScreen = () => {
   );
 };
 
-export default HomeScreen;
+export default Inicio;

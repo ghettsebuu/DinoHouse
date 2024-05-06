@@ -1,14 +1,15 @@
 // App.js
 import React from 'react';
-// import Dashboard from './components/Dashboard/dashboard'; // Importa tu componente Dashboard
-//import HomeScreen from './components/Home/HomeScreen';
-
+import { AuthContextProvider ,UserAuth } from "./Services/AuthContext";
+import {Rutas} from './routers/routes'
 
 function App() {
   return (
     <div className="App">
-         {/* <Dashboard />   <HomeScreen/> */}
-        
+      <AuthContextProvider>
+        <Rutas/>
+       
+      </AuthContextProvider>
     </div>
   );
 }
