@@ -9,10 +9,10 @@ import Nivel4 from '../Niveles/Nivel4.jsx';
 const SceneComponent = () => {
   return (
     <div className="scene">
-       {/* <Nivel1 /> */}
+       <Nivel1 /> 
       {/*  <Nivel2 />   */} 
        {/* <Nivel3 />   */}
-       <Nivel4 />   
+       {/* <Nivel4 /> */}   
     </div>
   );
 };
