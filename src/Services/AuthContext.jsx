@@ -12,18 +12,26 @@ export const AuthContextProvider=({children})=>{
         const provider = new GoogleAuthProvider();
         signInWithRedirect(auth,provider);
     };
-    const logOut =()=>{
-        signOut(auth);
-    }
-    useEffect(()=>{
-        const unsubscribe = onAuthStateChanged (auth,
-     (currentUser)=>{
-        setUser(currentUser);
-     })
-     return ()=>{
-        unsubscribe();
-     }
-    },[]);
+    
+    const logOut = () => {
+        signOut(auth)
+          .then(() => {
+            setUser(null); // Limpiar el usuario después de cerrar sesión
+          })
+          .catch((error) => {
+            console.error("Error al cerrar sesión:", error);
+          });
+      };
+    
+      useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+          setUser(currentUser);
+        });
+        return () => {
+          unsubscribe();
+        };
+        }, []);
+
     return (
         <AuthContext.Provider value={{googleSingnIn,
         logOut,user}}>

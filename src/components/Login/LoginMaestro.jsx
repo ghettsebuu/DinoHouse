@@ -17,7 +17,7 @@ const LoginMaestro = () => {
 
    useEffect(()=>{
     if(user!=null){
-      navigate("/PanelPlay")
+      navigate("/PanelM")
     }
 
    },[user])

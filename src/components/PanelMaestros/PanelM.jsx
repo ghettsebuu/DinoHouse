@@ -1,25 +1,40 @@
 // PanelMaestro (Componente principal)
-import React, { useEffect } from 'react';
-import { UserAuth } from '../../Services/AuthContext';
+import React, { useState} from 'react';
+
+import Sidebar from './Sidebar';
+import GestionEstudiantes from './GestionEstudiantes';
+import ProgresoEstudiantes from './ProgresoEstudiantes';
+import './PanelM.css';
 
 const PanelM = () => {
-  const {user,logOut} =UserAuth();
-  const cerrarSesion= async ()=>{
-    try {
-        await logOut();
-    } catch (error) {
-        console.log(error)
-    }
-  }
- /*  useEffect(()=>{
+  
+  const [selectedModule, setSelectedModule] = useState('gestion');
 
-  }) */
+ 
+
+  const handleModuleChange = (module) => {
+    setSelectedModule(module);
+  };
+
   return (
-    <div className="PanelM">
-       <h1>Bienvenido {user.displayName} </h1>
-       <button onClick={cerrarSesion}>Cerrar sesión</button>
+    
+    <div className="panelM">
+      <Sidebar onModuleChange={handleModuleChange} />
+      
+      
+      <div className="mainContent">
+        {selectedModule === 'gestion' && <GestionEstudiantes />}
+        {selectedModule === 'progreso' && <ProgresoEstudiantes />}
+      </div>
     </div>
+    
   );
 };
 
 export default PanelM;
+
+
+
+ 
+
+
