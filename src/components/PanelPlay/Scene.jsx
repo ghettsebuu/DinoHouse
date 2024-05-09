@@ -15,7 +15,7 @@ const SceneComponent = () => {
       {!mostrarActividad ? (
         <Nivel1 mostrarActividad={handleMostrarActividad} />
       ) : (
-        <ActividadLv1 />
+        <ActividadLv1 mostrarActividad={setMostrarActividad} />
       )}
     </div>
   );
