@@ -1,0 +1,119 @@
+.gestion {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height:87% ;
+    background-color: #ffffff; /* Color de fondo */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Sombra */
+    padding: 40px; /* Espacio interior */
+}
+
+.alert {
+    color: #1c725c; /* Color del texto */
+    background-color: #d7f8e5; /* Color de fondo */
+    border: 1px solid #c8f5c6; /* Borde */
+    padding: 10px; /* Espaciado interno */
+    border-radius: 5px; /* Bordes redondeados */
+    margin-top: 10px; /* Espaciado superior */
+  }
+  .error {
+    color: #721c24; /* Color del texto */
+    background-color: #f8d7da; /* Color de fondo */
+    border: 1px solid #f5c6cb; /* Borde */
+    padding: 10px; /* Espaciado interno */
+    border-radius: 5px; /* Bordes redondeados */
+    margin-top: 10px; /* Espaciado superior */
+  }
+  
+  
+/* Estilos para la ventana modal */
+.modal {
+    display: block;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+  
+  .modal-content {
+    display: flex;
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 8px;
+    position: relative;
+    flex-direction: column;
+  }
+  
+  .section{
+    display: flex;
+    justify-content: space-around;
+    align-items: baseline;
+  }
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  /* Estilos para la tabla de estudiantes */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  tr:hover {
+    background-color: #ddd;
+  }
+  
+  button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
+  
+  @media (max-width: 768px) {
+    .gestion {
+      padding: 10px; /* Espacio interior ajustado para pantallas más pequeñas */
+    }
+  }

@@ -2,7 +2,7 @@
 import React, { useState} from 'react';
 
 import Sidebar from './Sidebar';
-import GestionEstudiantes from './GestionEstudiantes';
+import GestionEstudiantes from './Gestion/GestionEstudiantes';
 import ProgresoEstudiantes from './ProgresoEstudiantes';
 import './PanelM.css';
 

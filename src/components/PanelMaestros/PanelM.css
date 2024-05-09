@@ -1,23 +1,25 @@
 .panelM {
     display: flex;
     height: 100vh;
+    background-color: #fcede6;
   }
   
   .sidebarM {
     display: flex;
-    background-color: #4CAF50; /* Color de fondo verde */
+    background-color: #fcede6; 
     width: 250px;
     padding: 20px;
-    color: white;
+    color: rgb(0, 0, 0);
     flex-direction: column;
     justify-content: space-between;
   }
  .Options{
   display: flex;
-  background-color: #77d67a;
-  height: 35%;
+  background-color: #fce3d8;
+  height: 40%;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   border-radius: 10%;
   
  }
@@ -76,11 +78,43 @@
   .moduleItem {
     cursor: pointer;
     margin-bottom: 10px;
+    padding: 10px 20px;
+    background-color: #99d1c8; /* Color de fondo azul */
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
   }
   
   .moduleItem:hover {
-    text-decoration: underline;
+    background-color: #6cb8ab; /* Cambiar el color al pasar el mouse */
   }
+  
+  .moduleItem:focus {
+    outline: none; /* Eliminar el contorno al hacer clic */
+  }
+  
+  .buttonCerrarSesion {
+    cursor: pointer;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #f33453; /* Color de fondo naranja */
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  .buttonCerrarSesion:hover {
+    background-color: #ee1539; /* Cambiar el color al pasar el mouse */
+  }
+  
+  .buttonCerrarSesion:focus {
+    outline: none; /* Eliminar el contorno al hacer clic */
+  }
+  
   
   .perfilCard {
     background-color: #2196F3; /* Color de fondo azul */
@@ -95,6 +129,15 @@
     border-radius: 50%;
     margin-bottom: 10px;
   }
+
+  
+
+  
+  
+  
+  
+ 
+  
   
   /* Estilos para hacer la aplicación responsive */
   
@@ -107,4 +150,6 @@
       width: 100%;
       margin-bottom: 20px;
     }
+
+   
   }

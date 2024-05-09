@@ -5,7 +5,7 @@ function ProgresoEstudiantes() {
  
 
   return (
-   <div className='perfil'>
+   <div className='Progreso'>
      <h1>HOla progreso</h1>
    </div>
   );
