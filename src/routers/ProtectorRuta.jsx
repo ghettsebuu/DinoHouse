@@ -6,4 +6,4 @@ export function ProtectorRuta({children}){
      return <Navigate to={"/"}/>
    }
    return children;
-}
+} 

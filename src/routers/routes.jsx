@@ -24,9 +24,9 @@ export function Rutas(){
             <Route path="/SelectLogin" element={<SelectLogin />} />
             <Route path="/LoginMaestro" element={<LoginMaestro />} />
             <Route path="/LoginEstudiante" element={<LoginEstudiante />} />
-            <Route path="/PanelPlay" element={ <ProtectorRuta>
+            <Route path="/PanelPlay" element={ 
                 <PanelPlay/>
-            </ProtectorRuta> } />
+             } />
             <Route path="/PanelM" element={<RequireAuth>
                 <PanelM />
             </RequireAuth>} />
