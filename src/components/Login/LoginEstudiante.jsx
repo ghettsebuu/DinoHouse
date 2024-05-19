@@ -25,8 +25,19 @@ const LoginEstudiante = () => {
                 return;
             }
 
-            // Inicio de sesión exitoso, redirigir al usuario a la página PanelPlay
-            navigate('/PanelPlay');
+            // Obtén los datos del estudiante autenticado
+            let studentData = null;
+            querySnapshot.forEach((doc) => {
+                studentData = doc.data();
+            });
+
+            if (studentData) {
+                // Guarda el nombre del estudiante en localStorage
+                localStorage.setItem('studentName', studentData.Nombre);
+
+                // Inicio de sesión exitoso, redirigir al usuario a la página PanelPlay
+                navigate('/PanelPlay');
+            }
         } catch (error) {
             setError('Error al iniciar sesión');
             console.error('Error al iniciar sesión:', error);

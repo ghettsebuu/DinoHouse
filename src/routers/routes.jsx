@@ -5,9 +5,9 @@ import Inicio from '../components/Inicio/Inicio';
 import LoginEstudiante from '../components/Login/LoginEstudiante';
 import LoginMaestro from '../components/Login/LoginMaestro';
 import SelectLogin from '../components/Login/SelectLogin';
-
 import { UserAuth } from "../Services/AuthContext";
 import { ProtectorRuta } from "./ProtectorRuta";
+import RequireStudentAuth from './RequireStudentAuth';
 
 
 
@@ -24,9 +24,11 @@ export function Rutas(){
             <Route path="/SelectLogin" element={<SelectLogin />} />
             <Route path="/LoginMaestro" element={<LoginMaestro />} />
             <Route path="/LoginEstudiante" element={<LoginEstudiante />} />
-            <Route path="/PanelPlay" element={ 
-                <PanelPlay/>
-             } />
+            <Route path="/PanelPlay" element={
+                <RequireStudentAuth>
+                    <PanelPlay />
+                </RequireStudentAuth>
+            } />
             <Route path="/PanelM" element={<RequireAuth>
                 <PanelM />
             </RequireAuth>} />

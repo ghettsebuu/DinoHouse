@@ -1,12 +1,17 @@
-// HomeButtonComponent.js
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './PanelPlay.css';
 
-
 const HomeButtonComponent = () => {
+  const navigate = useNavigate();
+
+  const goToHome = () => {
+    navigate('/');
+  };
+
   return (
-    <button className="home-button">
-      <i class="fa-solid fa-house"></i>
+    <button onClick={goToHome} className="home-button">
+      <i className="fa-solid fa-house"></i>
     </button>
   );
 };

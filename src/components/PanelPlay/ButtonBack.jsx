@@ -1,23 +1,24 @@
-// BackButtonComponent.js
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './PanelPlay.css';
-import { UserAuth } from '../../Services/AuthContext';
 
 const BackButtonComponent = () => {
-  const {user,logOut} =UserAuth();
-  const cerrarSesion= async ()=>{
-    try {
-        await logOut();
-    } catch (error) {
-        console.log(error)
-    }
-  }
-  return (
-    
-    <button onClick={cerrarSesion} className="back-button button">
-      <i class="fa-solid fa-right-from-bracket"></i>
-    </button>
-  );
+    const navigate = useNavigate();
+
+    const cerrarSesion = () => {
+        try {
+            localStorage.removeItem('studentName');
+            navigate('/SelectLogin'); // Redirige a la página de selección de login
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    return (
+        <button onClick={cerrarSesion} className="back-button button">
+            <i className="fa-solid fa-right-from-bracket"></i>
+        </button>
+    );
 };
 
 export default BackButtonComponent;
