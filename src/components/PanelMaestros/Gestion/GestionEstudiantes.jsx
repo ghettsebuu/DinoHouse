@@ -2,64 +2,68 @@ import React, { useState, useEffect } from 'react';
 import './Gestio.css';
 import AddStudentModal from './AddStudentModal';
 import StudentTable from './StudentTable';
-import { db } from '../../../Firebase/firebaseConfig'; // Ajusta la ruta según la estructura de tu proyecto
-import { collection, getDocs } from 'firebase/firestore';
+import { db } from '../../../Firebase/firebaseConfig'; 
+import { collection, getDocs, query, where } from 'firebase/firestore';
+import { auth } from '../../../Firebase/firebaseConfig'; 
 
-
-// Componente principal de gestión de estudiantes
 const GestionEstudiantes = () => {
-  const [students, setStudents] = useState([]);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+    const [students, setStudents] = useState([]);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
-  useEffect(() => {
-      const fetchStudents = async () => {
-          try {
-              const studentsSnapshot = await getDocs(collection(db, 'Estudiantes')); // Utiliza db en lugar de firestore
-              const studentsData = studentsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-              setStudents(studentsData);
-          } catch (error) {
-              console.error('Error al obtener estudiantes:', error);
-          }
-      };
+    useEffect(() => {
+        const fetchStudents = async () => {
+            try {
+                const teacherId = auth.currentUser.uid;
 
-      fetchStudents();
-  }, []);
+                const studentsQuery = query(collection(db, 'Estudiantes'), where('MaestroID', '==', teacherId));
+                const studentsSnapshot = await getDocs(studentsQuery);
+                const studentsData = studentsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                setStudents(studentsData);
+            } catch (error) {
+                console.error('Error al obtener estudiantes:', error);
+            }
+        };
 
-  const openModal = () => {
-      setIsModalOpen(true);
-  };
+        fetchStudents();
+    }, []);
 
-  const closeModal = () => {
-      setIsModalOpen(false);
-  };
+    const openModal = () => {
+        setIsModalOpen(true);
+    };
 
-  const addStudent = async (student) => {
-      try {
-          const newStudentRef = await addDoc(collection(db, 'Estudiantes'), student); // Utiliza db en lugar de firestore
-          const newStudent = { id: newStudentRef.id, ...student };
-          setStudents([...students, newStudent]);
-          closeModal();
-      } catch (error) {
-          console.error('Error al agregar estudiante:', error);
-      }
-  };
+    const closeModal = () => {
+        setIsModalOpen(false);
+    };
 
-  const editStudent = (index) => {
-      // Implementar lógica de edición
-  };
+    const addStudent = async (student) => {
+        try {
+            const teacherId = auth.currentUser.uid;
+            const newStudent = { ...student, MaestroID: teacherId };
+            
+            const newStudentRef = await addDoc(collection(db, 'Estudiantes'), newStudent);
+            setStudents([...students, { id: newStudentRef.id, ...newStudent }]);
+            closeModal();
+        } catch (error) {
+            console.error('Error al agregar estudiante:', error);
+        }
+    };
 
-  const deleteStudent = (index) => {
-      // Implementar lógica de eliminación
-  };
+    const editStudent = (index) => {
+        // Implementar lógica de edición
+    };
 
-  return (
-      <div className='gestion'>
-          <h1>Gestión de Estudiantes</h1>
-          <button onClick={openModal}>Registrar</button>
-          <StudentTable students={students} editStudent={editStudent} deleteStudent={deleteStudent} />
-          <AddStudentModal isOpen={isModalOpen} onClose={closeModal} onSave={addStudent} />
-      </div>
-  );
+    const deleteStudent = (index) => {
+        // Implementar lógica de eliminación
+    };
+
+    return (
+        <div className='gestion'>
+            <h1>Gestión de Estudiantes</h1>
+            <button onClick={openModal}>Registrar</button>
+            <StudentTable students={students} editStudent={editStudent} deleteStudent={deleteStudent} />
+            <AddStudentModal isOpen={isModalOpen} onClose={closeModal} onSave={addStudent} />
+        </div>
+    );
 };
 
 export default GestionEstudiantes;

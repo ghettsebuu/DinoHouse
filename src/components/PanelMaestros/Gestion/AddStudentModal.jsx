@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { db } from '../../../Firebase/firebaseConfig';  // Importa la instancia de Firestore
-import { collection, addDoc } from 'firebase/firestore'; // Asegúrate de importar addDoc
+import { db } from '../../../Firebase/firebaseConfig';  
+import { collection, addDoc } from 'firebase/firestore'; 
+import { auth } from '../../../Firebase/firebaseConfig'; // Asegúrate de importar auth
 
-// Componente de la ventana modal para agregar estudiante
 const AddStudentModal = ({ isOpen, onClose }) => {
     const [nombre, setNombre] = useState('');
     const [apellido, setApellido] = useState('');
@@ -12,7 +12,6 @@ const AddStudentModal = ({ isOpen, onClose }) => {
     const [alertMessage, setAlertMessage] = useState('');
 
     const generarCodigo = () => {
-        // Generar código único para el estudiante
         const codigo = Math.random().toString(36).substring(2, 10).toUpperCase();
         setCodigoAcceso(codigo);
         setAlertMessage('Código de acceso generado.');
@@ -21,18 +20,22 @@ const AddStudentModal = ({ isOpen, onClose }) => {
 
     const handleSave = async () => {
         try {
-            // Verificar si nombre, apellido o código de acceso están vacíos
             if (nombre.trim() === '' || apellido.trim() === '' || codigoAcceso.trim() === '') {
                 setError('Por favor, complete todos los campos.');
                 setAlertMessage('Por favor, complete todos los campos.');
                 setShowAlert(true);
                 return;
             }
-    
-            // Guardar el nuevo estudiante en Firestore
-            await addDoc(collection(db, 'Estudiantes'), { Nombre: nombre, Apellido: apellido, CodigoAcceso: codigoAcceso });
-    
-            // Limpiar los campos y cerrar la modal
+
+            const teacherId = auth.currentUser.uid;
+
+            await addDoc(collection(db, 'Estudiantes'), { 
+                Nombre: nombre, 
+                Apellido: apellido, 
+                CodigoAcceso: codigoAcceso,
+                MaestroID: teacherId 
+            });
+
             setNombre('');
             setApellido('');
             setCodigoAcceso('');
@@ -41,10 +44,8 @@ const AddStudentModal = ({ isOpen, onClose }) => {
             console.error('Error al agregar estudiante:', error);
         }
     };
-    
 
     const handleChangeNombre = (e) => {
-        // Evitar números y caracteres especiales en el campo de nombre
         const re = /^[A-Za-z\s]+$/;
         if (re.test(e.target.value) || e.target.value === '') {
             setNombre(e.target.value);
@@ -52,7 +53,6 @@ const AddStudentModal = ({ isOpen, onClose }) => {
     };
 
     const handleChangeApellido = (e) => {
-        // Evitar números y caracteres especiales en el campo de apellido
         const re = /^[A-Za-z\s]+$/;
         if (re.test(e.target.value) || e.target.value === '') {
             setApellido(e.target.value);
@@ -86,6 +86,5 @@ const AddStudentModal = ({ isOpen, onClose }) => {
         )
     );
 };
-
 
 export default AddStudentModal;
