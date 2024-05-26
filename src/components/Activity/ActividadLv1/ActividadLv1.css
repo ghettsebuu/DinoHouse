@@ -112,6 +112,102 @@
   }
 
  
+  .progress-bar {
+    width: 100%;
+    background-color: #e0e0e0;
+    height: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 20px 0;
+}
+
+.progress {
+    height: 100%;
+    background-color: #76c7c0;
+    width: 0;
+    transition: width 0.5s;
+}
+
   
-  
-  
+/* juego de memoria */
+.memory-game {
+  text-align: center;
+  margin: 20px;
+}
+
+.memory-game h2 {
+  font-size: 2em;
+  color: #4CAF50;
+}
+
+.memory-game .movimientos {
+  margin-bottom: 20px;
+  font-size: 1.2em;
+}
+
+.memory-game .contenedor-cartas {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.memory-game .carta {
+  width: 120px;
+  height: 140px;
+  border: 2px solid #333;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s, background-color 0.3s;
+  position: relative;
+  perspective: 1000px;
+}
+
+.memory-game .carta img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  backface-visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: rotateY(180deg);
+}
+
+.memory-game .carta.volteada img {
+  transform: rotateY(0);
+}
+
+.memory-game .carta.boca-abajo {
+  background-color: #FFD700; /* Color dorado para las cartas boca abajo */
+}
+
+.memory-game .fin-juego {
+  margin-top: 20px;
+}
+
+.memory-game .fin-juego h3 {
+  font-size: 2em;
+  color: #4CAF50;
+}
+
+.memory-game .fin-juego p {
+  font-size: 1.2em;
+}
+
+.memory-game .fin-juego button {
+  padding: 10px 20px;
+  font-size: 1em;
+  color: white;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.memory-game .fin-juego button:hover {
+  background-color: #45a049;
+}
