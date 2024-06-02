@@ -6,7 +6,9 @@ const MemoryGame = ({ onNext }) => {
     const [cartasVolteadas, setCartasVolteadas] = useState([]);
     const [cartasCoincidentes, setCartasCoincidentes] = useState([]);
     const [movimientos, setMovimientos] = useState(0);
+    const [rondas, setRondas] = useState(1);
     const [finJuego, setFinJuego] = useState(false);
+    const maxRondas = 3;
 
     const datosCartas = [
         { id: 1, tipo: 'objeto', nombre: 'Abeja', imagen: '/img/ObjetosLv1/Abeja.png' },
@@ -76,21 +78,41 @@ const MemoryGame = ({ onNext }) => {
         { id: 65, tipo: 'letra', letra: 'Ñ', imagen: '/img/Letras/Ñ.png' },
         { id: 66, tipo: 'letra', letra: 'O', imagen: '/img/Letras/O.png' },
         { id: 67, tipo: 'letra', letra: 'P', imagen: '/img/Letras/P.png' },
-        { id: 67, tipo: 'letra', letra: 'Q', imagen: '/img/Letras/Q.png' },
-        { id: 68, tipo: 'letra', letra: 'R', imagen: '/img/Letras/R.png' },
-        { id: 69, tipo: 'letra', letra: 'S', imagen: '/img/Letras/S.png' },
-        { id: 70, tipo: 'letra', letra: 'T', imagen: '/img/Letras/T.png' },
-        { id: 71, tipo: 'letra', letra:'U', imagen: '/img/Letras/U.png' },
-        { id: 72, tipo: 'letra', letra: 'V', imagen: '/img/Letras/V.png' },
-        { id: 73, tipo: 'letra', letra: 'W', imagen: '/img/Letras/W.png' },
-        { id: 74, tipo: 'letra', letra: 'X', imagen: '/img/Letras/X.png' },
-        { id: 75, tipo: 'letra', letra: 'Y', imagen: '/img/Letras/Y.png' },
-        { id: 76, tipo: 'letra', letra: 'Z', imagen: '/img/Letras/Z.png' },
+        { id: 68, tipo: 'letra', letra: 'Q', imagen: '/img/Letras/Q.png' },
+        { id: 69, tipo: 'letra', letra: 'R', imagen: '/img/Letras/R.png' },
+        { id: 70, tipo: 'letra', letra: 'S', imagen: '/img/Letras/S.png' },
+        { id: 71, tipo: 'letra', letra: 'T', imagen: '/img/Letras/T.png' },
+        { id: 72, tipo: 'letra', letra: 'U', imagen: '/img/Letras/U.png' },
+        { id: 73, tipo: 'letra', letra: 'V', imagen: '/img/Letras/V.png' },
+        { id: 74, tipo: 'letra', letra: 'W', imagen: '/img/Letras/W.png' },
+        { id: 75, tipo: 'letra', letra: 'X', imagen: '/img/Letras/X.png' },
+        { id: 76, tipo: 'letra', letra: 'Y', imagen: '/img/Letras/Y.png' },
+        { id: 77, tipo: 'letra', letra: 'Z', imagen: '/img/Letras/Z.png' },
     ];
 
-    const generarCartas = () => {
-        const cartasDuplicadas = [...datosCartas];
-        return cartasDuplicadas.sort(() => Math.random() - 0.5);
+    const obtenerCartasAleatorias = (numCartas) => {
+        const numLetras = numCartas / 2;
+
+        // Seleccionar letras al azar
+        const letras = datosCartas.filter(carta => carta.tipo === 'letra');
+        const letrasSeleccionadas = [];
+        while (letrasSeleccionadas.length < numLetras) {
+            const letraAleatoria = letras[Math.floor(Math.random() * letras.length)];
+            if (!letrasSeleccionadas.includes(letraAleatoria)) {
+                letrasSeleccionadas.push(letraAleatoria);
+            }
+        }
+
+        // Seleccionar los objetos correspondientes a las letras seleccionadas
+        const objetos = datosCartas.filter(carta => carta.tipo === 'objeto');
+        const objetosSeleccionados = letrasSeleccionadas.map(letra => {
+            const posiblesObjetos = objetos.filter(objeto => objeto.nombre[0].toUpperCase() === letra.letra);
+            return posiblesObjetos[Math.floor(Math.random() * posiblesObjetos.length)];
+        });
+
+        // Combinar y mezclar las cartas seleccionadas
+        const cartasSeleccionadas = [...letrasSeleccionadas, ...objetosSeleccionados];
+        return cartasSeleccionadas.sort(() => Math.random() - 0.5);
     };
 
     const manejarClicCarta = (carta) => {
@@ -117,20 +139,42 @@ const MemoryGame = ({ onNext }) => {
         }
     };
 
-    useEffect(() => {
-        if (cartasCoincidentes.length === datosCartas.length) {
+    const iniciarNuevaRonda = () => {
+        const numCartasPorRonda = [8, 12, 16];
+
+        if (rondas < maxRondas) {
+            const numCartas = numCartasPorRonda[rondas]; // Incrementar cartas por ronda: 10, 14, 18
+            setRondas(rondas + 1);
+            setCartas(obtenerCartasAleatorias(numCartas));
+            setCartasVolteadas([]);
+            setCartasCoincidentes([]);
+            setMovimientos(0);
+        } else {
             setFinJuego(true);
+        }
+    };
+
+    useEffect(() => {
+        if (cartasCoincidentes.length === cartas.length && cartas.length > 0) {
+            if (rondas < maxRondas) {
+                setTimeout(() => {
+                    iniciarNuevaRonda();
+                }, 1000);
+            } else {
+                setFinJuego(true);
+            }
         }
     }, [cartasCoincidentes]);
 
     useEffect(() => {
-        setCartas(generarCartas());
+        setCartas(obtenerCartasAleatorias(8)); // Iniciar con 10 cartas
     }, []);
 
     return (
         <div className="memory-game">
             <h2>Juego de Memoria</h2>
             <div className="movimientos">Movimientos: {movimientos}</div>
+            <div className="rondas">Ronda: {rondas}/{maxRondas}</div>
             <div className="contenedor-cartas">
                 {cartas.map((carta, index) => (
                     <div
@@ -149,7 +193,7 @@ const MemoryGame = ({ onNext }) => {
                 <div className="fin-juego">
                     <h3>¡Felicidades!</h3>
                     <p>Has completado el Juego de Memoria.</p>
-                    <button onClick={onNext}>Siguiente Juego</button>
+                    <button onClick={onNext}>Fin del Juego</button>
                 </div>
             )}
         </div>

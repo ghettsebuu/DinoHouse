@@ -30,7 +30,13 @@
 .Dado{
   width: 15%;
   top: 80%;
-  left: 37%;
+  left: 40%;
+}
+
+.memoria{
+  width: 15%;
+  top: 85%;
+  left: 20%;
 }
 .D-Nivel1{
   width: 20%;

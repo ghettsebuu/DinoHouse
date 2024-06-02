@@ -1,6 +1,5 @@
 import React from 'react';
-  
-  // Componente de la tabla de estudiantes
+
 const StudentTable = ({ students, editStudent, deleteStudent }) => {
     return (
         <table>
@@ -13,14 +12,14 @@ const StudentTable = ({ students, editStudent, deleteStudent }) => {
                 </tr>
             </thead>
             <tbody>
-                {students.map((student, index) => (
-                    <tr key={index}>
+                {students.map((student) => (
+                    <tr key={student.id}>
                         <td>{student.Nombre}</td>
                         <td>{student.Apellido}</td>
                         <td>{student.CodigoAcceso}</td>
                         <td>
-                            <button onClick={() => editStudent(index)}>Editar</button>
-                            <button onClick={() => deleteStudent(index)}>Eliminar</button>
+                            <button onClick={() => editStudent(student)}>Editar</button>
+                            <button onClick={() => deleteStudent(student.id)}>Eliminar</button>
                         </td>
                     </tr>
                 ))}

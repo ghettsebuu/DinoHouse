@@ -13,8 +13,9 @@ const Nivel1 = ({ mostrarActividad, mostrarMemoryGame }) => {
   return (
     <div className='nivel'>
       <img src="/img/level1.jpg" alt="Fondo-nivel1"  className='background-image'/>
-      <img onClick={handleMostrarMemoryGameClick} src="/img/dinoazul2.png" alt="Rex" className='foreground-image D-Nivel1' />
+      <img  src="/img/dinoazul2.png" alt="Rex" className='foreground-image D-Nivel1' />
       <img onClick={handleMostrarActividadClick} src="/img/dados.png" alt="playjuego" className='foreground-image Dado' />
+      <img onClick={handleMostrarMemoryGameClick} src="/img/memoria.png" alt="playjuego" className='foreground-image memoria' />
     </div>
   );
 }; 

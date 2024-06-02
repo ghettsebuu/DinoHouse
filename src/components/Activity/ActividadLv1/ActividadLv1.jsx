@@ -24,6 +24,8 @@ const ActividadLv1 = ({ mostrarActividad }) => {
         { name: "Iman", letter: "I", image: "/img/ObjetosLv1/Iman.png" },
         { name: "Olla", letter: "O", image: "/img/ObjetosLv1/Olla.png" },
         { name: "Uvas", letter: "U", image: "/img/ObjetosLv1/Uvas.png" },
+        
+        
     ];
 
     useEffect(() => {
