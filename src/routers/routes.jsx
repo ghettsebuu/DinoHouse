@@ -11,6 +11,7 @@ import RequireStudentAuth from './RequireStudentAuth';
 
 
 
+
 export function Rutas(){
     const {user} = UserAuth();
     const RequireAuth =({children})=>{
@@ -35,7 +36,7 @@ export function Rutas(){
             {/* <Route path="/ActividadLv1" element={<ProtectorRuta>
                 <ActividadLv1/>
             </ProtectorRuta>} /> */}
-
+          
           </Routes>
         </BrowserRouter>
     )

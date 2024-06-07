@@ -4,7 +4,11 @@ import HomeButtonComponent from './ButtonHome'; // Ajusta la ruta según la ubic
 import BackButtonComponent from './ButtonBack';
 import './PanelPlay.css';
 
-const SidebarComponent = ({ avatar, Nombre, level}) => {
+const SidebarComponent = ({ avatar, Nombre, level, mostrarSelectNivel }) => {
+  const handleMostrarSelectNivel = () => {
+    mostrarSelectNivel();
+  };
+
   return (
     <div className="sidebar">
       <div className="avatar-card">
@@ -13,7 +17,7 @@ const SidebarComponent = ({ avatar, Nombre, level}) => {
           <div className="username-container">
             <p>{Nombre}</p>
           </div>
-          <div className="level-container">
+          <div className="level-container" onClick={handleMostrarSelectNivel}>
             <p>Nivel: {level}</p> 
           </div>
         </div>
@@ -22,7 +26,6 @@ const SidebarComponent = ({ avatar, Nombre, level}) => {
           <HomeButtonComponent />
           <BackButtonComponent />
       </div>
-      
     </div>
   );
 };

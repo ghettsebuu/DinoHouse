@@ -1,0 +1,23 @@
+/* src/components/Activity/LaboratorioSilabas/LaboratorioSilabas.css */
+.laboratorio-silabas {
+  text-align: center;
+  padding: 20px;
+}
+.laboratorio-silabas h1{
+  color:rgb(42, 204, 169);
+}
+
+.coleccion {
+ /*  display: flex; */
+  margin-bottom: 20px;
+}
+
+.coleccion ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.coleccion li {
+  margin: 5px 0;
+  font-size: 18px;
+}
