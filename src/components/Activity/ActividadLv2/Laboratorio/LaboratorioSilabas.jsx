@@ -1,7 +1,7 @@
-// src/components/Activity/LaboratorioSilabas/LaboratorioSilabas.jsx
 import React, { useState } from 'react';
 import GameArea from './GameArea';
 import LetterList from './LetterList';
+import Coleccion from './Coleccion';
 import './LaboratorioSilabas.css';
 
 const consonants = ['B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'Ñ', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'X', 'Y', 'Z'];
@@ -15,15 +15,16 @@ const syllablesLevel3 = consonants.flatMap(c => vowels.flatMap(v => consonants.m
 const syllablesLevel4 = consonants.flatMap(c => consonants.flatMap(c2 => vowels.map(v => c + c2 + v)));
 
 const levels = [
-  { name: 'Nivel 1 - Sílabas simples (CV)', syllables: syllablesLevel1 },
-  { name: 'Nivel 2 - Sílabas que empiezan por vocal (VC)', syllables: syllablesLevel2 },
-  { name: 'Nivel 3 - Sílabas complejas (CVC)', syllables: syllablesLevel3 },
-  { name: 'Nivel 4 - Sílabas con dígrafos (CCV)', syllables: syllablesLevel4 }
+  { name: 'Nivel 1 - Sílabas simples (CV)', syllables: syllablesLevel1, img: 'img/silabas1.png' },
+  { name: 'Nivel 2 - Sílabas que empiezan por vocal (VC)', syllables: syllablesLevel2, img: 'img/silabas2.png' },
+  { name: 'Nivel 3 - Sílabas complejas (CVC)', syllables: syllablesLevel3, img: 'img/silabas3.png' },
+  { name: 'Nivel 4 - Sílabas con dígrafos (CCV)', syllables: syllablesLevel4, img: 'img/silabas4.png' }
 ];
 
 const LaboratorioSilabas = () => {
   const [formedSyllables, setFormedSyllables] = useState(levels.map(() => []));
   const [currentLevel, setCurrentLevel] = useState(0);
+  const [showCollection, setShowCollection] = useState(false);
 
   const handleSyllableFormed = (syllable) => {
     const validSyllables = levels[currentLevel].syllables;
@@ -38,31 +39,38 @@ const LaboratorioSilabas = () => {
     setCurrentLevel(level);
   };
 
+  const toggleCollection = () => {
+    setShowCollection(!showCollection);
+  };
+
   return (
     <div className="laboratorio-silabas">
-      <h2>Laboratorio de Sílabas y Sonidos</h2>
-      <h3>{levels[currentLevel].name}</h3>
-      <div className="nivel-selector">
-        {levels.map((level, index) => (
-          <button key={index} onClick={() => handleLevelChange(index)} disabled={index === currentLevel}>
-            {level.name}
-          </button>
-        ))}
-      </div>
-      <div className="coleccion">
-        <h3>Mi colección</h3>
-        {formedSyllables[currentLevel].length === 0 ? (
-          <p>No has descubierto ninguna sílaba aún.</p>
-        ) : (
-          <ul>
-            {formedSyllables[currentLevel].map((syllable, index) => (
-              <li key={index}>{syllable}</li>
+      {showCollection ? (
+        <Coleccion formedSyllables={formedSyllables} currentLevel={currentLevel} onBack={toggleCollection} />
+      ) : (
+        <>
+          <div className="nivel-selector">
+            {levels.map((level, index) => (
+              <img 
+                key={index}
+                src={level.img} 
+                alt={level.name} 
+                onClick={() => handleLevelChange(index)} 
+                className={`nivel-img ${index === currentLevel ? 'selected' : ''}`}
+              />
             ))}
-          </ul>
-        )}
-      </div>
-      <GameArea onSyllableFormed={handleSyllableFormed} currentLevel={currentLevel} />
-      <LetterList />
+          </div>
+          <div className="game-area-container">
+            <div className="current-syllable-display" onClick={toggleCollection}>
+              <div className="current-syllable">
+                {formedSyllables[currentLevel][formedSyllables[currentLevel].length - 1] || 'Ninguna sílaba formada'}
+              </div>
+            </div>
+            <GameArea onSyllableFormed={handleSyllableFormed} currentLevel={currentLevel} />
+            <LetterList />
+          </div>
+        </>
+      )}
     </div>
   );
 };

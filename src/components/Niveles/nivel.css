@@ -27,6 +27,16 @@
   transform: translate(-50%, -50%) scale(1.1); /* Agranda ligeramente la imagen al pasar el puntero */
 }
 
+.laboratorio{
+  width: 20%;
+  top: 80%;
+  left: 13%;
+}
+.cohete{
+  width: 15%;
+  top: 65%;
+  left: 32%;
+}
 .Dado{
   width: 15%;
   top: 80%;

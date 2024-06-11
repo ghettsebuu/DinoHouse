@@ -1,19 +1,36 @@
-/* src/components/Activity/LaboratorioSilabas/LetterList.css */
+/* Estilos para LetterList */
 .letter-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  padding: 10px;
+  gap: 10px;
+  margin-top: 45px;
 }
 
 .letter {
-  margin: 5px;
+  background-color: #ffffff;
   padding: 10px;
-  background-color: #f0f0f0;
-  border: 1px solid #ccc;
+  border: 1px solid #b0bec5;
   border-radius: 4px;
-  cursor: grab;
-  font-size: 20px;
+  cursor: pointer;
+  width: 40px;
   text-align: center;
-  width: 35px;
+  transition: background-color 0.3s ease;
+}
+
+.letter:active {
+  background-color: #cfd8dc;
+}
+
+/* Responsivo */
+@media (max-width: 600px) {
+  .letter-list {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .letter {
+    width: 60px;
+    margin-bottom: 10px;
+  }
 }

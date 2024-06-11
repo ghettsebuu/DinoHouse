@@ -1,10 +1,11 @@
-// SidebarComponent.js
+// src/components/SidebarComponent.js
 import React from 'react';
-import HomeButtonComponent from './ButtonHome'; // Ajusta la ruta según la ubicación del archivo
+import HomeButtonComponent from './ButtonHome';
+import ExitButtonComponent from './ButtonExit';
 import BackButtonComponent from './ButtonBack';
 import './PanelPlay.css';
 
-const SidebarComponent = ({ avatar, Nombre, level, mostrarSelectNivel }) => {
+const SidebarComponent = ({ avatar, Nombre, level, mostrarSelectNivel, onBackButtonClick }) => {
   const handleMostrarSelectNivel = () => {
     mostrarSelectNivel();
   };
@@ -23,8 +24,9 @@ const SidebarComponent = ({ avatar, Nombre, level, mostrarSelectNivel }) => {
         </div>
       </div>
       <div className="button-container">
+          <BackButtonComponent onClick={onBackButtonClick} />
           <HomeButtonComponent />
-          <BackButtonComponent />
+          <ExitButtonComponent />
       </div>
     </div>
   );

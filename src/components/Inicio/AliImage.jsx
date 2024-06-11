@@ -1,10 +1,15 @@
-// DinaImage.jsx
+// AliImage.jsx
 import React from 'react';
 
-const AliImage = () => {
+const AliImage = ({ onClick }) => {
   return (
-    <img src="/img/dinoAli.png" alt="DinoAli" className="Ali-image dinos dinosaur-animation " />
-  );
+    <img 
+      src="/img/dinoAli.png"
+      alt="Ali" 
+      className="Ali-image dinos dinosaur-animation "
+      onClick={onClick} 
+    />
+  ); 
 };
 
 export default AliImage;

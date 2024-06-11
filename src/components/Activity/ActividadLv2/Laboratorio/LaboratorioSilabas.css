@@ -1,14 +1,68 @@
-/* src/components/Activity/LaboratorioSilabas/LaboratorioSilabas.css */
 .laboratorio-silabas {
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  max-width: 100%;
   padding: 20px;
+  text-align: center;
+  background-color: #ffff;
+  border-radius: 3%;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 }
-.laboratorio-silabas h1{
-  color:rgb(42, 204, 169);
+
+.laboratorio-silabas h2 {
+  margin-bottom: 20px;
+  color: #00796b;
+}
+
+.nivel-selector {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 15%;
+  gap: 10px;
+  margin-bottom: 10px;
+  margin-right: 5px;
+  
+}
+
+.nivel-selector img {
+  width: 130px;
+  height: 130px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  border-radius: 8px;
+}
+
+.nivel-selector img.selected {
+  border: 2px solid #4caf50;
+  transform: scale(1.1);
+}
+
+.nivel-selector img:hover {
+  transform: scale(1.05);
+}
+
+.current-syllable-display {
+  background-color: #ee7239a4;
+  padding: 20px;
+  border-radius: 8px;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.current-syllable-display h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.current-syllable {
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 10px;
 }
 
 .coleccion {
- /*  display: flex; */
   margin-bottom: 20px;
 }
 
@@ -18,6 +72,68 @@
 }
 
 .coleccion li {
+  background-color: #ffffff;
   margin: 5px 0;
-  font-size: 18px;
+  padding: 10px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.game-area-container, .letter-list-container {
+  margin-bottom: 20px;
+}
+
+.game-area-container {
+  background-color: #b2dfdb00;
+  padding: 20px;
+  border-radius: 8px;
+  width: 80%;
+}
+
+.letter-list-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.letter {
+  background-color: #ffffff;
+  padding: 10px;
+  border: 1px solid #b0bec5;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 40px;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.letter:active {
+  background-color: #cfd8dc;
+}
+
+/* Responsivo */
+@media (max-width: 600px) {
+  .nivel-selector img {
+    flex: 1 1 100%;
+    margin-bottom: 10px;
+  }
+
+  .letter-list-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .letter {
+    width: 60px;
+    margin-bottom: 10px;
+  }
+
+  .current-syllable-display, .game-area-container {
+    padding: 10px;
+  }
+
+  .current-syllable {
+    font-size: 20px;
+  }
 }

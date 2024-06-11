@@ -63,6 +63,9 @@ body{
   height: auto;
   position: relative; /* Asegura que los dinosaurios se superpongan sobre esta imagen */
   z-index: 1; /* Eleva la casita para que esté por debajo de los dinosaurios */
+  filter: drop-shadow(
+    0 0 10px rgba(0, 0, 0, 0.068)
+  );
 }
 .play-button {
   position: absolute;
@@ -108,23 +111,38 @@ body{
 }
 
 .rex-image{
+  filter: drop-shadow(
+    0 0 10px rgba(0, 0, 0, 0.24)
+  );
   width: 11%;
 }
 
 .Ali-image{
   width: 22%;
+  filter: drop-shadow(
+    0 0 10px rgba(0, 0, 0, 0.24)
+  );
 }
 
 .dina-image{
   width: 17%;
+  filter: drop-shadow(
+    0 0 10px rgba(0, 0, 0, 0.24)
+  );
 }
 
 .Tito-image{
   width: 12%;
+  filter: drop-shadow(
+    0 0 10px rgba(0, 0, 0, 0.24)
+  );
 }
 
 .dados{
   width: 10%;
+  filter: drop-shadow(
+    0 0 10px rgba(0, 0, 0, 0.24)
+  );
 }
 
 .dinos{

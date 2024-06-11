@@ -81,7 +81,8 @@ body{
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  height: 35%;
+  height: 42%;
+
   
 }
 
@@ -99,7 +100,8 @@ body{
 
 /* Estilos para los botones */
 .home-button,
-.back-button {
+.back-button,
+.exit-button {
   border: none;
   padding: 10px; /* Ajusta el padding según sea necesario */
   cursor: pointer;
@@ -116,6 +118,12 @@ body{
   
 }
 
+.exit-button {
+  background-color:#ee565e; /* Color amarillo para el botón de Back */
+  
+}
+
+
 /* Estilos específicos para el botón de Back */
 .back-button {
   background-color:#fbd41b; /* Color amarillo para el botón de Back */
@@ -124,20 +132,26 @@ body{
 
 
 .back-button:hover {
-    background-color: #f0d448;
+    background-color: #dfbb45;
+   
 }
 
 .home-button:hover{
-  background-color:#4eb6b2;
+  background-color:#1f9490;
+ 
 }
   
+.exit-button:hover {
+  background-color: #d84249;
+ 
+}
   /* Estilos para el escenario */
   .scene {
     flex: 1;
     display: flex;
     justify-content: center;
     margin: 20px;
-    background-color: #99d1c8;
+    background-color: #ffff;
     border-radius: 3%;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
     /* Aquí puedes agregar más estilos para el contenido del escenario */

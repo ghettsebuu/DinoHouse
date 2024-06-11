@@ -1,5 +1,9 @@
 // SelectNivel.jsx
 import React from 'react';
+import DinaImage from '../Inicio/DinaImage';
+import TitoImage from '../Inicio/TitoImage';
+import RexImage from '../Inicio/RexImage';
+import AliImage from '../Inicio/AliImage';
 import './SelectNivel.css';
 
 const SelectNivel = ({ seleccionarNivel }) => {
@@ -10,11 +14,14 @@ const SelectNivel = ({ seleccionarNivel }) => {
   return (
     <div className="select-nivel">
       <h2>Seleccionar Nivel</h2>
-      <button onClick={() => handleNivelSeleccionado(1)}>Nivel 1</button>
-      <button onClick={() => handleNivelSeleccionado(2)}>Nivel 2</button>
-      <button onClick={() => handleNivelSeleccionado(3)}>Nivel 3</button>
-      <button onClick={() => handleNivelSeleccionado(4)}>Nivel 4</button>
-    </div>
+      <div className="Botones" >
+        <RexImage onClick={() => handleNivelSeleccionado(1)} />
+        <DinaImage onClick={() => handleNivelSeleccionado(2)} />
+        <TitoImage onClick={() => handleNivelSeleccionado(3)} />
+        <AliImage onClick={() => handleNivelSeleccionado(4)} />
+      </div>
+      
+    </div> 
   );
 };
 

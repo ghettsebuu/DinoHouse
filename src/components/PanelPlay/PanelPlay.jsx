@@ -57,6 +57,14 @@ const PanelPlay = () => {
         setMostrarSelectNivel(true);
     };
 
+    const handleBackButtonClick = () => {
+        // Volver al panel principal
+        setMostrarActividad(false);
+        setMostrarMemoryGame(false);
+        setMostrarLaboratorio(false);
+        setMostrarSelectNivel(false);
+    };
+
     return (
         <div className="dashboard">
             <SidebarComponent 
@@ -64,6 +72,7 @@ const PanelPlay = () => {
                 Nombre={studentName} 
                 level={nivelActual} 
                 mostrarSelectNivel={handleMostrarSelectNivel}
+                onBackButtonClick={handleBackButtonClick} // Pasar la función al Sidebar
             />
             {mostrarSelectNivel ? (
                 <SelectNivel seleccionarNivel={handleNivelSeleccionado} />

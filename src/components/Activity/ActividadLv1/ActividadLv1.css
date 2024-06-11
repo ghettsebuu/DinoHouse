@@ -12,7 +12,7 @@
    .PlayScena{
     flex: 1;
     display: flex;
-    background-color: #ffff;;
+    background-color: #ffff;
     flex-direction: column;
     align-items: center;
     padding: 20px;
@@ -37,7 +37,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-    background-color: #ffff;
+    background-color: #99d1c815;
     padding: 20px;
   }
   
@@ -127,7 +127,13 @@
     width: 0;
     transition: width 0.5s;
 }
+.final-screen button{
+  background-color: #eed234;
+}
 
+.final-screen button:hover{
+  background-color: #d3ba2c;
+}
   
 /* juego de memoria */
 .memory-game {
@@ -201,7 +207,7 @@
   padding: 10px 20px;
   font-size: 1em;
   color: white;
-  background-color: #4CAF50;
+  background-color: #f8e995;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -209,5 +215,5 @@
 }
 
 .memory-game .fin-juego button:hover {
-  background-color: #45a049;
+  background-color: #f3d422;
 }
