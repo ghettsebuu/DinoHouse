@@ -11,30 +11,40 @@ const PanelPlay = () => {
     const [mostrarActividad, setMostrarActividad] = useState(false);
     const [mostrarMemoryGame, setMostrarMemoryGame] = useState(false);
     const [mostrarLaboratorio, setMostrarLaboratorio] = useState(false);
+    const [mostrarOraciones, setMostrarOraciones] = useState(false);
     const [mostrarSelectNivel, setMostrarSelectNivel] = useState(false);
 
     useEffect(() => {
-        // Obtén el nombre del estudiante desde localStorage
         const name = localStorage.getItem('studentName');
         if (name) {
             setStudentName(name);
         }
-    }, []); // El segundo argumento [] asegura que el efecto se ejecute solo una vez al montar el componente
+    }, []);
 
     const handleMostrarActividad = () => {
         setMostrarActividad(true);
         setMostrarMemoryGame(false);
         setMostrarLaboratorio(false);
+        setMostrarOraciones(false);
     };
 
     const handleMostrarMemoryGame = () => {
         setMostrarMemoryGame(true);
         setMostrarActividad(false);
         setMostrarLaboratorio(false);
+        setMostrarOraciones(false);
     };
 
     const handleMostrarLaboratorio = () => {
         setMostrarLaboratorio(true);
+        setMostrarActividad(false);
+        setMostrarMemoryGame(false);
+        setMostrarOraciones(false);
+    };
+
+    const handleMostrarOraciones = () => {
+        setMostrarOraciones(true);
+        setMostrarLaboratorio(false);
         setMostrarActividad(false);
         setMostrarMemoryGame(false);
     };
@@ -43,6 +53,7 @@ const PanelPlay = () => {
         setMostrarMemoryGame(false);
         setMostrarActividad(false);
         setMostrarLaboratorio(false);
+        setMostrarOraciones(false);
     };
 
     const handleNivelSeleccionado = (nivel) => {
@@ -50,6 +61,7 @@ const PanelPlay = () => {
         setMostrarActividad(false);
         setMostrarMemoryGame(false);
         setMostrarLaboratorio(false);
+        setMostrarOraciones(false);
         setMostrarSelectNivel(false);
     };
 
@@ -58,33 +70,35 @@ const PanelPlay = () => {
     };
 
     const handleBackButtonClick = () => {
-        // Volver al panel principal
         setMostrarActividad(false);
         setMostrarMemoryGame(false);
         setMostrarLaboratorio(false);
+        setMostrarOraciones(false);
         setMostrarSelectNivel(false);
     };
 
     return (
         <div className="dashboard">
-            <SidebarComponent 
-                avatar="url_del_avatar" 
-                Nombre={studentName} 
-                level={nivelActual} 
+            <SidebarComponent
+                avatar="url_del_avatar"
+                Nombre={studentName}
+                level={nivelActual}
                 mostrarSelectNivel={handleMostrarSelectNivel}
-                onBackButtonClick={handleBackButtonClick} // Pasar la función al Sidebar
+                onBackButtonClick={handleBackButtonClick}
             />
             {mostrarSelectNivel ? (
                 <SelectNivel seleccionarNivel={handleNivelSeleccionado} />
             ) : (
-                <SceneComponent 
-                    nivelActual={nivelActual} 
-                    mostrarActividad={handleMostrarActividad} 
-                    mostrarMemoryGame={handleMostrarMemoryGame} 
+                <SceneComponent
+                    nivelActual={nivelActual}
+                    mostrarActividad={handleMostrarActividad}
+                    mostrarMemoryGame={handleMostrarMemoryGame}
                     mostrarLaboratorio={handleMostrarLaboratorio}
+                    mostrarOraciones={handleMostrarOraciones}
                     mostrarActividadState={mostrarActividad}
                     mostrarMemoryGameState={mostrarMemoryGame}
                     mostrarLaboratorioState={mostrarLaboratorio}
+                    mostrarOracionesState={mostrarOraciones}
                     handleVolverALetras={handleVolverALetras}
                 />
             )}

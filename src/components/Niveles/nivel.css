@@ -38,15 +38,26 @@
   left: 32%;
 }
 .Dado{
-  width: 15%;
-  top: 80%;
-  left: 40%;
+  width: 12%;
+  top: 82%;
+  left: 20%;
 }
 
 .memoria{
   width: 15%;
   top: 85%;
-  left: 20%;
+  left: 40%;
+}
+.recetas{
+  width: 13%;
+  top: 84%;
+  left: 47%;
+}
+
+.sandia{
+  width: 15%;
+  top: 69%;
+  left: 86%;
 }
 .D-Nivel1{
   width: 20%;
@@ -61,9 +72,9 @@
 }
 
 .D-Nivel3{
-  width: 29%;
-  top: 72%; /* Coloca la imagen en la mitad superior del contenedor principal */
-  left: 46%; /* Coloca la imagen en el centro horizontal del contenedor principal */
+  width: 24%;
+  top: 77%; /* Coloca la imagen en la mitad superior del contenedor principal */
+  left: 23%; /* Coloca la imagen en el centro horizontal del contenedor principal */
 }
 
 .D-Nivel4{

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './ActividadLv1.css';
-import FinalScreen from './Final.jsx';
+import FinalScreen from '../Final.jsx';
 
-const ActividadLv1 = ({ mostrarActividad }) => {
+
+const ActividadLv1 = ({ mostrarActividad, onNextActivity }) => {
     const [draggedLetter, setDraggedLetter] = useState('');
     const [droppedLetter, setDroppedLetter] = useState('');
     const [correctAnswer, setCorrectAnswer] = useState(false);
@@ -24,8 +25,6 @@ const ActividadLv1 = ({ mostrarActividad }) => {
         { name: "Iman", letter: "I", image: "/img/ObjetosLv1/Iman.png" },
         { name: "Olla", letter: "O", image: "/img/ObjetosLv1/Olla.png" },
         { name: "Uvas", letter: "U", image: "/img/ObjetosLv1/Uvas.png" },
-        
-        
     ];
 
     useEffect(() => {
@@ -121,20 +120,22 @@ const ActividadLv1 = ({ mostrarActividad }) => {
     };
 
     const goToHome = () => {
-        mostrarActividad();
+        mostrarActividad(false);
+    };
+
+    const nextActivity = () => {
+        onNextActivity();
     };
 
     return (
         <section className='PlayScena'>
             {showFinalScreen ? (
-                <FinalScreen onRestart={restartActivity} onGoToHome={goToHome} />
+                <FinalScreen onRestart={restartActivity} onGoToHome={goToHome} onNext={nextActivity} />
             ) : (
                 <div className="actividad-lv1">
-                  
                     <div className="progress-bar">
                         <div className="progress" style={{ width: `${(currentObjectIndex + 1) / objects.length * 100}%` }}></div>
                     </div>
-
                     <h2>¡Arrastra la Letra!</h2>
                     <div className="score">Puntuación: {score}</div>
                     <div className="object-image">

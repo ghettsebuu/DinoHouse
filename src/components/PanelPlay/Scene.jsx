@@ -14,15 +14,18 @@ import MemoryGameLv2 from '../Activity/ActividadLv2/MemoryGame.jsx';
 import MemoryGameLv3 from '../Activity/ActividadLv3/MemoryGame.jsx';
 import MemoryGameLv4 from '../Activity/ActividadLv4/MemoryGame.jsx';
 import LaboratorioSilabas from '../Activity/ActividadLv2/Laboratorio/LaboratorioSilabas.jsx';
+import Oraciones from '../Activity/ActividadLv3/Oraciones.jsx';
 
 const SceneComponent = ({
   nivelActual,
   mostrarActividad,
   mostrarMemoryGame,
   mostrarLaboratorio,
+  mostrarOraciones,
   mostrarActividadState,
   mostrarMemoryGameState,
   mostrarLaboratorioState,
+  mostrarOracionesState,
   handleVolverALetras
 }) => {
   let NivelComponent;
@@ -59,17 +62,20 @@ const SceneComponent = ({
 
   return (
     <div className="scene">
-      {!mostrarActividadState && !mostrarMemoryGameState && !mostrarLaboratorioState ? (
-        <NivelComponent mostrarActividad={mostrarActividad} mostrarMemoryGame={mostrarMemoryGame} mostrarLaboratorio={mostrarLaboratorio} />
+      {!mostrarActividadState && !mostrarMemoryGameState && !mostrarLaboratorioState && !mostrarOracionesState ? (
+        <NivelComponent mostrarActividad={mostrarActividad} mostrarMemoryGame={mostrarMemoryGame} mostrarLaboratorio={mostrarLaboratorio} mostrarOraciones={mostrarOraciones} />
       ) : mostrarActividadState ? (
         <ActividadComponent mostrarActividad={mostrarActividad} />
       ) : mostrarMemoryGameState ? (
         <MemoryGameComponent onNext={handleVolverALetras} />
       ) : mostrarLaboratorioState ? (
         <LaboratorioSilabas />
+      ) : mostrarOracionesState ? (
+        <Oraciones mostrarOraciones={mostrarOraciones} />
       ) : null}
     </div>
   );
 };
+
 
 export default SceneComponent;
