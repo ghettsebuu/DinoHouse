@@ -22,7 +22,7 @@
   gap: 10px;
   margin-bottom: 10px;
   margin-right: 5px;
-  
+
 }
 
 .nivel-selector img {
@@ -79,7 +79,8 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.game-area-container, .letter-list-container {
+.game-area-container,
+.letter-list-container {
   margin-bottom: 20px;
 }
 
@@ -113,10 +114,35 @@
 }
 
 /* Responsivo */
+@media (max-width: 1200px) {
+  .game-area {
+    width: auto;
+  }
+
+  .game-area-container {
+    width: auto;
+  }
+
+  .laboratorio-silabas {
+    flex-direction: column-reverse;
+  }
+
+  .nivel-selector {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    width: auto;
+    gap: 0px;
+    /* flex-direction: row; */
+    margin-bottom: 10px;
+    margin-right: 5px;
+  }
+}
+
 @media (max-width: 600px) {
   .nivel-selector img {
-    flex: 1 1 100%;
-    margin-bottom: 10px;
+    width: 100px;
+    height: auto;
   }
 
   .letter-list-container {
@@ -125,15 +151,33 @@
   }
 
   .letter {
-    width: 60px;
     margin-bottom: 10px;
   }
 
-  .current-syllable-display, .game-area-container {
+  .current-syllable-display,
+  .game-area-container {
     padding: 10px;
   }
 
   .current-syllable {
     font-size: 20px;
+  }
+}
+
+@media (max-width: 500px) {
+  .nivel-selector img {
+    width: 80px;
+    height: auto;
+  }
+
+  .letter {
+    width: 38px;
+  }
+}
+
+@media (max-width: 375px) {
+  .nivel-selector img {
+    width: 65px;
+    height: auto;
   }
 }

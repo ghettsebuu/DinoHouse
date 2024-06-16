@@ -1,66 +1,69 @@
-body{
-  margin :0 ;
+body {
+  margin: 0;
 }
+
 /* Estilos para el dashboard */
 .dashboard {
-    display: flex;
-    height: 100vh;
-    background-color: #fcede6;
-  }
-  
-  /* Estilos para el panel lateral */
-  .sidebar {
-    background-color: #fcede6;
-    width: 250px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  
-  /* Estilos para la tarjeta de avatar */
-  .avatar-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 20px;
-    background-color: #ffffff;
-    border-radius: 10%;
-    height: 45%;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
-  }
-  
-  .avatar {
-    width: 100px;
-    height: 100px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    border-radius: 50%;
-    background-color: #f3526f
-   
-  }
-  
-  .user-info {
-    text-align: center;
-  }
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  background-color: #fcede6;
+}
 
-  .username-container,
-    .level-container {
-      display: flex;
-      background-color:#fbda00; /* Color de fondo predeterminado */
-      border-radius: 10px; /* Bordes redondeados */
-      width: 140px;
-      height: 25px;
-      flex-direction: column;
-      align-items: stretch;
-      justify-content: center;
-      margin: 10px;
-      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
-    }
-  
-  /* Estilos para los botones */
- /*  .home-button,
+/* Estilos para el panel lateral */
+.sidebar {
+  background-color: #fcede6;
+  width: 250px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+/* Estilos para la tarjeta de avatar */
+.avatar-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  background-color: #ffffff;
+  border-radius: 10%;
+  height: 45%;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.avatar {
+  width: 100px;
+  height: 100px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-radius: 50%;
+  background-color: #f3526f
+}
+
+.user-info {
+  text-align: center;
+}
+
+.username-container,
+.level-container {
+  display: flex;
+  background-color: #fbda00;
+  /* Color de fondo predeterminado */
+  border-radius: 10px;
+  /* Bordes redondeados */
+  width: 140px;
+  height: 25px;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  margin: 10px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilos para los botones */
+/*  .home-button,
   .back-button {
     background-color: #ff6f61;
     color: white;
@@ -70,8 +73,8 @@ body{
     cursor: pointer;
     margin-bottom: 10px;
   } */
-  
- /*  
+
+/*  
   } */
 
 
@@ -83,19 +86,26 @@ body{
   justify-content: space-between;
   height: 42%;
 
-  
+
 }
 
 /* Estilos para los botones dentro del contenedor */
 .button-container button {
-  margin-bottom: 10px; /* Ajusta el margen entre los botones según sea necesario */
-  border-radius: 50%; /* Asegura que los botones sean completamente redondos */
-  width: 80px; /* Ajusta el ancho del botón según sea necesario */
-  height: 80px; /* Ajusta la altura del botón según sea necesario */
-  display: flex; /* Agrega flex para centrar el contenido verticalmente */
-  justify-content: center; /* Centra el contenido horizontalmente */
-  align-items: center; /* Centra el contenido verticalmente */
-  
+  margin-bottom: 10px;
+  /* Ajusta el margen entre los botones según sea necesario */
+  border-radius: 50%;
+  /* Asegura que los botones sean completamente redondos */
+  width: 80px;
+  /* Ajusta el ancho del botón según sea necesario */
+  height: 80px;
+  /* Ajusta la altura del botón según sea necesario */
+  display: flex;
+  /* Agrega flex para centrar el contenido verticalmente */
+  justify-content: center;
+  /* Centra el contenido horizontalmente */
+  align-items: center;
+  /* Centra el contenido verticalmente */
+
 }
 
 /* Estilos para los botones */
@@ -103,9 +113,11 @@ body{
 .back-button,
 .exit-button {
   border: none;
-  padding: 10px; /* Ajusta el padding según sea necesario */
+  padding: 10px;
+  /* Ajusta el padding según sea necesario */
   cursor: pointer;
-  color: white; /* Color blanco para los iconos dentro de los botones */
+  color: white;
+  /* Color blanco para los iconos dentro de los botones */
   font-size: 30px;
   height: 50%;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
@@ -114,60 +126,88 @@ body{
 
 /* Estilos específicos para el botón de Home */
 .home-button {
-  background-color: #1ec2bd; /* Color turquesa para el botón de Home */
-  
+  background-color: #1ec2bd;
+  /* Color turquesa para el botón de Home */
+
 }
 
 .exit-button {
-  background-color:#ee565e; /* Color amarillo para el botón de Back */
-  
+  background-color: #ee565e;
+  /* Color amarillo para el botón de Back */
+
 }
 
 
 /* Estilos específicos para el botón de Back */
 .back-button {
-  background-color:#fbd41b; /* Color amarillo para el botón de Back */
-  
+  background-color: #fbd41b;
+  /* Color amarillo para el botón de Back */
+
 }
 
 
 .back-button:hover {
-    background-color: #dfbb45;
-   
+  background-color: #dfbb45;
+
 }
 
-.home-button:hover{
-  background-color:#1f9490;
- 
+.home-button:hover {
+  background-color: #1f9490;
+
 }
-  
+
 .exit-button:hover {
   background-color: #d84249;
- 
+
 }
-  /* Estilos para el escenario */
-  .scene {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    margin: 20px;
-    background-color: #ffff;
-    border-radius: 3%;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
-    /* Aquí puedes agregar más estilos para el contenido del escenario */
+
+/* Estilos para el escenario */
+.scene {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+  background-color: #ffff;
+  border-radius: 3%;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  /* Aquí puedes agregar más estilos para el contenido del escenario */
+}
+
+
+
+@media screen and (max-width: 1000px) {
+  .dashboard {
+    flex-direction: column;
+    height: auto;
+    align-items: center;
+
   }
 
-  
- /* Estilos para ocultar el sidebar en pantallas pequeñas */
-@media screen and (max-width: 768px) {
-    .sidebar {
-      display: none;
-    }
+  .button-container {
+    flex-direction: row;
   }
-  
-  /* Estilos para el escenario */
-  .scene {
-    flex: 1;
-    
-    /* Otros estilos para el escenario */
+
+  .sidebar {
+    padding: 0;
+    width: 90%;
+    margin-top: 20px;
+    flex-direction: row;
+    align-items: center;
   }
+
+  .avatar-card {
+    flex-direction: row;
+    width: 300px;
+
+  }
+}
+
+@media screen and (max-width: 618px) {
+  .button-container button {
+    width: 60px;
+    height: 60px;
+  }
+
+  .sidebar {
+    flex-direction: column;
+  }
+}

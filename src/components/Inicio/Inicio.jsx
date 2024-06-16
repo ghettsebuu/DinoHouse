@@ -19,13 +19,13 @@ const Inicio = () => {
         <HouseImage />
         <PlayButton />
       </div>
-      <div className="dinos-elementos">
+      {/* <div className="dinos-elementos">
         <AliImage />
         <RexImage />
         <DadosImage />
         <DinaImage />
         <TitoImage />
-      </div>
+      </div> */}
     </div>
   );
 };
