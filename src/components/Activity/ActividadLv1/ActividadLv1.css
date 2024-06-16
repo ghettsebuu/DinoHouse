@@ -1,140 +1,157 @@
-
 @font-face {
-    font-family: 'Cute Dino';
-    src: url('/fonts/cute_dino-webfont.woff2') format('woff2'),
-         url('/fonts/cute_dino-webfont.woff') format('woff');
-    /* Añade otros formatos de fuente aquí si los tienes */
-    font-weight: normal;
-    font-style: normal;
+  font-family: 'Cute Dino';
+  src: url('/fonts/cute_dino-webfont.woff2') format('woff2'),
+    url('/fonts/cute_dino-webfont.woff') format('woff');
+  /* Añade otros formatos de fuente aquí si los tienes */
+  font-weight: normal;
+  font-style: normal;
 }
 
 
-   .PlayScena{
-    flex: 1;
-    display: flex;
-    background-color: #ffff;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    text-align: center;
-    border-radius: 3%;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
-    
-   }
+.PlayScena {
+  flex: 1;
+  display: flex;
+  background-color: #ffff;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  text-align: center;
+  border-radius: 3%;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 
-   h2 {
-    font-family: 'Cute Dino', sans-serif; 
-    color: #5de2c1; /* Color naranja */
-    font-size: 40px;
-    text-align: center; /* Centrar el texto */
-    text-shadow: 2px 2px 4px rgba(33, 49, 75, 0.5);
-    -webkit-text-stroke: 1px rgb(31, 107, 112); /* Para navegadores basados en WebKit como Chrome y Safari */
-    
-    }
-  .actividad-lv1 {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
-    background-color: #99d1c815;
-    padding: 20px;
-  }
-  
-  .object-image {
-    margin-bottom: 20px;
-    /* Aquí podrías agregar estilos para la imagen del objeto */
-  }
-  .imagen {
-    width: 30%;
-    border-radius: 3%;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
-    transition: transform 0.2s ease-in-out;
 }
 
-    .imagen:hover {
-        transform: scale(1.05); /* Aumenta ligeramente el tamaño al pasar el puntero sobre la imagen */
-        cursor: pointer; /* Cambia el cursor a una mano para indicar interactividad */
-    }
+h2 {
+  font-family: 'Cute Dino', sans-serif;
+  color: #5de2c1;
+  /* Color naranja */
+  font-size: 40px;
+  text-align: center;
+  /* Centrar el texto */
+  text-shadow: 2px 2px 4px rgba(33, 49, 75, 0.5);
+  -webkit-text-stroke: 1px rgb(31, 107, 112);
+  /* Para navegadores basados en WebKit como Chrome y Safari */
 
-  .drop-area {
-    width: 200px;
-    height: 50px;
-    border: 2px dashed #10271e;
-    background-color: #f3cf82;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 20px;
-    cursor: pointer;
-  }
-  
-  .drop-area.correct {
-    background-color: #8cff66;
-  }
-  
-  .letters-container {
-    display: flex;
-  }
-  
-  .letter {
-    width: 40px;
-    height: 40px;
-    border: 2px solid #333;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-right: 10px;
-    cursor: pointer;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
-    transition: transform 0.2s ease-in-out;
-  }
-  .letter:hover {
-    transform: scale(1.3); /* Aumenta ligeramente el tamaño al pasar el puntero sobre la imagen */
-    cursor: pointer; /* Cambia el cursor a una mano para indicar interactividad */
 }
 
-  
+.actividad-lv1 {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: #99d1c815;
+  padding: 20px;
+}
 
-  .Dino{
-    position: absolute; /* Posiciona la imagen superpuesta */
-    transform: translate(-50%, -50%); /* Centra la imagen vertical y horizontalmente */
-    z-index: 2; /* Coloca esta imagen encima de la imagen de fondo */
-    transition: transform 0.3s ease; /* Transición suave al agrandar */
-    width: 15%;
-    top: 73%;
-    left: 88%;
-  }
+.object-image {
+  margin-bottom: 20px;
+  /* Aquí podrías agregar estilos para la imagen del objeto */
+}
 
-  .Dino:hover {
-    transform: translate(-50%, -50%) scale(1.1); /* Agranda ligeramente la imagen al pasar el puntero */
-    cursor: pointer; /* Cambia el cursor a una mano para indicar interactividad */
-  }
+.imagen {
+  width: 30%;
+  border-radius: 3%;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease-in-out;
+}
 
- 
-  .progress-bar {
-    width: 100%;
-    background-color: #e0e0e0;
-    height: 20px;
-    border-radius: 10px;
-    overflow: hidden;
-    margin: 20px 0;
+.imagen:hover {
+  transform: scale(1.05);
+  /* Aumenta ligeramente el tamaño al pasar el puntero sobre la imagen */
+  cursor: pointer;
+  /* Cambia el cursor a una mano para indicar interactividad */
+}
+
+.drop-area {
+  width: 200px;
+  height: 50px;
+  border: 2px dashed #10271e;
+  background-color: #f3cf82;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.drop-area.correct {
+  background-color: #8cff66;
+}
+
+.letters-container {
+  display: flex;
+}
+
+.letter {
+  width: 40px;
+  height: 40px;
+  border: 2px solid #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+  cursor: pointer;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease-in-out;
+}
+
+.letter:hover {
+  transform: scale(1.3);
+  /* Aumenta ligeramente el tamaño al pasar el puntero sobre la imagen */
+  cursor: pointer;
+  /* Cambia el cursor a una mano para indicar interactividad */
+}
+
+
+
+.Dino {
+  position: absolute;
+  /* Posiciona la imagen superpuesta */
+  transform: translate(-50%, -50%);
+  /* Centra la imagen vertical y horizontalmente */
+  z-index: 2;
+  /* Coloca esta imagen encima de la imagen de fondo */
+  transition: transform 0.3s ease;
+  /* Transición suave al agrandar */
+  width: 15%;
+  top: 73%;
+  left: 88%;
+  display: none;
+}
+
+.Dino:hover {
+  transform: translate(-50%, -50%) scale(1.1);
+  /* Agranda ligeramente la imagen al pasar el puntero */
+  cursor: pointer;
+  /* Cambia el cursor a una mano para indicar interactividad */
+}
+
+
+.progress-bar {
+  width: 100%;
+  background-color: #e0e0e0;
+  height: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 20px 0;
 }
 
 .progress {
-    height: 100%;
-    background-color: #76c7c0;
-    width: 0;
-    transition: width 0.5s;
+  height: 100%;
+  background-color: #76c7c0;
+  width: 0;
+  transition: width 0.5s;
 }
-.final-screen button{
+
+.final-screen button {
   background-color: #eed234;
 }
 
-.final-screen button:hover{
+.final-screen button:hover {
   background-color: #d3ba2c;
 }
-  
+
 /* juego de memoria */
 .memory-game {
   text-align: center;
@@ -152,6 +169,7 @@
 }
 
 .memory-game .contenedor-cartas {
+  margin-top: 20px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 10px;
@@ -187,7 +205,8 @@
 }
 
 .memory-game .carta.boca-abajo {
-  background-color: #FFD700; /* Color dorado para las cartas boca abajo */
+  background-color: #FFD700;
+  /* Color dorado para las cartas boca abajo */
 }
 
 .memory-game .fin-juego {
@@ -216,4 +235,31 @@
 
 .memory-game .fin-juego button:hover {
   background-color: #f3d422;
+}
+
+@media screen and (max-width: 500px) {
+  .PlayScena {
+    padding: 0;
+  }
+
+  .actividad-lv1 {
+    padding: 0;
+  }
+
+  .actividad-lv1 h2 {
+    font-size: 30px;
+  }
+
+  .memory-game .contenedor-cartas {
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+  }
+
+  .memory-game {
+    width: 100%;
+  }
+
+  .scene {
+    width: 100%;
+  }
 }

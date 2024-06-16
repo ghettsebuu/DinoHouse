@@ -1,72 +1,87 @@
 @font-face {
   font-family: 'Cute Dino';
   src: url('/fonts/cute_dino-webfont.woff2') format('woff2'),
-       url('/fonts/cute_dino-webfont.woff') format('woff');
+    url('/fonts/cute_dino-webfont.woff') format('woff');
   /* Añade otros formatos de fuente aquí si los tienes */
   font-weight: normal;
   font-style: normal;
 }
 
-h1{
-  font-family: 'Cute Dino', sans-serif; 
+h1 {
+  font-family: 'Cute Dino', sans-serif;
 }
 
-body{
-  margin :0 ;
+body {
+  margin: 0;
 }
+
 .home-screen {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  height: 100vh; /* Ocupa toda la altura de la pantalla */
-  background-color: #fcede6 ; /* Color de fondo */
-  background-image: url("/img/montaña10.png"); /* Imagen de fondo */
-  background-size: cover; /* Ajusta la imagen para cubrir todo el contenedor */
-  position: relative; /* Permite posicionar elementos hijos */
+  height: 100vh;
+  /* Ocupa toda la altura de la pantalla */
+  background-color: #fcede6;
+  /* Color de fondo */
+  background-image: url("/img/montaña10.png");
+  /* Imagen de fondo */
+  background-size: cover;
+  /* Ajusta la imagen para cubrir todo el contenedor */
+  position: relative;
+  /* Permite posicionar elementos hijos */
 }
-  
+
 .overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(255, 255, 255, 0.5); /* Color blanco semi-transparente */
-  z-index: 0; /* Coloca la superposición detrás de otros elementos */
+  background-color: rgba(255, 255, 255, 0.5);
+  /* Color blanco semi-transparente */
+  z-index: 0;
+  /* Coloca la superposición detrás de otros elementos */
 }
 
 .title-container {
-  text-align: center; /* Centra el texto */
-  padding-top: 15px; /* Espacio superior */
+  text-align: center;
+  /* Centra el texto */
+  padding-top: 15px;
+  /* Espacio superior */
   /* top: -10%; */
   position: relative;
   z-index: 1;
 }
 
 .title {
-  font-size: 65px; /* Tamaño grande */
-  color: #fead76; /* Color naranja */
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Sombra de texto */
+  font-size: 65px;
+  /* Tamaño grande */
+  color: #fead76;
+  /* Color naranja */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  /* Sombra de texto */
 }
 
 
-.centro-elementos{
+.centro-elementos {
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  
+
 }
+
 .house-image {
-  width: 35%;
+  width: 100%;
+  max-width: 400px;
   height: auto;
-  position: relative; /* Asegura que los dinosaurios se superpongan sobre esta imagen */
-  z-index: 1; /* Eleva la casita para que esté por debajo de los dinosaurios */
-  filter: drop-shadow(
-    0 0 10px rgba(0, 0, 0, 0.068)
-  );
+  position: relative;
+  z-index: 1;
+  filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.068));
+  ;
 }
+
 .play-button {
   position: absolute;
   top: 50%;
@@ -75,20 +90,25 @@ body{
   width: 70px;
   height: 70px;
   background-color: #99cb33;
-  border-radius: 50%; /* Hace el botón redondo */
+  border-radius: 50%;
+  /* Hace el botón redondo */
   border: none;
   outline: none;
   cursor: pointer;
-  z-index: 3; /* Eleva el botón sobre la casita y los dinosaurios */
+  z-index: 3;
+  /* Eleva el botón sobre la casita y los dinosaurios */
   font-size: 30px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s; /* Agrega transición para suavizar el cambio */
+  transition: all 0.3s;
+  /* Agrega transición para suavizar el cambio */
 }
 
 .play-button:hover {
   /* Estilos cuando el ratón está sobre el botón */
-  transform: translate(-50%, -50%) scale(1.1); /* Agrandar el botón */
-  background-color: #7ea82a; /* Cambiar el color */
+  transform: translate(-50%, -50%) scale(1.1);
+  /* Agrandar el botón */
+  background-color: #7ea82a;
+  /* Cambiar el color */
 }
 
 .play-button i {
@@ -96,8 +116,9 @@ body{
   top: 52%;
   left: 52%;
   transform: translate(-50%, -50%);
-  color: white; /* Color del icono */
-  
+  color: white;
+  /* Color del icono */
+
 }
 
 .dinos-elementos {
@@ -105,52 +126,46 @@ body{
   justify-content: center;
   flex-direction: row-reverse;
   align-items: flex-end;
-  position: relative; /* Permite que los dinosaurios se superpongan sobre esta fila */
-  z-index: 2; /* Eleva la fila de dinosaurios sobre la casita */
+  position: relative;
+  /* Permite que los dinosaurios se superpongan sobre esta fila */
+  z-index: 2;
+  /* Eleva la fila de dinosaurios sobre la casita */
   top: 20%;
 }
 
-.rex-image{
-  filter: drop-shadow(
-    0 0 10px rgba(0, 0, 0, 0.24)
-  );
+.rex-image {
+  filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.24));
   width: 11%;
 }
 
-.Ali-image{
+.Ali-image {
   width: 22%;
-  filter: drop-shadow(
-    0 0 10px rgba(0, 0, 0, 0.24)
-  );
+  filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.24));
 }
 
-.dina-image{
+.dina-image {
   width: 17%;
-  filter: drop-shadow(
-    0 0 10px rgba(0, 0, 0, 0.24)
-  );
+  filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.24));
 }
 
-.Tito-image{
+.Tito-image {
   width: 12%;
-  filter: drop-shadow(
-    0 0 10px rgba(0, 0, 0, 0.24)
-  );
+  filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.24));
 }
 
-.dados{
+.dados {
   width: 10%;
-  filter: drop-shadow(
-    0 0 10px rgba(0, 0, 0, 0.24)
-  );
+  filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.24));
 }
 
-.dinos{
+.dinos {
   margin: 10px 20px;
 }
- .dinos:hover {
-    animation: serpentear 0.5s infinite alternate; /* Aplicar la animación de serpentear */
- }
+
+.dinos:hover {
+  animation: serpentear 0.5s infinite alternate;
+  /* Aplicar la animación de serpentear */
+}
 
 
 
@@ -159,12 +174,35 @@ body{
   0% {
     transform: rotate(0);
   }
+
   50% {
     transform: rotate(5deg);
   }
+
   100% {
     transform: rotate(-5deg);
   }
 }
 
 
+@media (max-width: 426px) {
+  .rex-image {
+
+    width: 20%;
+  }
+
+  .Ali-image {
+    width: 30%;
+
+  }
+
+  .dina-image {
+    width: 30%;
+
+  }
+
+  .Tito-image {
+    width: 30%;
+
+  }
+}
