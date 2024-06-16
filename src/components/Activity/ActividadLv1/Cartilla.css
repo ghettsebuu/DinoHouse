@@ -1,0 +1,97 @@
+/* src/components/Activity/ActividadLv1/Cartilla.css */
+
+.cartilla {
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f09f54;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.tituloCartilla {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.letras {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin:50px 10px;
+    gap: 10px;
+}
+
+.letra-imagen {
+    width: 80px; /* Ajusta el tamaño de la imagen de la letra */
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    border-radius: 8px;
+}
+
+.letra-imagen:hover {
+    transform: scale(1.1);
+}
+
+.secciones {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.letra-seccion {
+    width: 80%;
+    max-width: 800px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.objetos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 10px;
+    justify-items: center;
+}
+
+.objeto {
+    text-align: center;
+}
+
+.objeto img {
+    width: 100px; /* Ajusta el tamaño de las imágenes de los objetos */
+    border-radius: 50%;
+}
+
+.objeto p {
+    margin-top: 5px;
+    font-size: 14px;
+    color: #666;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+@media (max-width: 768px) {
+    .letra-imagen {
+        width: 60px; /* Ajusta el tamaño de la imagen de la letra para pantallas más pequeñas */
+    }
+
+    .objeto img {
+        width: 80px; /* Ajusta el tamaño de las imágenes de los objetos para pantallas más pequeñas */
+    }
+}

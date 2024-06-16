@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './ActividadLv1.css';
 
-const MemoryGame = ({ onNext }) => {
+const MemoryGame = ({ onNext  }) => {
     const [cartas, setCartas] = useState([]);
     const [cartasVolteadas, setCartasVolteadas] = useState([]);
     const [cartasCoincidentes, setCartasCoincidentes] = useState([]);

@@ -1,0 +1,74 @@
+.actividad {
+  text-align: center;
+  margin-top: 20px;
+  font-family: 'Arial', sans-serif;
+}
+
+.sopa {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5px;
+  background-color: #f0f0f0;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.letra {
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  font-size: 1.5rem;
+  background-color: #4CAF50; /* Color de fondo para las letras */
+  color: #fff; /* Color del texto (letras) */
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.letra:hover {
+  background-color: #45a049; /* Cambio de color al pasar el mouse */
+}
+
+.palabras {
+  margin-top: 20px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+ul li {
+  font-size: 1.2rem;
+  padding: 8px 12px;
+  background-color: #007bff; /* Color de fondo para las palabras */
+  color: #fff; /* Color del texto (palabras) */
+  border-radius: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+ul li:hover {
+  background-color: #0056b3; /* Cambio de color al pasar el mouse */
+}
+
+@media (max-width: 600px) {
+  .sopa {
+    width: 90%; /* Ajuste del tamaño para pantallas pequeñas */
+  }
+
+  .letra {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 1.2rem;
+  }
+}
