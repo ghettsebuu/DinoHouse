@@ -1,8 +1,7 @@
-// src/components/LaboratorioSilabas/GameArea.js
 import React, { useState } from 'react';
 import './GameArea.css';
 
-const GameArea = ({ onSyllableFormed, currentLevel }) => {
+const GameArea = ({ onSyllableFormed, currentLevel, currentSubLevel }) => {
   const [currentSyllable, setCurrentSyllable] = useState('');
 
   const handleDrop = (event) => {
@@ -10,13 +9,15 @@ const GameArea = ({ onSyllableFormed, currentLevel }) => {
     const newSyllable = currentSyllable + letter;
     setCurrentSyllable(newSyllable);
 
-    if ((currentLevel === 0 || currentLevel === 1) && newSyllable.length === 2) {
+    let syllableLength = 2;
+    if (currentLevel === 2 || currentLevel === 3) {
+      syllableLength = 3;
+    }
+
+    if (newSyllable.length === syllableLength) {
       onSyllableFormed(newSyllable);
       setCurrentSyllable('');
-    } else if ((currentLevel === 2 || currentLevel === 3) && newSyllable.length === 3) {
-      onSyllableFormed(newSyllable);
-      setCurrentSyllable('');
-    } else if (newSyllable.length > 3) {
+    } else if (newSyllable.length > syllableLength) {
       setCurrentSyllable('');
     }
   };

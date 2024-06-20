@@ -18,7 +18,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    margin:50px 10px;
+    margin:30px 10px;
     gap: 10px;
 }
 
@@ -86,7 +86,21 @@ button:hover {
     background-color: #0056b3;
 }
 
-@media (max-width: 768px) {
+@media (min-width: 500px) and (max-width: 1009px) {
+    .cartilla { 
+        padding: 15px;
+        
+    }
+    .tituloCartilla {
+        
+        margin-bottom: 10px;
+    }
+
+    .letras {
+        
+        margin:40px 10p;
+       
+    }
     .letra-imagen {
         width: 60px; /* Ajusta el tamaño de la imagen de la letra para pantallas más pequeñas */
     }
@@ -94,4 +108,5 @@ button:hover {
     .objeto img {
         width: 80px; /* Ajusta el tamaño de las imágenes de los objetos para pantallas más pequeñas */
     }
+
 }

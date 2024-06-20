@@ -1,0 +1,73 @@
+.actividad4 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    width: 80%;
+    
+  
+  }
+  
+  h2 {
+    margin-bottom: 10px;
+  }
+  
+  p {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    line-height: 1.5;
+  }
+  
+  span {
+    cursor: pointer;
+    margin: 0 5px;
+    transition: transform 0.3s, color 0.3s;
+    font-size: 30px;
+  }
+  
+  span:hover {
+    transform: scale(1.1);
+    color: #007BFF; /* Cambia el color al pasar el cursor */
+   
+  }
+  
+  .selected-incorrect {
+    background-color: orange;
+    color: white;
+  }
+  
+  .selected-correct {
+    background-color: green;
+    color: white;
+  }
+  .audio-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+    flex-direction: column;
+  }
+  
+  .audio-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    font-size: 50px;
+    color: #f07740;
+  }
+  
+  .audio-button:hover{
+    background: none;
+    color: #e96325;
+    transform: scale(1.1);
+  }
+
+
+  
+  .target-word {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  

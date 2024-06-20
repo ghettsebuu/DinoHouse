@@ -1,10 +1,12 @@
+// Oraciones.jsx
+
 import React, { useState, useEffect } from 'react';
 import './actividadLv3.css';
 import FinalScreen from '../Final.jsx';
 
 const Oraciones = ({ mostrarOraciones }) => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [score, setScore] = useState(0);
+  const [score, setScore] = useState(0); 
   const [showFeedback, setShowFeedback] = useState(false);
   const [feedback, setFeedback] = useState("");
   const [questions, setQuestions] = useState([]);
@@ -67,7 +69,7 @@ const Oraciones = ({ mostrarOraciones }) => {
 
   const handleOptionClick = (isCorrect) => {
     if (isCorrect) {
-      setScore(score + 1);
+      setScore(score + 10); // Sumar 10 puntos por respuesta correcta
       setFeedback("¡Correcto! Buen trabajo.");
     } else {
       setFeedback("No es correcto. Intenta de nuevo.");
@@ -104,7 +106,7 @@ const Oraciones = ({ mostrarOraciones }) => {
   return (
     <div className="actividad">
       {showFinalScreen ? (
-        <FinalScreen onRestart={restartActivity} onGoToHome={goToHome} onNext={nextActivity} />
+        <FinalScreen score={score} onRestart={restartActivity} onGoToHome={goToHome} onNext={nextActivity} />
       ) : (
         <>
           <h2 className='tituloActividad'>Oraciones</h2>
@@ -133,3 +135,4 @@ const Oraciones = ({ mostrarOraciones }) => {
 };
 
 export default Oraciones;
+

@@ -6,13 +6,13 @@
   
   .sidebarM {
     display: flex;
-    background-color: #fcede6; 
-    width: 250px;
+    background-color: #fcede6;  
+    width: 30%;
     padding: 20px;
     color: rgb(0, 0, 0);
     flex-direction: column;
     justify-content: space-between;
-  }
+  } 
  .Options{
   display: flex;
   background-color: #fce3d8;

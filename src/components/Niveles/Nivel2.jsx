@@ -2,7 +2,7 @@
 import React from 'react';
 import './nivel.css';
 
-const Nivel2 = ({ mostrarActividad, mostrarMemoryGame, mostrarLaboratorio ,mostrarPalabras }) => {
+const Nivel2 = ({ mostrarActividad, mostrarMemoryGame, mostrarLaboratorio ,mostrarPalabras  }) => {
   const handleMostrarActividadClick = () => {
     mostrarActividad();
   };
@@ -18,6 +18,8 @@ const Nivel2 = ({ mostrarActividad, mostrarMemoryGame, mostrarLaboratorio ,mostr
   const handleMostrarPalabras = ()=> {
     mostrarPalabras();
   }
+
+ 
 
   return (
     <div className='nivel'>

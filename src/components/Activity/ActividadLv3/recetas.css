@@ -1,0 +1,105 @@
+.actividad3 {
+  text-align: center;
+  width: 100%;
+  background-color: #f78b4d;
+  border-radius: 10px;
+ 
+}
+
+.receta{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.ingredientes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.ingredientes img {
+  margin: 10px;
+  width: 80px;
+  cursor: pointer;
+}
+
+.tazon {
+  margin: 20px auto;
+  width: 200px;
+  height: 200px;
+  border: 2px dashed #ccc;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.tazon img {
+ max-width: 100%;
+ max-height: 100%;
+}
+
+.ingredientes-en-tazon {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  justify-content: center;
+  align-items: center;
+}
+
+.ingrediente-en-tazon {
+  position: relative;
+  display: inline-block;
+}
+
+.ingrediente-en-tazon img {
+  width: 50px;
+  height: 50px;
+}
+
+.tazon.correcto {
+  border-color: green;
+}
+
+.tazon.incorrecto {
+  border-color: orange;
+}
+
+.tazon.correcto-parcial {
+  border-color: blue;
+}
+
+@media (max-width: 768px) {
+  .ingredientes img {
+      width: 60px;
+  }
+
+  .tazon {
+      width: 150px;
+      height: 150px;
+  }
+
+  .ingrediente-en-tazon img {
+      width: 40px;
+      height: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .ingredientes img {
+      width: 50px;
+  }
+
+  .tazon {
+      width: 120px;
+      height: 120px;
+  }
+
+  .ingrediente-en-tazon img {
+      width: 30px;
+      height: 30px;
+  }
+}

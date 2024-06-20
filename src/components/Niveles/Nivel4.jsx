@@ -23,7 +23,7 @@ const Nivel4 = ({ mostrarActividad, mostrarMemoryGame,mostrarHistorias, seleccio
       <img src="/img/level4.jpg" alt="Fondo-nivel4"  className='background-image'/>
       <img onClick={handleMostrarActividadClick}  src="/img/dinoAli.png" alt="Ali" className='foreground-image D-Nivel4' />
       <img onClick={handleMostrarhistoriasClick}src="/img/historias.png" alt="playjuego" className='foreground-image historias' />
-      <img onClick={handleMostrarMemoryGameClick} src="/img/cometa.png" alt="playjuego" className='foreground-image cometa' />
+{/*       <img onClick={handleMostrarMemoryGameClick} src="/img/cometa.png" alt="playjuego" className='foreground-image cometa' /> */}
     
    </div>
   );

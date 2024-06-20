@@ -58,6 +58,18 @@ body{
       margin: 10px;
       box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
     }
+
+    .level-container{
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .level-container:hover {
+      /* Estilos cuando el ratón está sobre el botón */
+      transform: translate(-5%, -5%) scale(1.1); /* Agrandar el botón */
+      background-color: #d8ba13; /* Cambiar el color */
+    }
+    
   
   /* Estilos para los botones */
  /*  .home-button,

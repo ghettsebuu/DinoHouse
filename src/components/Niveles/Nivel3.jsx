@@ -24,7 +24,7 @@ const Nivel3 = ({ mostrarActividad, mostrarMemoryGame, mostrarOraciones, selecci
       <img src="/img/level3.jpg" alt="Fondo-nivel3" className='background-image' />
       <img onClick={handleMostrarOracionesClick} src="/img/dinoverde.png" alt="Tito" className='foreground-image D-Nivel3' />
       <img onClick={handleMostrarActividadClick} src="/img/sopa2.png" alt="playjuego" className='foreground-image recetas' />
-      <img onClick={handleMostrarMemoryGameClick} src="/img/sandia.png" alt="playjuego" className='foreground-image sandia' />
+      {/* <img onClick={handleMostrarMemoryGameClick} src="/img/sandia.png" alt="playjuego" className='foreground-image sandia' /> */}
     </div>
   );
 };

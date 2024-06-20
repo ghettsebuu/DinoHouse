@@ -3,6 +3,7 @@ import { useDrag, useDrop, DndProvider } from "react-dnd";
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import update from "immutability-helper";
 import "./ActividadLv2.css";
+import FinalScreen from "../Final"; // Asumiendo que FinalScreen está en un archivo separado
 
 const ItemTypes = {
   LETTER: "letter",
@@ -56,20 +57,31 @@ const ActividadLv2 = () => {
     { word: "GATO", image: "/img/ObjetosLv1/Gato.png" },
     { word: "BOTAS", image: "/img/ObjetosLv1/Botas.png" },
     { word: "DELFIN", image: "/img/ObjetosLv1/Delfin.png" },
-    { word: "JIRAFA", image: "/img/ObjetosLv1/Jirafa.png" }
+    { word: "JIRAFA", image: "/img/ObjetosLv1/Jirafa.png" },
+    { word: 'TORO', image: '/img/ObjetosLv1/Toro.png' },
+    { word: 'KARATE', image: '/img/ObjetosLv1/Karate.png' },
+    { word: 'OLLA', image: '/img/ObjetosLv1/Olla.png' },
+    { word: 'LEON', image: '/img/ObjetosLv1/Leon.png' }
   ];
 
   const [currentRoundIndex, setCurrentRoundIndex] = useState(0);
   const [letters, setLetters] = useState([]);
   const [currentWord, setCurrentWord] = useState([]);
   const [isWordCorrect, setIsWordCorrect] = useState(false);
+  const [gameComplete, setGameComplete] = useState(false);
+  const [attempts, setAttempts] = useState(0);
+  const [score, setScore] = useState(0);
+  const [scoreUpdated, setScoreUpdated] = useState(false); // Nuevo estado para controlar la actualización de la puntuación
+
   const currentRound = rounds[currentRoundIndex];
 
   useEffect(() => {
     const shuffledLetters = currentRound.word.split("").sort(() => 0.5 - Math.random());
     setLetters(shuffledLetters);
     setCurrentWord(new Array(currentRound.word.length).fill(null));
-    setIsWordCorrect(false); // Reset isWordCorrect when moving to the next round
+    setIsWordCorrect(false);
+    setAttempts(0);
+    setScoreUpdated(false); // Reinicia el estado para la nueva ronda
   }, [currentRoundIndex]);
 
   const moveLetter = (fromIndex, toIndex) => {
@@ -95,6 +107,11 @@ const ActividadLv2 = () => {
       setCurrentWord(newCurrentWord);
       setLetters(newLetters);
     }
+
+    // Increment attempts for each incorrect move
+    if (currentRound.word[toIndex] !== letterToMove) {
+      setAttempts(attempts + 1);
+    }
   };
 
   const removeLetter = (index) => {
@@ -119,43 +136,70 @@ const ActividadLv2 = () => {
     }
   }, [currentWord]);
 
+  useEffect(() => {
+    if (isWordCorrect && !scoreUpdated) {
+      const roundScore = Math.max(10 - attempts, 0);
+      setScore(score + roundScore);
+      setScoreUpdated(true); // Marca que la puntuación ya se actualizó
+    }
+  }, [isWordCorrect, score, attempts, scoreUpdated]);
+
   const handleNextRound = () => {
     if (currentRoundIndex < rounds.length - 1) {
       setCurrentRoundIndex(currentRoundIndex + 1);
     } else {
-      alert("¡Felicidades! Has completado todas las rondas.");
+      setGameComplete(true);
     }
   };
 
   return (
     <div className="actividad-lv2">
-      <h2>Forma la palabra</h2>
-      <img src={currentRound.image} alt={currentRound.word} className="image" />
-      <div className="target">
-        {currentWord.map((letter, index) => (
-          <div
-            key={index}
-            className="letter-container"
-            onClick={() => removeLetter(index)}
-          >
-            <LetterSlot
-              key={index}
-              index={index}
-              letter={letter}
-              moveLetter={moveLetter}
-              currentWord={currentWord}
-              word={currentRound.word}
-            />
+      {gameComplete ? (
+        <FinalScreen
+          score={score}
+          onRestart={() => {
+            setGameComplete(false);
+            setCurrentRoundIndex(0);
+            setScore(0);
+          }}
+          onGoToHome={() => {
+            // Lógica para ir a la pantalla de inicio, si es necesario
+          }}
+          onNext={() => {
+            // Lógica para ir a la siguiente actividad, si es necesario
+          }}
+        />
+      ) : (
+        <>
+          <h2>Forma la palabra</h2>
+          <img src={currentRound.image} alt={currentRound.word} className="image" />
+          <div className="target">
+            {currentWord.map((letter, index) => (
+              <div
+                key={index}
+                className="letter-container"
+                onClick={() => removeLetter(index)}
+              >
+                <LetterSlot
+                  key={index}
+                  index={index}
+                  letter={letter}
+                  moveLetter={moveLetter}
+                  currentWord={currentWord}
+                  word={currentRound.word}
+                />
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
-      <div className="letters">
-        {letters.map((letter, index) => (
-          letter && <Letter key={index} index={index} letter={letter} />
-        ))}
-      </div>
-      {isWordCorrect && (
-        <button onClick={handleNextRound}>Siguiente palabra</button>
+          <div className="letters">
+            {letters.map((letter, index) => (
+              letter && <Letter key={index} index={index} letter={letter} />
+            ))}
+          </div>
+          {isWordCorrect && (
+            <button onClick={handleNextRound}>Siguiente palabra</button>
+          )}
+        </>
       )}
     </div>
   );

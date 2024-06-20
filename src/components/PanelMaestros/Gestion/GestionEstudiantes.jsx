@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './Gestio.css';
 import AddStudentModal from './AddStudentModal';
 import EditStudentModal from './EditStudentModal'; // Importa el modal de edición
-import StudentTable from './StudentTable';
+import StudentCards from './StudentCards';
 import { db } from '../../../Firebase/firebaseConfig'; 
 import { collection, getDocs, query, where, doc, updateDoc, deleteDoc } from 'firebase/firestore';
 import { auth } from '../../../Firebase/firebaseConfig'; 
@@ -84,7 +84,7 @@ const GestionEstudiantes = () => {
         <div className='gestion'>
             <h1>Gestión de Estudiantes</h1>
             <button onClick={openModal}>Registrar</button>
-            <StudentTable students={students} editStudent={openEditModal} deleteStudent={deleteStudent} />
+            <StudentCards students={students} editStudent={openEditModal} deleteStudent={deleteStudent} />
             <AddStudentModal isOpen={isModalOpen} onClose={closeModal} onSave={addStudent} />
             <EditStudentModal isOpen={isEditModalOpen} onClose={closeEditModal} student={currentStudent} onSave={updateStudent} />
         </div>
