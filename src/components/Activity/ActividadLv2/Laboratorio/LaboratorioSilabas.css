@@ -4,7 +4,7 @@
   max-width: 100%;
   padding: 20px;
   text-align: center;
-  background-color: #ffff;
+  background-color: #f3e885;
   border-radius: 3%;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 }
@@ -43,7 +43,7 @@
 }
 
 .current-syllable-display {
-  background-color: #ee7239a4;
+  background-color: #ee7239e8;
   padding: 20px;
   border-radius: 8px;
   color: rgb(255, 255, 255);
@@ -62,9 +62,9 @@
   margin-top: 10px;
 }
 
-.coleccion {
+/* .coleccion {
   margin-bottom: 20px;
-}
+} */
 
 .coleccion ul {
   list-style-type: none;
@@ -115,6 +115,8 @@
 /* Responsivo */
 @media (max-width: 600px) {
   .nivel-selector img {
+    width: 130px;
+  height: 130px;
     flex: 1 1 100%;
     margin-bottom: 10px;
   }

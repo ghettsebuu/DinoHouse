@@ -1,0 +1,50 @@
+.juego-inferencias {
+    background-color: #f57555;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    border-radius: 10px;
+  }
+  
+
+  .question-card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 600px;
+    width: 80%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .question-card img {
+    max-width: 30%;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+
+  .adivina{
+    width: 10%;
+  }
+
+  .adivinanza {
+    color: #7f8383;
+  }
+  
+  .question-card img:hover {
+    transform: scale(1.05);
+  }
+  
+  .optionsI {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+ 

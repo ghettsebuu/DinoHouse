@@ -115,6 +115,7 @@ const ActividadLv1 = ({ mostrarActividad, onNextActivity }) => {
         } else {
             setCorrectAnswer(false);
             incorrectSound.play();
+            setScore(prevScore => Math.max(prevScore - 1, 0)); // Restar 1 punto por respuesta incorrecta
             setTimeout(() => {
                 setShowFeedback(false);
                 setDroppedLetter('');

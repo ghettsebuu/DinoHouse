@@ -51,6 +51,7 @@ const ActividadLv3 = ({ mostrarActividad }) => {
   const [ronda, setRonda] = useState(0);
   const [arrastrados, setArrastrados] = useState([]);
   const [actividadCompletada, setActividadCompletada] = useState(false);
+  const [score, setScore] = useState(0); // Añadido: estado de puntuación
   const recetaActual = recetas[ronda];
   const [ingredientesDisponibles, setIngredientesDisponibles] = useState(shuffleArray(recetaActual.ingredientes));
   const [tazonColor, setTazonColor] = useState('');
@@ -114,11 +115,13 @@ const ActividadLv3 = ({ mostrarActividad }) => {
     });
     if (correcto && nuevosArrastrados.length === recetaActual.orden.length) {
       setTazonColor('correcto');
+      setScore((prevScore) => prevScore + 50); // Añadido: sumar puntos por receta correcta
       setTimeout(siguienteActividad, 1000);
     } else if (correcto) {
       setTazonColor('correcto-parcial');
     } else {
       setTazonColor('incorrecto');
+      setScore((prevScore) => prevScore - 10); // Añadido: restar puntos por ingrediente incorrecto
     }
   };
 
@@ -128,16 +131,21 @@ const ActividadLv3 = ({ mostrarActividad }) => {
 
   return (
     <div className="actividad3">
-     
       <h2>Recetas de Cocina</h2>
+      <div className="score">Puntuación: {score}</div> {/* Añadido: mostrar la puntuación */}
       {actividadCompletada ? (
-        <FinalScreen onRestart={() => { setRonda(0); reiniciarActividad(); setActividadCompletada(false); }} onGoToHome={irAlInicio} onNext={siguienteActividad} />
+        <FinalScreen
+          score={score} // Añadido: pasar puntuación a la pantalla final
+          onRestart={() => { setRonda(0); reiniciarActividad(); setActividadCompletada(false); setScore(0); }} // Añadido: reiniciar la puntuación
+          onGoToHome={irAlInicio}
+          onNext={siguienteActividad}
+        />
       ) : (
         <>
-         <div className='receta'>
+          <div className='receta'>
             <h3>{recetaActual.nombre}</h3>
             <p>{recetaActual.descripcion}</p>
-         </div>
+          </div>
           
           <div className="ingredientes">
             {ingredientesDisponibles.map((ingrediente) => (

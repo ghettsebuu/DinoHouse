@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './Palabras.css';
 import FinalScreen from '../Final';
 
+
 const palabrasData = {
   facil: [
     { id: 1, nombre: 'Sol', silabas: ['Sol'], imagen: '/img/ObjetosLv1/Sol.png' },
@@ -81,6 +82,7 @@ const Palabras = () => {
   const [userInput, setUserInput] = useState([]);
   const [isGameComplete, setIsGameComplete] = useState(false);
   const [revealImage, setRevealImage] = useState(false);
+  const [score, setScore] = useState(0);
 
   useEffect(() => {
     const difficultyLevels = ['facil', 'medio', 'dificil'];
@@ -90,7 +92,7 @@ const Palabras = () => {
       const silabas = selectedWord.silabas;
       setShuffledSilabas(shuffleArray([...silabas]));
       setUserInput(new Array(silabas.length).fill(''));
-      setRevealImage(false); // Reiniciar el estado de revelación de la imagen
+      setRevealImage(false);
     } else {
       setIsGameComplete(true);
     }
@@ -154,16 +156,21 @@ const Palabras = () => {
   const checkWord = () => {
     if (currentWord && userInput.join('').toLowerCase() === currentWord.silabas.join('').toLowerCase()) {
       setRevealImage(true);
+      setScore((prevScore) => prevScore + 50);
       if (currentRound < 2) {
         setTimeout(() => {
           setCurrentRound((prevRound) => prevRound + 1);
-        }, 1000); // Retrasar el avance a la siguiente ronda para mostrar la imagen
+        }, 1000);
       } else {
         setTimeout(() => {
           setIsGameComplete(true);
-        }, 1000); // Retrasar la finalización del juego para mostrar la imagen
+        }, 1000);
       }
     }
+  };
+
+  const handleIncorrectSilaba = (index) => {
+    setScore((prevScore) => prevScore - 10);
   };
 
   const restartGame = () => {
@@ -173,10 +180,11 @@ const Palabras = () => {
     setShuffledSilabas([]);
     setUserInput([]);
     setRevealImage(false);
+    setScore(0);
   };
 
   if (isGameComplete) {
-    return <FinalScreen onRestart={restartGame} onGoToHome={() => {}} onNext={() => {}} />;
+    return <FinalScreen score={score} onRestart={restartGame} onGoToHome={() => {}} onNext={() => {}} />;
   }
 
   if (!currentWord) return null;
@@ -184,6 +192,7 @@ const Palabras = () => {
   return (
     <div className="Palabras">
       <h2>Descubre las Palabras</h2>
+      <div className="score">Puntuación: {score}</div>
       <div className="image-container">
         {revealImage ? (
           <img src={currentWord.imagen} alt={currentWord.nombre} className="revealed-image" />
@@ -207,7 +216,12 @@ const Palabras = () => {
           <div
             key={index}
             className={`word-letter ${getSilabaClass(silaba, index)}`}
-            onClick={() => handleInputClick(index)}
+            onClick={() => {
+              handleInputClick(index);
+              if (getSilabaClass(silaba, index) === 'misplaced') {
+                handleIncorrectSilaba(index);
+              }
+            }}
           >
             {silaba}
           </div>

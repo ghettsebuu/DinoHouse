@@ -3,6 +3,8 @@ import FinalScreen from '../Final'; // Importamos el componente FinalScreen
 import './ActividadLv4.css'; // Asegúrate de importar el archivo CSS
 
 const TOTAL_ROUNDS = 5;
+const CORRECT_SCORE = 20;
+const INCORRECT_PENALTY = 5;
 
 const ActividadLv4 = ({ mostrarActividad }) => {
   const [gameOver, setGameOver] = useState(false);
@@ -12,6 +14,8 @@ const ActividadLv4 = ({ mostrarActividad }) => {
   const [currentParagraph, setCurrentParagraph] = useState('');
   const [round, setRound] = useState(0);
   const [audioPlayed, setAudioPlayed] = useState(false);
+  const [score, setScore] = useState(0);
+  const [scoreChange, setScoreChange] = useState(0);
 
   const paragraphs = [
     "María compró caramelos y los repartió entre todos sus amigos.",
@@ -44,6 +48,8 @@ const ActividadLv4 = ({ mostrarActividad }) => {
     setGameOver(false);
     setRound(0); // Reset round counter
     setAudioPlayed(false); // Reset audio played state
+    setScore(0); // Reset score
+    setScoreChange(0); // Reset score change
   };
 
   const startNextRound = () => {
@@ -63,6 +69,8 @@ const ActividadLv4 = ({ mostrarActividad }) => {
     setSelectedWord(word);
     if (word === targetWord) {
       setCorrect(true);
+      setScoreChange(CORRECT_SCORE);
+      setScore(score + CORRECT_SCORE);
       if (round + 1 === TOTAL_ROUNDS) {
         setGameOver(true);
       } else {
@@ -71,6 +79,8 @@ const ActividadLv4 = ({ mostrarActividad }) => {
       }
     } else {
       setCorrect(false);
+      setScoreChange(-INCORRECT_PENALTY);
+      setScore(score - INCORRECT_PENALTY);
     }
   };
 
@@ -101,6 +111,7 @@ const ActividadLv4 = ({ mostrarActividad }) => {
         onRestart={handleRestart}
         onGoToHome={handleGoToHome}
         onNext={handleNext}
+        score={score}
       />
     );
   }
@@ -110,15 +121,21 @@ const ActividadLv4 = ({ mostrarActividad }) => {
   return (
     <div className="actividad4">  
       <h2>Encuentra la palabra</h2> 
-      <p>Escucha atentamente </p>
+      <div className='ronda'>
+        <p>Escucha atentamente </p>
+        <p>Ronda: {round + 1}/{TOTAL_ROUNDS}</p>
+      </div>
+      
       <div className="audio-container">
         <button onClick={() => playAudio(targetWord)} className="audio-button">
           <i className="fa-solid fa-volume-high"></i>
         </button>
         <span className="target-word">{targetWord}</span>
       </div>
-      <p>Ronda: {round + 1}/{TOTAL_ROUNDS}</p>
-      <p>
+      <div className='Puntos'>
+        <p>Puntaje: {score}</p>
+      </div>
+      <p className='parrafo'>
         {words.map((word, index) => {
           const cleanedWord = word.replace(/[.,]/g, "");
           return (

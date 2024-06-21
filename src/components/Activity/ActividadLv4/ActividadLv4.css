@@ -3,20 +3,31 @@
     flex-direction: column;
     align-items: center;
     padding: 20px;
-    width: 80%;
+    width: 97%;
+    background-color: #93ebbf;
+    border-radius: 10px;
     
   
+  }
+  .Puntos ,
+   .ronda {
+    display: flex;
+    font-size: 20px;
+    color: #064e48;
+    flex-direction: column;
+    align-items: center;
   }
   
   h2 {
     margin-bottom: 10px;
   }
   
-  p {
+  .parrafo {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     line-height: 1.5;
+    color: #0c7c73;
   }
   
   span {
