@@ -1,0 +1,79 @@
+.Palabras{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 45px 10px;
+}
+.image-container {
+    display: flex;
+    width: 200px;
+    height: 200px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    background-color: #f0d124;
+  }
+  
+  .Palabras .hidden-image {
+    font-size: 100px;
+    
+  }
+  
+  .Palabras .revealed-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  
+  .Palabras .letters-container {
+    display: flex;
+    gap: 1px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+  }
+  
+  .Palabras .letter {
+    font-size: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+  }
+  
+  .Palabras .letter.used {
+    background-color: #ddd;
+    cursor: default;
+  }
+  
+  .Palabras .word-container {
+    display: flex;
+    gap: 3px;
+  }
+  
+  .Palabras .word-letter {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  .Palabras .correct {
+    background-color: #1ccf1c;
+    color: white;
+  }
+  
+  .Palabras .misplaced {
+    background-color: #f5911e;
+    color: white;
+  }
+  

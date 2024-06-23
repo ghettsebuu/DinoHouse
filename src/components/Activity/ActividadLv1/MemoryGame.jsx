@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './ActividadLv1.css';
+import FinalScreen from '../Final'; // Importar el componente FinalScreen
 
 const MemoryGame = ({ onNext }) => {
     const [cartas, setCartas] = useState([]);
@@ -8,16 +9,17 @@ const MemoryGame = ({ onNext }) => {
     const [movimientos, setMovimientos] = useState(0);
     const [rondas, setRondas] = useState(1);
     const [finJuego, setFinJuego] = useState(false);
+    const [puntuacion, setPuntuacion] = useState(0);
     const maxRondas = 3;
 
     const datosCartas = [
         { id: 1, tipo: 'objeto', nombre: 'Abeja', imagen: '/img/ObjetosLv1/Abeja.png' },
-        { id: 2, tipo: 'objeto', nombre: 'Avion', imagen: '/img/ObjetosLv1/Avion.png' },
+        { id: 2, tipo: 'objeto', nombre: 'Avión', imagen: '/img/ObjetosLv1/Avion.png' },
         { id: 3, tipo: 'objeto', nombre: 'Bicicleta', imagen: '/img/ObjetosLv1/Bicicleta.png' },
         { id: 4, tipo: 'objeto', nombre: 'Botas', imagen: '/img/ObjetosLv1/Botas.png' },
         { id: 5, tipo: 'objeto', nombre: 'Carro', imagen: '/img/ObjetosLv1/Carro.png' },
         { id: 6, tipo: 'objeto', nombre: 'Casa', imagen: '/img/ObjetosLv1/Casa.png' },
-        { id: 7, tipo: 'objeto', nombre: 'Delfin', imagen: '/img/ObjetosLv1/Delfin.png' },
+        { id: 7, tipo: 'objeto', nombre: 'Delfín', imagen: '/img/ObjetosLv1/Delfin.png' },
         { id: 8, tipo: 'objeto', nombre: 'Dinosaurio', imagen: '/img/ObjetosLv1/Dinosaurio.png' },
         { id: 9, tipo: 'objeto', nombre: 'Elefante', imagen: '/img/ObjetosLv1/Elefante.png' },
         { id: 10, tipo: 'objeto', nombre: 'Erizo', imagen: '/img/ObjetosLv1/Erizo.png' },
@@ -28,24 +30,24 @@ const MemoryGame = ({ onNext }) => {
         { id: 15, tipo: 'objeto', nombre: 'Hielo', imagen: '/img/ObjetosLv1/Hielo.png' },
         { id: 16, tipo: 'objeto', nombre: 'Hormiga', imagen: '/img/ObjetosLv1/Hormiga.png' },
         { id: 17, tipo: 'objeto', nombre: 'Iguana', imagen: '/img/ObjetosLv1/Iguana.png' },
-        { id: 18, tipo: 'objeto', nombre: 'Iman', imagen: '/img/ObjetosLv1/Iman.png' },
-        { id: 19, tipo: 'objeto', nombre: 'Jabon', imagen: '/img/ObjetosLv1/Jabon.png' },
+        { id: 18, tipo: 'objeto', nombre: 'Imán', imagen: '/img/ObjetosLv1/Iman.png' },
+        { id: 19, tipo: 'objeto', nombre: 'Jabón', imagen: '/img/ObjetosLv1/Jabon.png' },
         { id: 20, tipo: 'objeto', nombre: 'Jirafa', imagen: '/img/ObjetosLv1/Jirafa.png' },
         { id: 21, tipo: 'objeto', nombre: 'Karate', imagen: '/img/ObjetosLv1/Karate.png' },
         { id: 22, tipo: 'objeto', nombre: 'Koala', imagen: '/img/ObjetosLv1/Koala.png' },
-        { id: 23, tipo: 'objeto', nombre: 'Lampara', imagen: '/img/ObjetosLv1/Lampara.png' },
-        { id: 24, tipo: 'objeto', nombre: 'Leon', imagen: '/img/ObjetosLv1/Leon.png' },
+        { id: 23, tipo: 'objeto', nombre: 'Lámpara', imagen: '/img/ObjetosLv1/Lampara.png' },
+        { id: 24, tipo: 'objeto', nombre: 'León', imagen: '/img/ObjetosLv1/Leon.png' },
         { id: 25, tipo: 'objeto', nombre: 'Mariposa', imagen: '/img/ObjetosLv1/Mariposa.png' },
         { id: 26, tipo: 'objeto', nombre: 'Mesa', imagen: '/img/ObjetosLv1/Mesa.png' },
         { id: 27, tipo: 'objeto', nombre: 'Nido', imagen: '/img/ObjetosLv1/Nido.png' },
         { id: 28, tipo: 'objeto', nombre: 'Nube', imagen: '/img/ObjetosLv1/Nube.png' },
-        { id: 29, tipo: 'objeto', nombre: 'Ñandu', imagen: '/img/ObjetosLv1/Ñandu.png' },
+        { id: 29, tipo: 'objeto', nombre: 'Ñandú', imagen: '/img/ObjetosLv1/Ñandu.png' },
         { id: 30, tipo: 'objeto', nombre: 'Olla', imagen: '/img/ObjetosLv1/Olla.png' },
         { id: 31, tipo: 'objeto', nombre: 'Oso', imagen: '/img/ObjetosLv1/Oso.png' },
         { id: 32, tipo: 'objeto', nombre: 'Pelota', imagen: '/img/ObjetosLv1/Pelota.png' },
-        { id: 33, tipo: 'objeto', nombre: 'Pinguino', imagen: '/img/ObjetosLv1/Pinguino.png' },
+        { id: 33, tipo: 'objeto', nombre: 'Pingüino', imagen: '/img/ObjetosLv1/Pinguino.png' },
         { id: 34, tipo: 'objeto', nombre: 'Queso', imagen: '/img/ObjetosLv1/Queso.png' },
-        { id: 35, tipo: 'objeto', nombre: 'Raton', imagen: '/img/ObjetosLv1/Raton.png' },
+        { id: 35, tipo: 'objeto', nombre: 'Ratón', imagen: '/img/ObjetosLv1/Raton.png' },
         { id: 36, tipo: 'objeto', nombre: 'Reloj', imagen: '/img/ObjetosLv1/Reloj.png' },
         { id: 37, tipo: 'objeto', nombre: 'Silla', imagen: '/img/ObjetosLv1/Silla.png' },
         { id: 38, tipo: 'objeto', nombre: 'Sol', imagen: '/img/ObjetosLv1/Sol.png' },
@@ -56,7 +58,7 @@ const MemoryGame = ({ onNext }) => {
         { id: 43, tipo: 'objeto', nombre: 'Vaso', imagen: '/img/ObjetosLv1/Vaso.png' },
         { id: 44, tipo: 'objeto', nombre: 'Waffle', imagen: '/img/ObjetosLv1/Waffle.png' },
         { id: 45, tipo: 'objeto', nombre: 'Wifi', imagen: '/img/ObjetosLv1/Wifi.png' },
-        { id: 46, tipo: 'objeto', nombre: 'Xilofono', imagen: '/img/ObjetosLv1/Xilofono.png' },
+        { id: 46, tipo: 'objeto', nombre: 'Xilófono', imagen: '/img/ObjetosLv1/Xilofono.png' },
         { id: 47, tipo: 'objeto', nombre: 'Yate', imagen: '/img/ObjetosLv1/Yate.png' },
         { id: 48, tipo: 'objeto', nombre: 'Yoyo', imagen: '/img/ObjetosLv1/Yoyo.png' },
         { id: 49, tipo: 'objeto', nombre: 'Zanahoria', imagen: '/img/ObjetosLv1/Zanahoria.png' },
@@ -90,10 +92,9 @@ const MemoryGame = ({ onNext }) => {
         { id: 77, tipo: 'letra', letra: 'Z', imagen: '/img/Letras/Z.png' },
     ];
 
+    // Función para obtener cartas aleatorias
     const obtenerCartasAleatorias = (numCartas) => {
         const numLetras = numCartas / 2;
-
-        // Seleccionar letras al azar
         const letras = datosCartas.filter(carta => carta.tipo === 'letra');
         const letrasSeleccionadas = [];
         while (letrasSeleccionadas.length < numLetras) {
@@ -102,22 +103,18 @@ const MemoryGame = ({ onNext }) => {
                 letrasSeleccionadas.push(letraAleatoria);
             }
         }
-
-        // Seleccionar los objetos correspondientes a las letras seleccionadas
         const objetos = datosCartas.filter(carta => carta.tipo === 'objeto');
         const objetosSeleccionados = letrasSeleccionadas.map(letra => {
             const posiblesObjetos = objetos.filter(objeto => objeto.nombre[0].toUpperCase() === letra.letra);
             return posiblesObjetos[Math.floor(Math.random() * posiblesObjetos.length)];
         });
-
-        // Combinar y mezclar las cartas seleccionadas
         const cartasSeleccionadas = [...letrasSeleccionadas, ...objetosSeleccionados];
         return cartasSeleccionadas.sort(() => Math.random() - 0.5);
     };
 
+    // Función para manejar el clic en las cartas
     const manejarClicCarta = (carta) => {
         if (cartasVolteadas.length === 2 || cartasCoincidentes.includes(carta)) return;
-
         const nuevasCartasVolteadas = [...cartasVolteadas, carta];
         setCartasVolteadas(nuevasCartasVolteadas);
 
@@ -130,6 +127,7 @@ const MemoryGame = ({ onNext }) => {
                 (primeraCarta.tipo === 'letra' && carta.tipo === 'objeto' && primeraCarta.letra === carta.nombre[0])
             ) {
                 setCartasCoincidentes([...cartasCoincidentes, primeraCarta, carta]);
+                setPuntuacion(puntuacion + 10); // Añadir puntos
                 setCartasVolteadas([]);
             } else {
                 setTimeout(() => {
@@ -139,21 +137,23 @@ const MemoryGame = ({ onNext }) => {
         }
     };
 
+    // Función para iniciar una nueva ronda
     const iniciarNuevaRonda = () => {
         const numCartasPorRonda = [8, 12, 16];
-
         if (rondas < maxRondas) {
-            const numCartas = numCartasPorRonda[rondas]; // Incrementar cartas por ronda: 10, 14, 18
+            const numCartas = numCartasPorRonda[rondas];
             setRondas(rondas + 1);
             setCartas(obtenerCartasAleatorias(numCartas));
             setCartasVolteadas([]);
             setCartasCoincidentes([]);
             setMovimientos(0);
+            setPuntuacion(puntuacion); // Mantener la puntuación acumulada
         } else {
             setFinJuego(true);
         }
     };
 
+    // Efecto para verificar si se completó la partida
     useEffect(() => {
         if (cartasCoincidentes.length === cartas.length && cartas.length > 0) {
             if (rondas < maxRondas) {
@@ -166,15 +166,39 @@ const MemoryGame = ({ onNext }) => {
         }
     }, [cartasCoincidentes]);
 
+    // Efecto para iniciar el juego con 8 cartas al cargar el componente
     useEffect(() => {
-        setCartas(obtenerCartasAleatorias(8)); // Iniciar con 10 cartas
+        setCartas(obtenerCartasAleatorias(8)); // Iniciar con 8 cartas
     }, []);
 
+    // Mostrar la pantalla final si se completó el juego
+    if (finJuego) {
+        return (
+            <FinalScreen
+                score={puntuacion}
+                onRestart={() => {
+                    setCartas([]);
+                    setCartasVolteadas([]);
+                    setCartasCoincidentes([]);
+                    setMovimientos(0);
+                    setRondas(1);
+                    setFinJuego(false);
+                    setPuntuacion(0);
+                    setCartas(obtenerCartasAleatorias(8));
+                }}
+                onGoToHome={() => console.log("Ir al inicio")} // Definir acción para ir al inicio
+                onNext={onNext}
+            />
+        );
+    }
+
+    // Renderizar el juego de memoria mientras se esté jugando
     return (
         <div className="memory-game">
             <h2>Juego de Memoria</h2>
             <div className="movimientos">Movimientos: {movimientos}</div>
             <div className="rondas">Ronda: {rondas}/{maxRondas}</div>
+            <div className="puntuacion">Puntuación: {puntuacion}</div>
             <div className="contenedor-cartas">
                 {cartas.map((carta, index) => (
                     <div
@@ -189,13 +213,6 @@ const MemoryGame = ({ onNext }) => {
                     </div>
                 ))}
             </div>
-            {finJuego && (
-                <div className="fin-juego">
-                    <h3>¡Felicidades!</h3>
-                    <p>Has completado el Juego de Memoria.</p>
-                    <button onClick={onNext}>Fin del Juego</button>
-                </div>
-            )}
         </div>
     );
 };

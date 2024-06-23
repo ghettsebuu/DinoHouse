@@ -66,8 +66,20 @@
 
 .sandia {
   width: 15%;
-  top: 69%;
-  left: 86%;
+  top: 88%;
+  left: 70%;
+}
+
+.historias {
+  width: 20%;
+  top: 84%;
+  left: 15%;
+}
+
+.cometa {
+  width: 17%;
+  top: 37%;
+  left: 31%;
 }
 
 .D-Nivel1 {

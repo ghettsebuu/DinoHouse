@@ -108,6 +108,19 @@ body {
 
 }
 
+.level-container {
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.level-container:hover {
+  /* Estilos cuando el ratón está sobre el botón */
+  transform: translate(-5%, -5%) scale(1.1);
+  /* Agrandar el botón */
+  background-color: #d8ba13;
+  /* Cambiar el color */
+}
+
 /* Estilos para los botones */
 .home-button,
 .back-button,
@@ -173,6 +186,11 @@ body {
 }
 
 
+@media screen and (min-width: 1025px) {
+  .scene {
+    flex: 1;
+  }
+}
 
 @media screen and (max-width: 1000px) {
   .dashboard {

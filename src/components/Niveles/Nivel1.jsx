@@ -1,8 +1,8 @@
-// Nivel1.jsx
+// src/components/Niveles/Nivel1.jsx
 import React from 'react';
 import './nivel.css';
 
-const Nivel1 = ({ mostrarActividad, mostrarMemoryGame, seleccionarNivel }) => {
+const Nivel1 = ({ mostrarActividad, mostrarMemoryGame, mostrarCartilla }) => {
   const handleMostrarActividadClick = () => {
     mostrarActividad();
   };
@@ -11,8 +11,8 @@ const Nivel1 = ({ mostrarActividad, mostrarMemoryGame, seleccionarNivel }) => {
     mostrarMemoryGame();
   };
 
-  const handleNivelSeleccionado = (nivel) => {
-    seleccionarNivel(nivel);
+  const handleMostrarCartillaClick = () => {
+    mostrarCartilla();
   };
 
   return (
@@ -20,12 +20,7 @@ const Nivel1 = ({ mostrarActividad, mostrarMemoryGame, seleccionarNivel }) => {
       <img src="/img/level1.jpg" alt="Fondo-nivel1" className='background-image'/>
       <img onClick={handleMostrarActividadClick} src="/img/dinoazul2.png" alt="Rex" className='foreground-image D-Nivel1' />
       <img onClick={handleMostrarMemoryGameClick} src="/img/memoria.png" alt="playjuego" className='foreground-image memoria' />
-      <img  src="/img/dados.png" alt="playjuego" className='foreground-image Dado' />
-      
-      {/* <button onClick={() => handleNivelSeleccionado(1)}>Nivel 1</button>
-      <button onClick={() => handleNivelSeleccionado(2)}>Nivel 2</button>
-      <button onClick={() => handleNivelSeleccionado(3)}>Nivel 3</button>
-      <button onClick={() => handleNivelSeleccionado(4)}>Nivel 4</button> */}
+      <img onClick={handleMostrarCartillaClick} src="/img/dados.png" alt="playjuego" className='foreground-image Dado' />
     </div>
   );
 };

@@ -13,7 +13,7 @@ const SidebarComponent = ({ avatar, Nombre, level, mostrarSelectNivel, onBackBut
   return (
     <div className="sidebar">
       <div className="avatar-card">
-        <img src={avatar} alt="Avatar" className="avatar" />
+        <img src="/img/perfil/1.png" alt="Avatar" className="avatar" />
         <div className="user-info">
           <div className="username-container">
             <p>{Nombre}</p>

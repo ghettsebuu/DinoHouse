@@ -3,8 +3,9 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
+    width: 91%;
     height:87% ;
-    background-color: #ffffff; /* Color de fondo */
+    background-color: #f77d45; /* Color de fondo */
     border-radius: 10px; /* Bordes redondeados */
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Sombra */
     padding: 40px; /* Espacio interior */
@@ -28,92 +29,178 @@
   }
   
   
-/* Estilos para la ventana modal */
+/* Estilos generales del modal */
 .modal {
-    display: block;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4);
-  }
-  
-  .modal-content {
-    display: flex;
-    background-color: #fefefe;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-    max-width: 500px;
-    border-radius: 8px;
-    position: relative;
-    flex-direction: column;
-  }
-  
-  .section{
-    display: flex;
-    justify-content: space-around;
-    align-items: baseline;
-  }
-  .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-  }
-  
-  .close:hover,
-  .close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-  }
-  
-  /* Estilos para la tabla de estudiantes */
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-  }
-  
-  th, td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
-  }
-  
-  th {
-    background-color: #f2f2f2;
-  }
-  
-  tr:nth-child(even) {
-    background-color: #f2f2f2;
-  }
-  
-  tr:hover {
-    background-color: #ddd;
-  }
-  
-  button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-right: 10px;
-  }
-  
-  button:hover {
-    background-color: #45a049;
-  }
-  
-  @media (max-width: 768px) {
-    .gestion {
-      padding: 10px; /* Espacio interior ajustado para pantallas más pequeñas */
-    }
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro semi-transparente */
+  z-index: 1000; /* Z-index alto para asegurarse de que esté por encima del contenido */
+}
+
+.modal-content {
+  background-color: #fff;
+  width: 80%;
+  max-width: 400px; /* Ancho máximo del modal */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+/* Estilos del botón de cerrar */
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  font-size: 20px;
+  color: #aaa;
+}
+
+.close:hover {
+  color: #555;
+}
+
+/* Estilos para las secciones de contenido */
+.section {
+  margin-bottom: 15px;
+}
+
+.section label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.section input[type="text"] {
+  width: calc(100% - 10px);
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.section input[type="text"]:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.section button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.section button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.section button:hover {
+  background-color: #0056b3;
+}
+
+/* Estilos para mensajes de error y alerta */
+.error,
+.alert {
+  color: #dc3545;
+  margin-top: 5px;
+  font-size: 14px;
+}
+
+.alert {
+  color: #28a745;
+}
+
+
+
+.student-cards {
+  display: flex;
+  overflow-y: auto;
+  flex-wrap: wrap;
+  max-width: 100%;
+  max-height: 80vh;
+  margin: 91px 10px;
+  scrollbar-width: thin;
+  scrollbar-color: #888888 #f0f0f0;
+  justify-content: center;
+}
+
+.student-cards::-webkit-scrollbar {
+  width: 8px; /* Ancho de la barra de desplazamiento para navegadores webkit */
+}
+
+.student-cards::-webkit-scrollbar-track {
+  background-color: #f0f0f0; /* Color de fondo de la barra de desplazamiento */
+}
+
+.student-cards::-webkit-scrollbar-thumb {
+  background-color: #888888; /* Color del "pulgar" de la barra de desplazamiento */
+  border-radius: 4px; /* Borde redondeado del "pulgar" */
+}
+
+.student-card {
+  flex: 0 0 auto; /* Para que las tarjetas no crezcan y mantengan su tamaño */
+  width: 300px; /* Tamaño fijo de las tarjetas */
+  margin-right: 20px; /* Espacio entre las tarjetas */
+  margin-bottom: 20px; /* Espacio entre las tarjetas en la misma columna */
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.student-card:last-child {
+  margin-right: 0; /* Elimina el margen derecho de la última tarjeta */
+}
+
+.student-card:hover {
+  transform: translateY(-5px);
+}
+
+
+.student-details {
+  padding: 20px;
+}
+
+.student-details h2 {
+  font-size: 1.6rem;
+  margin-bottom: 10px;
+}
+
+.student-details p {
+  font-size: 1.2rem;
+  color: #666666;
+}
+
+.card-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.card-actions button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.card-actions button:hover {
+  background-color: #0056b3;
+}
