@@ -1,84 +1,180 @@
 import React, { useState, useEffect } from 'react';
-import './sopadeletras.css'; // Importamos los estilos CSS
+import FinalScreen from '../Final';
+import './recetas.css';
 
-const palabras = ["PELOTA", "GOL", "ARCO", "JUGADOR"]; // Lista de palabras a buscar (puedes modificarlas)
-
-const sopaLetras = [
-  ['P', 'E', 'L', 'O', 'T', 'A', 'R', 'A'],
-  ['G', 'A', 'R', 'C', 'O', 'L', 'P', 'A'],
-  ['O', 'J', 'U', 'G', 'A', 'D', 'O', 'R'],
-  ['P', 'L', 'E', 'T', 'O', 'A', 'G', 'L'],
-  ['G', 'A', 'L', 'P', 'R', 'O', 'A', 'C'],
-  ['O', 'A', 'D', 'J', 'R', 'G', 'U', 'O']
+const recetas = [ 
+  {
+    nombre: 'Galletas de Chocolate',
+    descripcion: 'Para hacer galletas de chocolate, necesitas: primero harina, luego azúcar, después leche y por último huevos.',
+    ingredientes: [
+      { nombre: 'harina', src: '/img/recetas/harina.png' },
+      { nombre: 'azucar', src: '/img/recetas/azucar.png' },
+      { nombre: 'leche', src: '/img/recetas/leche.png' },
+      { nombre: 'huevos', src: '/img/recetas/huevos.png' },
+    ],
+    orden: ['harina', 'azucar', 'leche', 'huevos'],
+  },
+  {
+    nombre: 'Panqueques',
+    descripcion: 'Para hacer panqueques, necesitas: primero harina, luego huevos, después leche y por último mantequilla.',
+    ingredientes: [
+      { nombre: 'harina', src: '/img/recetas/harina.png' },
+      { nombre: 'huevos', src: '/img/recetas/huevos.png' },
+      { nombre: 'leche', src: '/img/recetas/leche.png' },
+      { nombre: 'mantequilla', src: '/img/recetas/mantequilla.png' },
+    ],
+    orden: ['harina', 'huevos', 'leche', 'mantequilla'],
+  },
+  {
+    nombre: 'Pastel de Vainilla',
+    descripcion: 'Para hacer pastel de vainilla, necesitas: primero harina, luego azúcar, después huevos y por último vainilla.',
+    ingredientes: [
+      { nombre: 'harina', src: '/img/recetas/harina.png' },
+      { nombre: 'azucar', src: '/img/recetas/azucar.png' },
+      { nombre: 'huevos', src: '/img/recetas/huevos.png' },
+      { nombre: 'vainilla', src: '/img/recetas/leche.png' },
+    ],
+    orden: ['harina', 'azucar', 'huevos', 'vainilla'],
+  },
 ];
 
+const shuffleArray = (array) => {
+  let shuffledArray = array.slice();
+  for (let i = shuffledArray.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
+  }
+  return shuffledArray;
+};
+
 const ActividadLv3 = ({ mostrarActividad }) => {
-  const [palabrasEncontradas, setPalabrasEncontradas] = useState([]);
-  const [palabraActual, setPalabraActual] = useState(0);
+  const [ronda, setRonda] = useState(0);
+  const [arrastrados, setArrastrados] = useState([]);
+  const [actividadCompletada, setActividadCompletada] = useState(false);
+  const [score, setScore] = useState(0); // Añadido: estado de puntuación
+  const recetaActual = recetas[ronda];
+  const [ingredientesDisponibles, setIngredientesDisponibles] = useState(shuffleArray(recetaActual.ingredientes));
+  const [tazonColor, setTazonColor] = useState('');
 
   useEffect(() => {
-    // Generar la sopa de letras al iniciar
-    generarSopaLetras();
-  }, []);
+    setIngredientesDisponibles(shuffleArray(recetaActual.ingredientes));
+  }, [ronda]);
 
-  // Función para generar la sopa de letras
-  const generarSopaLetras = () => {
-    const sopaElement = document.querySelector('.sopa');
-    sopaElement.innerHTML = ''; // Limpiamos el contenido existente
-
-    // Mostrar todas las letras en la sopa de letras
-    sopaLetras.forEach((fila, filaIndex) => {
-      const filaElement = document.createElement('div');
-      filaElement.classList.add('fila');
-      
-      fila.forEach((letra, colIndex) => {
-        const div = document.createElement('div');
-        div.classList.add('letra');
-        div.textContent = letra;
-        filaElement.appendChild(div);
-      });
-
-      sopaElement.appendChild(filaElement);
-    });
-  };
-
-  // Función para manejar el click en una palabra
-  const handleClickPalabra = (indice) => {
-    // Verificar si la palabra clickeada es la siguiente en la lista
-    if (indice === palabraActual) {
-      // Agregar la palabra encontrada a la lista
-      setPalabrasEncontradas([...palabrasEncontradas, palabras[indice]]);
-      
-      // Avanzar a la siguiente palabra si es correcta
-      if (palabraActual < palabras.length - 1) {
-        setPalabraActual(palabraActual + 1);
-      } else {
-        alert('¡Has encontrado todas las palabras!');
-        // Aquí podrías manejar el fin de la actividad, por ejemplo, volver a la pantalla principal
-        mostrarActividad(false);
-      }
-    } else {
-      // Podrías agregar lógica para indicar que la palabra no es la correcta, por ejemplo, un mensaje de error
-      alert('Intenta encontrar la palabra correcta primero.');
+  const handleDrop = (event) => {
+    event.preventDefault();
+    const ingrediente = JSON.parse(event.dataTransfer.getData('ingrediente'));
+    if (arrastrados.length < recetaActual.orden.length) {
+      const nuevosArrastrados = [...arrastrados, ingrediente];
+      setArrastrados(nuevosArrastrados);
+      setIngredientesDisponibles(ingredientesDisponibles.filter((ing) => ing.nombre !== ingrediente.nombre));
+      verificarOrden(nuevosArrastrados);
     }
   };
 
+  const handleDragOver = (event) => {
+    event.preventDefault();
+  };
+
+  const handleDragStart = (event, ingrediente) => {
+    event.dataTransfer.setData('ingrediente', JSON.stringify(ingrediente));
+  };
+
+  const handleRemove = (index) => {
+    const ingredienteRemovido = arrastrados[index];
+    const nuevosArrastrados = arrastrados.filter((_, i) => i !== index);
+    setArrastrados(nuevosArrastrados);
+    setIngredientesDisponibles([...ingredientesDisponibles, ingredienteRemovido]);
+    verificarOrden(nuevosArrastrados);
+  };
+
+  const reiniciarActividad = () => {
+    setArrastrados([]);
+    setTazonColor('');
+    setIngredientesDisponibles(shuffleArray(recetaActual.ingredientes));
+  };
+
+  const irAlInicio = () => {
+    // Implementa la lógica para ir al inicio
+  };
+
+  const siguienteActividad = () => {
+    if (ronda < recetas.length - 1) {
+      setRonda(ronda + 1);
+      reiniciarActividad();
+    } else {
+      setActividadCompletada(true);
+    }
+  };
+
+  const verificarOrden = (nuevosArrastrados) => {
+    let correcto = true;
+    nuevosArrastrados.forEach((ingrediente, index) => {
+      if (ingrediente.nombre !== recetaActual.orden[index]) {
+        correcto = false;
+      }
+    });
+    if (correcto && nuevosArrastrados.length === recetaActual.orden.length) {
+      setTazonColor('correcto');
+      setScore((prevScore) => prevScore + 50); // Añadido: sumar puntos por receta correcta
+      setTimeout(siguienteActividad, 1000);
+    } else if (correcto) {
+      setTazonColor('correcto-parcial');
+    } else {
+      setTazonColor('incorrecto');
+      setScore((prevScore) => prevScore - 10); // Añadido: restar puntos por ingrediente incorrecto
+    }
+  };
+
+  const handleClickTazon = () => {
+    reiniciarActividad();
+  };
+
   return (
-    <div className="actividad">
-      <h2>Sopa de letras</h2>
-      <div className="sopa">
-        {/* Aquí se generará dinámicamente la sopa de letras */}
-      </div>
-      <div className="palabras">
-        <h3>Palabras a buscar:</h3>
-        <ul>
-          {palabras.map((palabra, index) => (
-            <li key={index} className={palabrasEncontradas.includes(palabra) ? 'palabra-encontrada' : ''} onClick={() => handleClickPalabra(index)}>
-              {palabra}
-            </li>
-          ))}
-        </ul>
-      </div>
+    <div className="actividad3">
+      <h2>Recetas de Cocina</h2>
+      <div className="score">Puntuación: {score}</div> {/* Añadido: mostrar la puntuación */}
+      {actividadCompletada ? (
+        <FinalScreen
+          score={score} // Añadido: pasar puntuación a la pantalla final
+          onRestart={() => { setRonda(0); reiniciarActividad(); setActividadCompletada(false); setScore(0); }} // Añadido: reiniciar la puntuación
+          onGoToHome={irAlInicio}
+          onNext={siguienteActividad}
+        />
+      ) : (
+        <>
+          <div className='receta'>
+            <h3>{recetaActual.nombre}</h3>
+            <p>{recetaActual.descripcion}</p>
+          </div>
+          
+          <div className="ingredientes">
+            {ingredientesDisponibles.map((ingrediente) => (
+              <img
+                key={ingrediente.nombre}
+                src={ingrediente.src}
+                alt={ingrediente.nombre}
+                draggable
+                onDragStart={(event) => handleDragStart(event, ingrediente)}
+              />
+            ))}
+          </div>
+          <div
+            className={`tazon ${tazonColor}`}
+            onDrop={handleDrop}
+            onDragOver={handleDragOver}
+            onClick={handleClickTazon}
+          >
+            <img src="/img/recetas/tazon.png" alt="Tazón" />
+            <div className="ingredientes-en-tazon">
+              {arrastrados.map((ingrediente, index) => (
+                <div key={index} className="ingrediente-en-tazon" onClick={() => handleRemove(index)}>
+                  <img src={ingrediente.src} alt={ingrediente.nombre} />
+                </div>
+              ))}
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 };

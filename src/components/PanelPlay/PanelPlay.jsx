@@ -14,6 +14,8 @@ const PanelPlay = () => {
     const [mostrarOraciones, setMostrarOraciones] = useState(false);
     const [mostrarCartilla, setMostrarCartilla] = useState(false);
     const [mostrarPalabras, setMostrarPalabras] = useState(false);
+    const [mostrarAtrapa, setMostrarAtrapa] = useState(false);
+    const [mostrarInferencias, setMostrarInferencias] = useState(false);
     const [mostrarHistorias, setMostrarHistorias] = useState(false);
     const [mostrarSelectNivel, setMostrarSelectNivel] = useState(false);
 
@@ -31,6 +33,8 @@ const PanelPlay = () => {
         setMostrarOraciones(false);
         setMostrarCartilla(false);
         setMostrarPalabras(false);
+        setMostrarAtrapa(false);
+        setMostrarInferencias(false);
         setMostrarHistorias(false);
     };
 
@@ -41,6 +45,8 @@ const PanelPlay = () => {
         setMostrarOraciones(false);
         setMostrarCartilla(false);
         setMostrarPalabras(false);
+        setMostrarAtrapa(false);
+        setMostrarInferencias(false);
         setMostrarHistorias(false);
     };
 
@@ -51,6 +57,8 @@ const PanelPlay = () => {
         setMostrarOraciones(false);
         setMostrarCartilla(false);
         setMostrarPalabras(false);
+        setMostrarAtrapa(false);
+        setMostrarInferencias(false);
         setMostrarHistorias(false);
     };
 
@@ -61,11 +69,41 @@ const PanelPlay = () => {
         setMostrarMemoryGame(false);
         setMostrarCartilla(false);
         setMostrarPalabras(false);
+        setMostrarAtrapa(false);
+        setMostrarInferencias(false);
         setMostrarHistorias(false);
     };
 
     const handleMostrarPalabras = () => {
         setMostrarPalabras(true);
+        setMostrarOraciones(false);
+        setMostrarLaboratorio(false);
+        setMostrarActividad(false);
+        setMostrarMemoryGame(false);
+        setMostrarCartilla(false);
+        setMostrarAtrapa(false);
+        setMostrarInferencias(false);
+        setMostrarHistorias(false);
+        
+    };
+
+    const handleMostrarAtrapa = () => {
+        setMostrarAtrapa(true);
+        setMostrarPalabras(false);
+        setMostrarOraciones(false);
+        setMostrarLaboratorio(false);
+        setMostrarActividad(false);
+        setMostrarMemoryGame(false);
+        setMostrarCartilla(false);
+        setMostrarInferencias(false);
+        setMostrarHistorias(false);
+        
+    };
+
+    const handleMostrarInferencias = () => {
+        setMostrarInferencias(true);
+        setMostrarAtrapa(false);
+        setMostrarPalabras(false);
         setMostrarOraciones(false);
         setMostrarLaboratorio(false);
         setMostrarActividad(false);
@@ -82,6 +120,8 @@ const PanelPlay = () => {
         setMostrarLaboratorio(false);
         setMostrarOraciones(false);
         setMostrarPalabras(false);
+        setMostrarAtrapa(false);
+        setMostrarInferencias(false);
         setMostrarHistorias(false);
     };
 
@@ -92,6 +132,8 @@ const PanelPlay = () => {
         setMostrarMemoryGame(false);
         setMostrarLaboratorio(false);
         setMostrarOraciones(false);
+        setMostrarAtrapa(false);
+        setMostrarInferencias(false);
         setMostrarPalabras(false);
        
     };
@@ -104,6 +146,8 @@ const PanelPlay = () => {
         setMostrarOraciones(false);
         setMostrarCartilla(false);
         setMostrarPalabras(false);
+        setMostrarAtrapa(false);
+        setMostrarInferencias(false);
         setMostrarHistorias(false);
     };
 
@@ -115,6 +159,8 @@ const PanelPlay = () => {
         setMostrarOraciones(false);
         setMostrarCartilla(false);
         setMostrarPalabras(false);
+        setMostrarAtrapa(false);
+        setMostrarInferencias(false);
         setMostrarHistorias(false);
         setMostrarSelectNivel(false);
     };
@@ -130,6 +176,8 @@ const PanelPlay = () => {
         setMostrarOraciones(false);
         setMostrarCartilla(false);
         setMostrarPalabras(false);
+        setMostrarAtrapa(false);
+        setMostrarInferencias(false);
         setMostrarHistorias(false);
         setMostrarSelectNivel(false);
     };
@@ -154,6 +202,8 @@ const PanelPlay = () => {
                     mostrarOraciones={handleMostrarOraciones}
                     mostrarCartilla={handleMostrarCartilla}
                     mostrarPalabras={handleMostrarPalabras}
+                    mostrarAtrapa={handleMostrarAtrapa}
+                    mostrarInferencias={handleMostrarInferencias}
                     mostrarHistorias={handleMostrarhistorias}
                     mostrarActividadState={mostrarActividad}
                     mostrarMemoryGameState={mostrarMemoryGame}
@@ -161,6 +211,8 @@ const PanelPlay = () => {
                     mostrarOracionesState={mostrarOraciones}
                     mostrarCartillaState={mostrarCartilla}
                     mostrarPalabrasState={mostrarPalabras}
+                    mostrarAtrapaState={mostrarAtrapa}
+                    mostrarInferenciasState={mostrarInferencias}
                     mostrarHistoriasState={mostrarHistorias}
                     handleVolverALetras={handleVolverALetras}
                 />

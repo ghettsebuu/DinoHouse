@@ -8,13 +8,13 @@ import './PanelM.css';
 
 const PanelM = () => {
   
-  const [selectedModule, setSelectedModule] = useState('gestion');
+  const [selectedModule, setSelectedModule] = useState('gestion'); 
 
  
 
   const handleModuleChange = (module) => {
     setSelectedModule(module);
-  };
+  }; 
 
   return (
     

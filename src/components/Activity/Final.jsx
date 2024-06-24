@@ -1,11 +1,10 @@
 import React from 'react';
 
-
-const FinalScreen = ({ onRestart, onGoToHome, onNext }) => {
+const FinalScreen = ({ score, onRestart, onGoToHome, onNext }) => {
     return (
         <div className="final-screen">
             <h2>¡Felicidades! Has completado la actividad.</h2>
-            <p>¡Buen trabajo!</p>
+            <p>Puntuación: {score} puntos</p>  {/* Mostrar puntuación */}
             <button onClick={onRestart} aria-label="Reiniciar">
                 <i className="fa-solid fa-arrow-rotate-left"></i>
             </button>

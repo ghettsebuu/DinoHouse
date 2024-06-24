@@ -1,0 +1,68 @@
+/* src/App.css */
+
+  .Atrapa {
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    justify-content: flex-start;
+    background-color: #f1ea82;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    
+  }
+  .tablero{
+    display: flex;
+    justify-content: space-evenly;
+  }
+  .Atrapa h2 {
+   
+    font-size: 2em;
+    margin-bottom: 70px;
+  }
+  
+  .Atrapa p {
+    font-size: 1.2em;
+    margin: 10px 0;
+  }
+  
+  .Atrapa strong {
+    color: #ff8974;
+    font-weight: bold;
+    font-size: 30px;
+  }
+  
+  .frutas {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 80px;
+  }
+  
+  .frutas button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+  }
+  
+  .fruta-img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    transition: transform 0.2s;
+  }
+  
+  .fruta-img:hover {
+    transform: scale(1.1);
+  }
+  
+  @media (min-width: 600px) {
+    .fruta-img {
+      width: 100px;
+      height: 100px;
+    }
+  }
+  

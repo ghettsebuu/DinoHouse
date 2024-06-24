@@ -1,5 +1,10 @@
 /* actividad.css */
-
+@font-face {
+  font-family: 'Happy School';
+  src: url('fonts/Happy School.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
 .actividad {
     display: flex;
     flex-direction: column;
@@ -7,10 +12,15 @@
     justify-content: center;
     padding: 20px;
     box-sizing: border-box;
-    height: 100vh;
+    height: 80%;
     text-align: center;
+  
   }
   
+  p {
+    font-family:  sans-serif;
+    font-weight: normal;
+  }
   .tituloActividad {
     font-size: 2em;
     margin-bottom: 20px;

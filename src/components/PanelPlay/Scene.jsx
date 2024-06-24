@@ -17,7 +17,9 @@ import LaboratorioSilabas from '../Activity/ActividadLv2/Laboratorio/Laboratorio
 import Oraciones from '../Activity/ActividadLv3/Oraciones.jsx';
 import Palabras from '../Activity/ActividadLv2/Palabras.jsx';
 import Cartilla from '../Activity/ActividadLv1/Cartilla.jsx';
-import HistoriasInteractivas from '../Activity/ActividadLv4/HistoriasInteractivas.jsx';
+import Atrapa from '../Activity/ActividadLv3/Atrapa.jsx';
+import Inferencias from '../Activity/ActividadLv4/Inferencias.jsx';
+import HistoriasInteractivas from '../Activity/ActividadLv4/HistoriasInteractivas/HistoriasInteractivas.jsx';
 
 const SceneComponent = ({
   nivelActual,
@@ -27,6 +29,8 @@ const SceneComponent = ({
   mostrarOraciones,
   mostrarCartilla,
   mostrarPalabras,
+  mostrarAtrapa,
+  mostrarInferencias,
   mostrarHistorias,
 
   mostrarActividadState,
@@ -35,9 +39,10 @@ const SceneComponent = ({
   mostrarOracionesState,
   mostrarCartillaState,
   mostrarPalabrasState,
+  mostrarAtrapaState,
+  mostrarInferenciasState,
   mostrarHistoriasState,
   handleVolverALetras
-
 }) => {
   let NivelComponent;
   let ActividadComponent;
@@ -71,30 +76,42 @@ const SceneComponent = ({
       break;
   }
 
-  return ( 
+  return (
     <div className="scene">
-      {!mostrarActividadState && !mostrarMemoryGameState && !mostrarLaboratorioState && !mostrarOracionesState && !mostrarCartillaState && !mostrarPalabrasState && !mostrarHistoriasState ?(
-        <NivelComponent mostrarActividad={mostrarActividad} mostrarMemoryGame={mostrarMemoryGame} mostrarLaboratorio={mostrarLaboratorio} mostrarOraciones={mostrarOraciones} 
-        mostrarCartilla={mostrarCartilla} mostrarPalabras={mostrarPalabras} mostrarHistorias={mostrarHistorias}/>
+      {!mostrarActividadState && !mostrarMemoryGameState && !mostrarLaboratorioState && !mostrarOracionesState && !mostrarInferenciasState && !mostrarCartillaState 
+      && !mostrarPalabrasState && !mostrarAtrapaState && !mostrarHistoriasState ? (
+        <NivelComponent 
+          mostrarActividad={mostrarActividad} 
+          mostrarMemoryGame={mostrarMemoryGame} 
+          mostrarLaboratorio={mostrarLaboratorio} 
+          mostrarOraciones={mostrarOraciones} 
+          mostrarCartilla={mostrarCartilla} 
+          mostrarPalabras={mostrarPalabras} 
+          mostrarAtrapa={mostrarAtrapa}
+          mostrarInferencias={mostrarInferencias}
+          mostrarHistorias={mostrarHistorias} 
+        />
       ) : mostrarActividadState ? (
         <ActividadComponent mostrarActividad={mostrarActividad} />
       ) : mostrarMemoryGameState ? (
         <MemoryGameComponent onNext={handleVolverALetras} />
       ) : mostrarLaboratorioState ? (
-        <LaboratorioSilabas /> 
+        <LaboratorioSilabas />
       ) : mostrarOracionesState ? (
         <Oraciones mostrarOraciones={mostrarOraciones} />
       ) : mostrarPalabrasState ? (
         <Palabras mostrarPalabras={mostrarPalabras} />
+      ) : mostrarAtrapaState ? (
+        <Atrapa mostrarAtrapa={mostrarAtrapa} />
+      ) : mostrarInferenciasState ? (
+        <Inferencias mostrarInferencias={mostrarInferencias} />
       ) : mostrarHistoriasState ? (
         <HistoriasInteractivas mostrarHistorias={mostrarHistorias} />
       ) : mostrarCartillaState ? (
         <Cartilla onBack={handleVolverALetras} />
       ) : null}
-
     </div>
   );
 };
-
 
 export default SceneComponent;
