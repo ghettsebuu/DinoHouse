@@ -4,6 +4,7 @@ import SidebarComponent from './Sidebar';
 import SceneComponent from './Scene';
 import SelectNivel from '../Niveles/SelectNivel';
 import './PanelPlay.css';
+import ButtonPanel from './ButtonPanel';
 
 const PanelPlay = () => {
     const [studentName, setStudentName] = useState('');
@@ -185,6 +186,7 @@ const PanelPlay = () => {
     return (
         <div className="dashboard">
             <SidebarComponent
+                buttonhidden="buttonhidden"
                 avatar="url_del_avatar"
                 Nombre={studentName}
                 level={nivelActual}
@@ -217,6 +219,10 @@ const PanelPlay = () => {
                     handleVolverALetras={handleVolverALetras}
                 />
             )}
+              <ButtonPanel
+                buttonvisible="buttonvisible"
+                onBackButtonClick={handleBackButtonClick}
+            />
         </div>
     );
 };

@@ -5,14 +5,14 @@ import ExitButtonComponent from './ButtonExit';
 import BackButtonComponent from './ButtonBack';
 import './PanelPlay.css';
 
-const SidebarComponent = ({ avatar, Nombre, level, mostrarSelectNivel, onBackButtonClick }) => {
+const SidebarComponent = ({ avatar, Nombre, level, mostrarSelectNivel, onBackButtonClick, hidden,buttonhidden }) => {
   const handleMostrarSelectNivel = () => {
     mostrarSelectNivel();
   };
 
   return (
     <div className="sidebar">
-      <div className="avatar-card">
+      <div className={`avatar-card ${hidden}`}>
         <img src="/img/perfil/1.png" alt="Avatar" className="avatar" />
         <div className="user-info">
           <div className="username-container">
@@ -23,7 +23,7 @@ const SidebarComponent = ({ avatar, Nombre, level, mostrarSelectNivel, onBackBut
           </div>
         </div>
       </div>
-      <div className="button-container">
+      <div className={`button-container ${buttonhidden}`}>
           <BackButtonComponent onClick={onBackButtonClick} />
           <HomeButtonComponent />
           <ExitButtonComponent />
