@@ -24,16 +24,19 @@ body {
     border: none;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 20px;
+    padding: 10px;
     margin: 10px;
     cursor: pointer;
     transition: transform 0.2s;
     text-decoration: none !important; /* Asegura que el subrayado se elimine */
     color: inherit !important; /* Asegura que el color del texto se herede */
     
+    
   }
   .boton1{
     background-color: #afd2d5;
+    
+   
   }
   
   .boton2{
@@ -45,12 +48,15 @@ body {
   }
   
   .login-button img {
-    width: 150px; /* Ajusta el tamaño según sea necesario */
-    height: 150px; /* Ajusta el tamaño según sea necesario */
+    width: 100px; /* Ajusta el tamaño según sea necesario */
+    height: 100px; /* Ajusta el tamaño según sea necesario */
     display: block;
     margin: 0 auto;
+   
   }
-
+ .tx{
+  font-size: 20px;
+ }
 
   
   /* Estilos para el contenedor principal de LoginMaestro */
@@ -79,7 +85,6 @@ body {
   border-radius: 30px;
   padding: 15px 45px;
   cursor: pointer;
-  font-size: 20px;
   transition: background-color 0.3s;
   position: relative; /* Para que el icono se posicione correctamente */
 }

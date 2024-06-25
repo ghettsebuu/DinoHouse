@@ -112,7 +112,15 @@ body {
   /* Cambiar el color */
 }
 
+ .play-button i {
+  position: absolute;
+  top: 52%;
+  left: 52%;
+  transform: translate(-50%, -50%);
+  color: white;
+  /* Color del icono */
 
+} 
 
 .dinos-elementos {
   display: flex;

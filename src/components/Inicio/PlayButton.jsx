@@ -10,12 +10,12 @@ const PlayButton = () => {
       localStorage.setItem('test', 'testValue');
       const testValue = localStorage.getItem('test');
       if (testValue !== 'testValue') {
-        window.alert('localStorage is not working properly');
+       console.error('localStorage is not working properly');
       } else {
         localStorage.removeItem('test');
       }
     } catch (error) {
-      window.alert('localStorage is not accessible:', error);
+      console.error('localStorage is not accessible:', error);
     }
   }, []);
   
@@ -25,10 +25,10 @@ const PlayButton = () => {
     const studentName = localStorage.getItem('studentName');
   
     if (studentName) {
-      window.alert('Navigating to /PanelPlay');
+      console.log('Navigating to /PanelPlay');
       navigate('/PanelPlay');
     } else {
-      window.alert('Navigating to /SelectLogin');
+      console.log('Navigating to /SelectLogin');
       navigate('/SelectLogin');
     }
   };
