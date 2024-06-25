@@ -186,6 +186,14 @@ body {
 }
 
 
+.hidden {
+  display: none;
+}
+
+.buttonvisible {
+  display: none;
+}
+
 @media screen and (min-width: 1025px) {
   .scene {
     flex: 1;
@@ -193,11 +201,22 @@ body {
 }
 
 @media screen and (max-width: 1000px) {
+  .buttonvisible {
+    display: flex;
+  }
+
+  .buttonhidden {
+    display: none;
+  }
+
+  .hidden {
+    display: none;
+  }
+
   .dashboard {
     flex-direction: column;
-    height: auto;
     align-items: center;
-
+    height: auto;
   }
 
   .button-container {
@@ -215,6 +234,7 @@ body {
   .avatar-card {
     flex-direction: row;
     width: 300px;
+    height: auto;
 
   }
 }
