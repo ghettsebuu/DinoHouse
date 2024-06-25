@@ -32,7 +32,7 @@ const recetas = [
       { nombre: 'harina', src: '/img/recetas/harina.png' },
       { nombre: 'azucar', src: '/img/recetas/azucar.png' },
       { nombre: 'huevos', src: '/img/recetas/huevos.png' },
-      { nombre: 'vainilla', src: '/img/recetas/leche.png' },
+      { nombre: 'vainilla', src: '/img/recetas/vainilla.png' },
     ],
     orden: ['harina', 'azucar', 'huevos', 'vainilla'],
   },

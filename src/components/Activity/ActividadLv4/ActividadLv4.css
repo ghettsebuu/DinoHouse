@@ -4,7 +4,7 @@
     align-items: center;
     padding: 20px;
     width: 97%;
-    background-color: #93ebbf;
+    background-color: #93ebd5;
     border-radius: 10px;
     
   
@@ -27,7 +27,7 @@
     flex-wrap: wrap;
     justify-content: center;
     line-height: 1.5;
-    color: #0c7c73;
+    color: #a14e0b;
   }
   
   span {

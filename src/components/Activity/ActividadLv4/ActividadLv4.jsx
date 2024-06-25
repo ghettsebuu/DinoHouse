@@ -19,10 +19,9 @@ const ActividadLv4 = ({ mostrarActividad }) => {
 
   const paragraphs = [
     "María compró caramelos y los repartió entre todos sus amigos.",
-    "El perro de Juan es muy juguetón y le encanta correr en el parque.",
-    "La maestra explicó la lección con mucha paciencia y todos los niños entendieron.",
-    "En el bosque viven muchos animales como ciervos, ardillas y pájaros.",
-    "Ayer fuimos al cine y vimos una película muy divertida."
+    "El perro de Juan es muy juguetón.",
+    "La maestra explicó la lección con mucha paciencia.",
+    "En el bosque viven muchos animales como ciervos, conejos y pájaros."
   ];
 
   useEffect(() => {
@@ -98,14 +97,14 @@ const ActividadLv4 = ({ mostrarActividad }) => {
   };
 
   const playAudio = (word) => {
-    const audio = new Audio(`./audios/${word.toLowerCase()}.mp3`);
+    const audio = new Audio(`/audios/${word.toLowerCase()}.mp3`);
     audio.onended = () => {
       setAudioPlayed(true); // Mark audio as played once it ends
     };
     audio.play();
   };
 
-  if (gameOver && correct) {
+  if (gameOver) {
     return (
       <FinalScreen
         onRestart={handleRestart}
@@ -122,7 +121,7 @@ const ActividadLv4 = ({ mostrarActividad }) => {
     <div className="actividad4">  
       <h2>Encuentra la palabra</h2> 
       <div className='ronda'>
-        <p>Escucha atentamente </p>
+        <p>Escucha atentamente</p>
         <p>Ronda: {round + 1}/{TOTAL_ROUNDS}</p>
       </div>
       
@@ -150,7 +149,8 @@ const ActividadLv4 = ({ mostrarActividad }) => {
                   : ""
               }
             >
-              {word}
+              {word} 
+              {index < words.length - 1 && " "}
             </span>
           );
         })}

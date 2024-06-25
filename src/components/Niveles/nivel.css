@@ -66,26 +66,23 @@
 
 .sandia {
   width: 15%;
-    top: 88%;
-    left: 70%;
+  top: 88%;
+  left: 70%;
 }
 
-.D-Nivel1 {
-=========
-.historias{
+.historias {
   width: 20%;
   top: 84%;
   left: 15%;
 }
-.cometa{
+
+.cometa {
   width: 17%;
   top: 37%;
   left: 31%;
 }
 
-
-.D-Nivel1{
->>>>>>>>> Temporary merge branch 2
+.D-Nivel1 {
   width: 20%;
   top: 71%;
   /* Coloca la imagen en la mitad superior del contenedor principal */

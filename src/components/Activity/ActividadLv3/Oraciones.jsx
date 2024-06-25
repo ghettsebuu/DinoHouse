@@ -24,7 +24,7 @@ const Oraciones = ({ mostrarOraciones }) => {
     {
       sentence: "La sopa esta caliente.",
       options: [
-        { src: "/img/Level3/Olla-caliente.png", correct: false },
+        { src: "/img/Level3/pasta.png", correct: false },
         { src: "/img/Level3/sopa.png", correct: true },
         { src: "/img/Level3/abuela.png", correct: false },
       ],

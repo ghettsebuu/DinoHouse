@@ -1,8 +1,95 @@
+/* src/components/Activity/ActividadLv4/historias.css */
+
 .historia {
-    padding: 20px;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 10px;
+  background-color: #ffffff; /* Fondo claro y amigable */
+  font-family: 'Comic Sans MS', cursive, sans-serif; /* Fuente divertida para los niños */
+}
+
+
+
+
+.historia h2 {
+  font-size: 2em;
+  color: #47ffe0; /* Color vibrante para el título */
+  text-shadow: 1px 1px 2px #000; /* Sombra para el título */
+  text-align: center;
+}
+
+.historia p {
+  font-size: 1.2em;
+  color: #333;
+  text-align: center;
+}
+
+.story-image {
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+  margin: 20px 25px;
   
- /*  button {
-    margin: 10px;
-  } */
-  
+  border-radius: 15px; /* Bordes redondeados */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra alrededor de las imágenes */
+}
+
+.clickable-image-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px; /* Espacio entre las imágenes */
+  margin-top: 20px;
+}
+
+.clickable-image {
+  flex: 1 1 45%; /* Cada imagen ocupa hasta el 45% del contenedor, se ajusta en pantallas más pequeñas */
+  max-width: 200px; /* Ancho máximo para imágenes */
+  text-align: center;
+  cursor: pointer;
+  border: 2px solid #249b91; /* Borde de color vibrante */
+  border-radius: 15px; /* Bordes redondeados */
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra alrededor de las imágenes */
+  transition: transform 0.2s;
+  background-color: #fff;
+}
+
+
+.clickable-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.clickable-image p {
+  margin: 10px 0;
+  font-size: 1.1em;
+  color: #123a21; /* Color del texto acorde con el borde */
+}
+
+.clickable-image:hover {
+  transform: scale(1.05); /* Escala al pasar el ratón por encima */
+
+
+}
+
+.buttonH {
+  font-size: 1.2em;
+  padding: 10px 20px;
+  margin-top: 20px;
+  border: none;
+  background-color: #ff6347;
+  color: #fff;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.buttonH:hover {
+  background-color: #ff4500;
+}

@@ -75,7 +75,7 @@ body {
 
 .house-image {
   width: 100%;
-  max-width: 400px;
+  max-width: 450px;
   height: auto;
   position: relative;
   z-index: 1;
@@ -136,22 +136,22 @@ body {
 
 .rex-image {
   filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.24));
-  width: 11%;
+  width: 12%;
 }
 
 .Ali-image {
-  width: 100%;
-  max-width: 300px;
+  width: 20%;
+
   filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.24));
 }
 
 .dina-image {
-  width: 17%;
+  width: 20%;
   filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.24));
 }
 
 .Tito-image {
-  width: 12%;
+  width: 15%;
   filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.24));
 }
 
@@ -187,24 +187,15 @@ body {
 }
 
 
-@media (max-width: 426px) {
-  .rex-image {
+@media (max-width: 760px) {
 
-    width: 20%;
+  .select-nivel {
+    
+    width: 90%;
+ 
   }
-
-  .Ali-image {
-    width: 30%;
-
-  }
-
-  .dina-image {
-    width: 30%;
-
-  }
-
-  .Tito-image {
-    width: 30%;
-
-  }
+ .Botones{
+  display: flex;
+  flex-wrap: wrap;
+ }
 }

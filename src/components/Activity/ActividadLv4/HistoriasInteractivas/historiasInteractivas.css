@@ -1,5 +1,15 @@
 /* src/components/Activity/ActividadLv4/historiasInteractivas.css */
+.historias-interactivas {
+    display: flex;
+    align-items: center;
+    background-color: #a4f1f7;
+    width: 100%;
+    border-radius: 20px;
+    justify-content: center;
+}
+
 .historias-interactivas .historias-menu {
+   
     text-align: center;
 }
 
