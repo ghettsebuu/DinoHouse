@@ -6,7 +6,7 @@ import StudentCards from './StudentCards';
 import { db } from '../../../Firebase/firebaseConfig'; 
 import { collection, getDocs, query, where, doc, updateDoc, deleteDoc } from 'firebase/firestore';
 import { auth } from '../../../Firebase/firebaseConfig'; 
-
+ 
 const GestionEstudiantes = () => {
     const [students, setStudents] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);

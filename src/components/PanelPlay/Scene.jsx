@@ -32,16 +32,7 @@ const SceneComponent = ({
   mostrarAtrapa,
   mostrarInferencias,
   mostrarHistorias,
-
-  mostrarActividadState,
-  mostrarMemoryGameState,
-  mostrarLaboratorioState,
-  mostrarOracionesState,
-  mostrarCartillaState,
-  mostrarPalabrasState,
-  mostrarAtrapaState,
-  mostrarInferenciasState,
-  mostrarHistoriasState,
+  actividadMostrada,
   handleVolverALetras
 }) => {
   let NivelComponent;
@@ -78,8 +69,7 @@ const SceneComponent = ({
 
   return (
     <div className="scene">
-      {!mostrarActividadState && !mostrarMemoryGameState && !mostrarLaboratorioState && !mostrarOracionesState && !mostrarInferenciasState && !mostrarCartillaState 
-      && !mostrarPalabrasState && !mostrarAtrapaState && !mostrarHistoriasState ? (
+      {actividadMostrada === '' ? (
         <NivelComponent 
           mostrarActividad={mostrarActividad} 
           mostrarMemoryGame={mostrarMemoryGame} 
@@ -91,23 +81,23 @@ const SceneComponent = ({
           mostrarInferencias={mostrarInferencias}
           mostrarHistorias={mostrarHistorias} 
         />
-      ) : mostrarActividadState ? (
+      ) : actividadMostrada === 'actividad' ? (
         <ActividadComponent mostrarActividad={mostrarActividad} />
-      ) : mostrarMemoryGameState ? (
+      ) : actividadMostrada === 'memoryGame' ? (
         <MemoryGameComponent onNext={handleVolverALetras} />
-      ) : mostrarLaboratorioState ? (
+      ) : actividadMostrada === 'laboratorio' ? (
         <LaboratorioSilabas />
-      ) : mostrarOracionesState ? (
+      ) : actividadMostrada === 'oraciones' ? (
         <Oraciones mostrarOraciones={mostrarOraciones} />
-      ) : mostrarPalabrasState ? (
+      ) : actividadMostrada === 'palabras' ? (
         <Palabras mostrarPalabras={mostrarPalabras} />
-      ) : mostrarAtrapaState ? (
+      ) : actividadMostrada === 'atrapa' ? (
         <Atrapa mostrarAtrapa={mostrarAtrapa} />
-      ) : mostrarInferenciasState ? (
+      ) : actividadMostrada === 'inferencias' ? (
         <Inferencias mostrarInferencias={mostrarInferencias} />
-      ) : mostrarHistoriasState ? (
+      ) : actividadMostrada === 'historias' ? (
         <HistoriasInteractivas mostrarHistorias={mostrarHistorias} />
-      ) : mostrarCartillaState ? (
+      ) : actividadMostrada === 'cartilla' ? (
         <Cartilla onBack={handleVolverALetras} />
       ) : null}
     </div>

@@ -13,7 +13,7 @@ const Historia1 = ({ onComplete }) => {
     switch (step) {
       case 0:
         return (
-          <div>
+          <div className='his'>
             <h2>El Misterio del Valle Perdido</h2>
             <p>En el Valle Perdido, los dinosaurios Rex, Ali, Dina y Tito descubren un misterio que debe ser resuelto.</p>
             <img src="/img/Historias/Historia1/dinoamigos.png" alt="Valle Perdido" className="story-image"/>
@@ -23,7 +23,7 @@ const Historia1 = ({ onComplete }) => {
         );
       case 1:
         return (
-          <div>
+          <div className='his'>
             <p>Narrador: Un día soleado en el Valle Perdido, los cuatro amigos se encontraron con un sendero que se bifurcaba.</p>
             <p>-Rex: ¡Miren esto, amigos! Un sendero con dos caminos. ¿Qué deberíamos hacer?</p>
             <p>-Ali: ¿Por dónde creen que deberíamos ir?</p>
@@ -44,7 +44,7 @@ const Historia1 = ({ onComplete }) => {
         );
       case 2:
         return (
-          <div>
+          <div className='his'>
             <p>-Rex: Vamos por el camino estrecho. ¡Quién sabe qué aventuras nos esperan!</p>
             <img src="/img/Historias/Historia1/rex.png" alt="Camino estrecho" className="story-image"/>
             <img src="/img/Historias/Historia1/estrecho-rocoso.png" alt="Camino estrecho" className="story-image"/>
@@ -53,7 +53,7 @@ const Historia1 = ({ onComplete }) => {
         );
       case 3:
         return (
-          <div>
+          <div className='his'>
             <p>-Ali: Optemos por el camino ancho. Parece más acogedor y lleno de vida.</p>
             <img src="/img/Historias/Historia1/ali.png" alt="Camino ancho" className="story-image"/>
             <img src="/img/Historias/Historia1/ancho-flores.png" alt="Camino ancho" className="story-image"/>
@@ -62,7 +62,7 @@ const Historia1 = ({ onComplete }) => {
         );
       case 4:
         return (
-          <div>
+          <div className='his'>
             <p>-Rex: ¡Oh! Una cueva oscura. ¿Deberíamos entrar?</p>
             <p>-Tito: ¡Claro! Vamos a explorar.</p>
             <p>-Ali: Mejor volvamos afuera y busquemos otra ruta. Esta cueva da un poco de miedo.</p>
@@ -81,7 +81,7 @@ const Historia1 = ({ onComplete }) => {
         );
       case 5:
         return (
-          <div>
+          <div className='his'>
             <p>-Tito: ¡Qué maravilla! Una cascada brillante. Esto es increíble.</p>
             <img src="/img/Historias/Historia1/tito.png" alt="Cascada" className="story-image"/>
             <img src="/img/Historias/Historia1/cascada.png" alt="Cascada" className="story-image"/>
@@ -93,7 +93,7 @@ const Historia1 = ({ onComplete }) => {
         );
       case 6:
         return (
-          <div>
+          <div className='his'>
             <p>-Dina: ¿Vamos más adentro? Podríamos encontrar algo valioso.</p>
             <p>-Rex: ¡Miren este tesoro antiguo! ¡Qué hallazgo!</p>
             <img src="/img/Historias/Historia1/dina.png" alt="Tesoro antiguo" className="story-image"/>
@@ -107,7 +107,7 @@ const Historia1 = ({ onComplete }) => {
         );
       case 7:
         return (
-          <div>
+          <div className='his'>
             <p>-Ali: Mejor volvamos afuera y busquemos otra ruta. Esta cueva da un poco de miedo.</p>
             <p>-Tito: ¡Encontramos una salida secreta! ¡Qué ingenioso!</p>
             <img src="/img/Historias/Historia1/camino-a-casa.png" alt="Salida secreta" className="story-image"/>

@@ -9,7 +9,7 @@ const Coleccion = ({ formedSyllables, currentLevel, onBack }) => {
           <i className="fa-solid fa-chevron-left"></i>
         </button>
         <div className='titulo'>
-          <h3>Mi colección</h3> 
+          <h3>Mi colección</h3>  
         </div>
       </div>
       

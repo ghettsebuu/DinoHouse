@@ -5,10 +5,10 @@ import Coleccion from './Coleccion';
 import './LaboratorioSilabas.css';
 
 const consonantsLevel1 = {
-  1: ['M'],
-  2: ['R'],
-  3: ['H']
-};
+  1: ['M', 'P', 'L', 'D', 'N', 'F', 'T'],
+  2: ['R', 'B', 'V', 'G', 'J', 'C', 'Q', 'S', 'Z', 'Y'],
+  3: ['H', 'K', 'Ñ', 'X', 'W']
+}; 
 
 const consonants = ['B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'Ñ', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'X', 'Y', 'Z'];
 const vowels = ['A', 'E', 'I', 'O', 'U'];
@@ -101,7 +101,7 @@ const LaboratorioSilabas = () => {
     <div className="laboratorio-silabas">
       {showCollection ? (
         <Coleccion formedSyllables={formedSyllables} currentLevel={currentLevel} onBack={toggleCollection} />
-      ) : (
+      ) : ( 
         <>
           <div className="nivel-selector">
             {levels.map((level, index) => (
@@ -124,7 +124,7 @@ const LaboratorioSilabas = () => {
             <LetterList currentLevel={currentLevel} currentSubLevel={currentSubLevel} />
           </div>
         </>
-      )}
+       )} 
     </div>
   );
 };

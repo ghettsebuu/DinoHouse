@@ -1,11 +1,13 @@
 .coleccion {
   display: flex;
     flex-direction: column;
-    background-color: #ffff;
+    background-color: #f3e885;
     padding: 20px;
     border-radius: 8px;
     text-align: center;
-    width: 976px;
+    width: 957px;
+    height:500px;
+    max-width:100%;
 }
 
 .coleccion-top{
@@ -22,7 +24,7 @@
 .coleccion h3 {
   margin-bottom: 20px;
  
-  color: #eeb927;
+  color: #ee7727;
 }
 
 .BotonAtras{
@@ -67,4 +69,13 @@
   width: 60px;
   text-align: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+@media (max-width: 760px) {
+
+.coleccion{
+  max-width:80%;
+
+}
 }

@@ -7,6 +7,7 @@
   background-color: #f3e885;
   border-radius: 3%;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+ 
 }
 
 .laboratorio-silabas h2 {
@@ -125,6 +126,7 @@
 
   .laboratorio-silabas {
     flex-direction: column-reverse;
+    max-width: 95%;
   }
 
   .nivel-selector {
