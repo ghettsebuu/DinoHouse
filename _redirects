@@ -1,1 +1,7 @@
 /*    /index.html   200
+
+# This rule will trigger at /blog/my-old-title
+/blog/my-old-title   /blog/my-new-title
+
+# This rule will never trigger because the previous rule triggers first
+/blog/my-old-title   /blog/an-even-better-title
