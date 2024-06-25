@@ -1,21 +1,38 @@
 // PlayButton.jsx
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const PlayButton = () => {
   const navigate = useNavigate();
 
+  useEffect(() => {
+    try {
+      localStorage.setItem('test', 'testValue');
+      const testValue = localStorage.getItem('test');
+      if (testValue !== 'testValue') {
+        window.alert('localStorage is not working properly');
+      } else {
+        localStorage.removeItem('test');
+      }
+    } catch (error) {
+      window.alert('localStorage is not accessible:', error);
+    }
+  }, []);
+  
+
   const handleClick = () => {
+    console.log('Button clicked');
     const studentName = localStorage.getItem('studentName');
-    
+  
     if (studentName) {
-      // Si hay un estudiante logueado, redirige a PanelPlay
+      window.alert('Navigating to /PanelPlay');
       navigate('/PanelPlay');
     } else {
-      // Si no, redirige a SelectLogin
+      window.alert('Navigating to /SelectLogin');
       navigate('/SelectLogin');
     }
   };
+  
 
   return (
     <button onClick={handleClick} className="play-button">
