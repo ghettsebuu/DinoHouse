@@ -3,7 +3,8 @@ import { useDrag, useDrop, DndProvider } from "react-dnd";
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import update from "immutability-helper";
 import "./ActividadLv2.css";
-import FinalScreen from "../Final"; // Asumiendo que FinalScreen está en un archivo separado
+import FinalScreen from "../Final";
+import guardarPuntuacion from '../../../helpers/guardarPuntuacion.jsx';
 
 const ItemTypes = {
   LETTER: "letter",
@@ -71,7 +72,7 @@ const ActividadLv2 = () => {
   const [gameComplete, setGameComplete] = useState(false);
   const [attempts, setAttempts] = useState(0);
   const [score, setScore] = useState(0);
-  const [scoreUpdated, setScoreUpdated] = useState(false); // Nuevo estado para controlar la actualización de la puntuación
+  const [scoreUpdated, setScoreUpdated] = useState(false);
 
   const currentRound = rounds[currentRoundIndex];
 
@@ -81,7 +82,7 @@ const ActividadLv2 = () => {
     setCurrentWord(new Array(currentRound.word.length).fill(null));
     setIsWordCorrect(false);
     setAttempts(0);
-    setScoreUpdated(false); // Reinicia el estado para la nueva ronda
+    setScoreUpdated(false);
   }, [currentRoundIndex]);
 
   const moveLetter = (fromIndex, toIndex) => {
@@ -108,7 +109,6 @@ const ActividadLv2 = () => {
       setLetters(newLetters);
     }
 
-    // Increment attempts for each incorrect move
     if (currentRound.word[toIndex] !== letterToMove) {
       setAttempts(attempts + 1);
     }
@@ -140,7 +140,7 @@ const ActividadLv2 = () => {
     if (isWordCorrect && !scoreUpdated) {
       const roundScore = Math.max(10 - attempts, 0);
       setScore(score + roundScore);
-      setScoreUpdated(true); // Marca que la puntuación ya se actualizó
+      setScoreUpdated(true);
     }
   }, [isWordCorrect, score, attempts, scoreUpdated]);
 
@@ -149,6 +149,8 @@ const ActividadLv2 = () => {
       setCurrentRoundIndex(currentRoundIndex + 1);
     } else {
       setGameComplete(true);
+      const codigoAcceso = localStorage.getItem('studentCodigoAcceso');
+      guardarPuntuacion(codigoAcceso, 2, score); // Guarda la puntuación en Firestore
     }
   };
 

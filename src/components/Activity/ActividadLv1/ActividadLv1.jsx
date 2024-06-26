@@ -1,6 +1,8 @@
+// ActividadLv1.js
 import React, { useState, useEffect } from 'react';
 import './ActividadLv1.css';
 import FinalScreen from '../Final.jsx';
+import guardarPuntuacion from '../../../helpers/guardarPuntuacion.jsx'; // Importar la función de guardar puntuación
 
 const ActividadLv1 = ({ mostrarActividad, onNextActivity }) => {
     const [draggedLetter, setDraggedLetter] = useState('');
@@ -71,10 +73,9 @@ const ActividadLv1 = ({ mostrarActividad, onNextActivity }) => {
         { name: "Zapato", letter: "Z", image: "/img/ObjetosLv1/Zapato.png" },
     ];
 
+
     useEffect(() => {
-        // Seleccionar aleatoriamente 20 cartas
         const selectedObjects = [...objectList].sort(() => 0.5 - Math.random()).slice(0, 20);
-        // Dividir las cartas en 4 rondas de 5 cartas cada una
         const rounds = [];
         for (let i = 0; i < 4; i++) {
             rounds.push(selectedObjects.slice(i * 5, i * 5 + 5));
@@ -87,7 +88,7 @@ const ActividadLv1 = ({ mostrarActividad, onNextActivity }) => {
         setDraggedLetter(letter);
     };
 
-    const handleDrop = (event) => {
+    const handleDrop = async (event) => {
         event.preventDefault();
         setDroppedLetter(draggedLetter);
         setShowFeedback(true);
@@ -95,13 +96,16 @@ const ActividadLv1 = ({ mostrarActividad, onNextActivity }) => {
             setCorrectAnswer(true);
             correctSound.play();
             setScore(prevScore => prevScore + 10);
-            setTimeout(() => {
+            setTimeout(async () => {
                 setShowFeedback(false);
                 setDroppedLetter('');
                 if (currentObjectIndex === 4) {
                     if (currentRound === 3) {
                         setShowFinalScreen(true);
                         finalSound.play();
+                        // Guardar puntuación al finalizar la actividad
+                        const codigoAcceso = localStorage.getItem('studentCodigoAcceso');
+                        await guardarPuntuacion(codigoAcceso, 1, score + 10); // Asumiendo que es Level1
                     } else {
                         setCurrentRound(currentRound + 1);
                         setCurrentObjectIndex(0);

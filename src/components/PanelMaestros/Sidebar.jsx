@@ -1,35 +1,34 @@
+// Sidebar.js
 import React from 'react';
 import Perfil from './Perfil';
 import { UserAuth } from '../../Services/AuthContext';
+import './SidebarM.css';
 
-function Sidebar({ onModuleChange }) {
-  const {logOut} =UserAuth();
+function Sidebar({ onModuleChange, visible }) {
+  const { logOut } = UserAuth();
+
   const handleModuleClick = (module) => {
     onModuleChange(module);
   };
 
-  const cerrarSesion= async ()=>{
+  const cerrarSesion = async () => {
     try {
-        await logOut();
+      await logOut();
     } catch (error) {
-        console.log(error)
+      console.log(error);
     }
-  }
- /*  useEffect(()=>{
+  };
 
-  }) */
   return (
-    <div className="sidebarM">
+    <div className={`sidebarM ${visible ? 'visible' : 'hidden'}`}>
       <Perfil />
-      <div className='Options'>
+      <div className="Options">
         <ul className="moduleList">
-          <li className="moduleItem" onClick={() => handleModuleClick('gestion')} >Gestión de Estudiantes</li>
+          <li className="moduleItem" onClick={() => handleModuleClick('gestion')}>Gestión de Estudiantes</li>
           <li className="moduleItem" onClick={() => handleModuleClick('progreso')}>Progreso de Estudiantes</li>
         </ul>
         <button className="buttonCerrarSesion" onClick={cerrarSesion}>Cerrar sesión</button>
       </div>
-
-      
     </div>
   );
 }

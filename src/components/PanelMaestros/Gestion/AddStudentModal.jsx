@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { db } from '../../../Firebase/firebaseConfig';  
 import { collection, addDoc } from 'firebase/firestore'; 
 import { auth } from '../../../Firebase/firebaseConfig'; // Asegúrate de importar auth
+import './AddStudentModal.css'
 
 const AddStudentModal = ({ isOpen, onClose }) => {
     const [nombre, setNombre] = useState('');

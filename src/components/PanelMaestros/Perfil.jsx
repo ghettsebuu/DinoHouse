@@ -1,5 +1,6 @@
 import React from 'react';
 import { UserAuth } from '../../Services/AuthContext';
+import './Perfil.css'
 
 
 function Perfil() {
@@ -7,13 +8,13 @@ function Perfil() {
  
 
   return (
-   <div className='avatar-card'>
-        <img src="" alt="Avatar" className="avatar" />
-        <div className="user-info">
-          <div className="username-container">
+   <div className='avatar-cardM'>
+        <img src="/img/perfil/1.png" alt="Avatar" className="avatarM" />
+        <div className="user-infoM">
+          <div className="username-containerM">
             <p>{user.displayName}</p>
           </div>
-          <div className="level-container">
+          <div className="level-containerM">
             <p>Seccion A</p> 
           </div>
         </div>

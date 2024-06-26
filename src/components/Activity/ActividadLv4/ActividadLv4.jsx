@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import FinalScreen from '../Final'; // Importamos el componente FinalScreen
-import './ActividadLv4.css'; // Asegúrate de importar el archivo CSS
+import FinalScreen from '../Final';
+import guardarPuntuacion from '../../../helpers/guardarPuntuacion.jsx';
+import './ActividadLv4.css';
 
 const TOTAL_ROUNDS = 5;
 const CORRECT_SCORE = 20;
@@ -72,6 +73,8 @@ const ActividadLv4 = ({ mostrarActividad }) => {
       setScore(score + CORRECT_SCORE);
       if (round + 1 === TOTAL_ROUNDS) {
         setGameOver(true);
+        const codigoAcceso = localStorage.getItem('studentCodigoAcceso');
+        guardarPuntuacion(codigoAcceso, 4, score + CORRECT_SCORE); // Guarda la puntuación en Firestore
       } else {
         setRound(round + 1);
         startNextRound();

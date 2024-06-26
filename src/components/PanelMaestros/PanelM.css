@@ -1,142 +1,70 @@
+/* PanelM.css */
 .panelM {
   display: flex;
   height: 100vh;
-  background-color: #fcede6;
+  background-color: #ffffff;
+  
+  
+}
+
+.menuIcon {
+  display: none;
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 1000;
 }
 
 .sidebarM {
-  display: flex;
-  background-color: #fcede6;
   width: 250px;
+  background-color: #25b187;
+  color: white;
   padding: 20px;
-  color: rgb(0, 0, 0);
-  flex-direction: column;
-  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  transform: translateX(0);
+  transition: transform 0.3s ease-in-out;
 }
 
-.Options {
-  display: flex;
-  background-color: #fce3d8;
-  height: 40%;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  border-radius: 10%;
-
+.sidebarM.hidden {
+  transform: translateX(-100%);
 }
-
-/* Estilos para la tarjeta de avatar */
-/* .avatar-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 50px;
-    background-color: #ffffff;
-    border-radius: 10%;
-    height: 45%;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
-  }
-   */
-
-
-.user-info {
-  text-align: center;
-}
-
-
 
 .mainContent {
+  margin-left: 250px;
+  padding: 20px;
   flex-grow: 1;
-  padding: 20px;
+  overflow-y: auto;
+  transition: margin-left 0.3s ease-in-out;
 }
 
-.moduleList {
-  list-style: none;
-  padding: 0;
+.mainContent.shifted {
+  margin-left: 0;
 }
-
-.moduleItem {
-  cursor: pointer;
-  margin-bottom: 10px;
-  padding: 10px 20px;
-  background-color: #99d1c8;
-  /* Color de fondo azul */
-  color: rgb(0, 0, 0);
-  border: none;
-  border-radius: 5px;
-  transition: background-color 0.3s;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-.moduleItem:hover {
-  background-color: #6cb8ab;
-  /* Cambiar el color al pasar el mouse */
-}
-
-.moduleItem:focus {
-  outline: none;
-  /* Eliminar el contorno al hacer clic */
-}
-
-.buttonCerrarSesion {
-  cursor: pointer;
-  margin-top: 20px;
-  padding: 10px 20px;
-  background-color: #f33453;
-  /* Color de fondo naranja */
-  color: rgb(0, 0, 0);
-  border: none;
-  border-radius: 5px;
-  transition: background-color 0.3s;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-.buttonCerrarSesion:hover {
-  background-color: #ee1539;
-  /* Cambiar el color al pasar el mouse */
-}
-
-.buttonCerrarSesion:focus {
-  outline: none;
-  /* Eliminar el contorno al hacer clic */
-}
-
-
-.perfilCard {
-  background-color: #2196F3;
-  /* Color de fondo azul */
-  padding: 20px;
-  border-radius: 10px;
-  margin-bottom: 20px;
-}
-
-.perfilCard img {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  margin-bottom: 10px;
-}
-
-
-
-
-
-
-
-
-
-
-/* Estilos para hacer la aplicación responsive */
 
 @media (max-width: 768px) {
   .panelM {
-    flex-direction: column;
+   
+    align-items: center;
+  }
+  .menuIcon {
+      display: block;
   }
 
-  .sidebar {
-    width: 100%;
+  .sidebarM {
+      width: 100%;
+      transform: translateX(-100%);
   }
 
+  .sidebarM.visible {
+      transform: translateX(0);
+  }
 
+  .mainContent {
+      margin-left: 0;
+  }
 }

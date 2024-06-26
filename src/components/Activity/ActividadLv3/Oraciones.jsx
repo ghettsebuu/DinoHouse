@@ -1,8 +1,7 @@
-// Oraciones.jsx
-
 import React, { useState, useEffect } from 'react';
 import './actividadLv3.css';
 import FinalScreen from '../Final.jsx';
+import guardarPuntuacion from '../../../helpers/guardarPuntuacion.jsx'; // Importa la función guardarPuntuacion
 
 const Oraciones = ({ mostrarOraciones }) => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -10,7 +9,7 @@ const Oraciones = ({ mostrarOraciones }) => {
   const [showFeedback, setShowFeedback] = useState(false);
   const [feedback, setFeedback] = useState("");
   const [questions, setQuestions] = useState([]);
-  const [showFinalScreen, setShowFinalScreen] = useState(false);  // Nuevo estado para FinalScreen
+  const [showFinalScreen, setShowFinalScreen] = useState(false);
 
   const originalQuestions = [
     {
@@ -80,7 +79,9 @@ const Oraciones = ({ mostrarOraciones }) => {
       if (currentQuestion < questions.length - 1) {
         setCurrentQuestion(currentQuestion + 1);
       } else {
-        setShowFinalScreen(true);  // Mostrar la pantalla final
+        setShowFinalScreen(true);
+        const codigoAcceso = localStorage.getItem('studentCodigoAcceso');
+        guardarPuntuacion(codigoAcceso, 3, score); // Guarda la puntuación en Firestore
       }
     }, 2000);
   };
@@ -135,4 +136,3 @@ const Oraciones = ({ mostrarOraciones }) => {
 };
 
 export default Oraciones;
-

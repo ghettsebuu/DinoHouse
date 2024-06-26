@@ -1,0 +1,95 @@
+/* ProgresoEstudiantes.css */
+.progreso-estudiantes {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.progreso-estudiantes h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  color: #2c3e50;
+  font-size: 25px;
+}
+
+
+.student-progress-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.student-progress-item {
+  background-color: #f8f8f8;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+.student-info {
+  margin-bottom: 10px;
+}
+
+.student-name {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.progress-info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.progress-level {
+  display: flex;
+  flex-direction: column;
+}
+
+.progress-level span {
+  font-size: 14px;
+  color: #555;
+}
+
+.progress-bar-container {
+  background-color: #ddd;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-top: 5px;
+}
+
+.progress-bar {
+  height: 10px;
+  background-color: #3498db;
+}
+
+.level-1 .progress-bar {
+  background-color: #3498db;
+}
+
+.level-2 .progress-bar {
+  background-color: #2ecc71;
+}
+
+.level-3 .progress-bar {
+  background-color: #f1c40f;
+}
+
+.level-4 .progress-bar {
+  background-color: #e74c3c;
+}
+
+@media (max-width: 768px) {
+  .student-progress-item {
+    padding: 10px;
+  }
+
+  .student-name {
+    font-size: 16px;
+  }
+
+  .progress-level span {
+    font-size: 12px;
+  }
+}

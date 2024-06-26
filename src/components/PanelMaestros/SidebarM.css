@@ -1,0 +1,78 @@
+/* Sidebar.css */
+.sidebarM {
+    width: 250px;
+    background-color: #34495e;
+    color: white;
+    padding: 20px;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    transform: translateX(0);
+    transition: transform 0.3s ease-in-out;
+}
+
+.sidebarM.hidden {
+    transform: translateX(-100%);
+}
+
+.sidebarM.visible {
+    transform: translateX(0);
+}
+
+.sidebarM .Options {
+    margin-top: 20px;
+}
+
+.sidebarM .moduleList {
+    list-style: none;
+    padding: 0;
+   
+ 
+}
+
+.sidebarM .moduleItem {
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #1a8363;
+    margin-right: 0;
+}
+
+.sidebarM .moduleItem:hover {
+    background-color: #1a8363;
+}
+
+.sidebarM .buttonCerrarSesion {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.sidebarM .buttonCerrarSesion:hover {
+    background-color: #c0392b;
+}
+
+@media (max-width: 768px) {
+    .sidebarM {
+        width: 100%;
+        transform: translateX(-100%);
+    }
+
+    .sidebarM.visible {
+        transform: translateX(0);
+    }
+
+    .sidebarM .buttonCerrarSesion {
+        width: 90%;
+    }
+    
+    .sidebarM .moduleItem {
+       
+        margin-right: 50px;
+    }
+}

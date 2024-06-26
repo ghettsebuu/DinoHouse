@@ -12,30 +12,27 @@ const LoginEstudiante = () => {
     const handleLogin = async () => {
         try {
             console.log('Intentando iniciar sesión...');
-            console.log('Código de acceso:', codigoAcceso);
-
-            // Consultar Firestore para verificar si el código de acceso es válido
+         /*    console.log('Código de acceso:', codigoAcceso); */
+    
             const studentsRef = collection(db, 'Estudiantes');
             const q = query(studentsRef, where('CodigoAcceso', '==', codigoAcceso));
             const querySnapshot = await getDocs(q);
-
+    
             if (querySnapshot.empty) {
                 setError('Código de acceso no válido');
                 console.log('Error: Código de acceso no válido');
                 return;
             }
-
-            // Obtén los datos del estudiante autenticado
+    
             let studentData = null;
             querySnapshot.forEach((doc) => {
                 studentData = doc.data();
             });
-
+    
             if (studentData) {
-                // Guarda el nombre del estudiante en localStorage
                 localStorage.setItem('studentName', studentData.Nombre);
-
-                // Inicio de sesión exitoso, redirigir al usuario a la página PanelPlay
+                localStorage.setItem('studentCodigoAcceso', codigoAcceso); // Guarda el código de acceso
+    
                 navigate('/PanelPlay');
             }
         } catch (error) {
@@ -43,6 +40,7 @@ const LoginEstudiante = () => {
             console.error('Error al iniciar sesión:', error);
         }
     };
+    
 
     return (
         <div className="login-estudiante-container">

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './ActividadLv1.css';
 import FinalScreen from '../Final'; // Importar el componente FinalScreen
+import guardarPuntuacion from '../../../helpers/guardarPuntuacion.jsx';
 
 const MemoryGame = ({ onNext }) => {
     const [cartas, setCartas] = useState([]);
@@ -92,6 +93,7 @@ const MemoryGame = ({ onNext }) => {
         { id: 77, tipo: 'letra', letra: 'Z', imagen: '/img/Letras/Z.png' },
     ];
 
+
     // Función para obtener cartas aleatorias
     const obtenerCartasAleatorias = (numCartas) => {
         const numLetras = numCartas / 2;
@@ -162,6 +164,8 @@ const MemoryGame = ({ onNext }) => {
                 }, 1000);
             } else {
                 setFinJuego(true);
+                const codigoAcceso = localStorage.getItem('studentCodigoAcceso');
+                guardarPuntuacion(codigoAcceso, 1, puntuacion); // Guarda la puntuación en Firestore
             }
         }
     }, [cartasCoincidentes]);

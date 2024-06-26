@@ -1,209 +1,92 @@
+/* Gestio.css */
 .gestion {
-    
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    width: 955px;
-    height:87% ;
-    background-color: #ffffff; /* Color de fondo */
-    border-radius: 10px; /* Bordes redondeados */
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Sombra */
-    padding: 40px; /* Espacio interior */
-  
+  padding: 0 50px;
 }
 
-
-.alert {
-    color: #1c725c; /* Color del texto */
-    background-color: #d7f8e5; /* Color de fondo */
-    border: 1px solid #c8f5c6; /* Borde */
-    padding: 10px; /* Espaciado interno */
-    border-radius: 5px; /* Bordes redondeados */
-    margin-top: 10px; /* Espaciado superior */
-  }
-  .error {
-    color: #721c24; /* Color del texto */
-    background-color: #f8d7da; /* Color de fondo */
-    border: 1px solid #f5c6cb; /* Borde */
-    padding: 10px; /* Espaciado interno */
-    border-radius: 5px; /* Bordes redondeados */
-    margin-top: 10px; /* Espaciado superior */
-  }
-  
-  
-/* Estilos generales del modal */
-.modal {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro semi-transparente */
-  z-index: 1000; /* Z-index alto para asegurarse de que esté por encima del contenido */
+.gestion h1 {
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  color: #2c3e50;
+  font-size: 25px;
 }
-
-.modal-content {
-  background-color: #fff;
-  width: 80%;
-  max-width: 400px; /* Ancho máximo del modal */
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-  position: relative;
-}
-
-/* Estilos del botón de cerrar */
-.close {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  cursor: pointer;
-  font-size: 20px;
-  color: #aaa;
-}
-
-.close:hover {
-  color: #555;
-}
-
-/* Estilos para las secciones de contenido */
-.section {
-  margin-bottom: 15px;
-}
-
-.section label {
-  font-weight: bold;
-  display: block;
-  margin-bottom: 5px;
-}
-
-.section input[type="text"] {
-  width: calc(100% - 10px);
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 14px;
-}
-
-.section input[type="text"]:focus {
-  outline: none;
-  border-color: #007bff;
-}
-
-.section button {
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  padding: 10px 15px;
-  cursor: pointer;
-  border-radius: 4px;
-  font-size: 14px;
-  transition: background-color 0.3s ease;
-}
-
-.section button:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
-}
-
-.section button:hover {
-  background-color: #0056b3;
-}
-
-/* Estilos para mensajes de error y alerta */
-.error,
-.alert {
-  color: #dc3545;
-  margin-top: 5px;
-  font-size: 14px;
-}
-
-.alert {
-  color: #28a745;
-}
-
 
 
 .student-cards {
   display: flex;
-  overflow-y: auto;
   flex-wrap: wrap;
-  max-width: 100%;
-  max-height: 80vh;
-  margin: 91px 10px;
-  scrollbar-width: thin;
-  scrollbar-color: #888888 #f0f0f0;
-  justify-content: center;
-}
-
-.student-cards::-webkit-scrollbar {
-  width: 8px; /* Ancho de la barra de desplazamiento para navegadores webkit */
-}
-
-.student-cards::-webkit-scrollbar-track {
-  background-color: #f0f0f0; /* Color de fondo de la barra de desplazamiento */
-}
-
-.student-cards::-webkit-scrollbar-thumb {
-  background-color: #888888; /* Color del "pulgar" de la barra de desplazamiento */
-  border-radius: 4px; /* Borde redondeado del "pulgar" */
+  gap: 20px;
 }
 
 .student-card {
-  flex: 0 0 auto; /* Para que las tarjetas no crezcan y mantengan su tamaño */
-  width: 300px; /* Tamaño fijo de las tarjetas */
-  margin-right: 20px; /* Espacio entre las tarjetas */
-  margin-bottom: 20px; /* Espacio entre las tarjetas en la misma columna */
-  background-color: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  transition: transform 0.3s ease;
-}
-
-.student-card:last-child {
-  margin-right: 0; /* Elimina el margen derecho de la última tarjeta */
-}
-
-.student-card:hover {
-  transform: translateY(-5px);
-}
-
-
-.student-details {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 20px;
+  width: calc(33.333% - 20px);
+  box-sizing: border-box;
 }
 
 .student-details h2 {
-  font-size: 1.6rem;
-  margin-bottom: 10px;
+  margin: 0;
+  color: #2c3e50;
 }
 
 .student-details p {
-  font-size: 1.2rem;
-  color: #666666;
-}
-
-.card-actions {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 15px;
+  color: #7f8c8d;
 }
 
 .card-actions button {
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: #ffffff;
+  background-color: #e74c3c;
+  color: white;
   border: none;
-  border-radius: 6px;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 3px;
+  margin-right: 5px;
+}
+
+.card-actions button:hover {
+  background-color: #c0392b;
+}
+
+
+.register-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
-.card-actions button:hover {
-  background-color: #0056b3;
+.register-button:hover {
+  background-color: #2980b9;
+}
+
+.register-button:focus {
+  outline: none;
+}
+
+.register-button svg {
+  pointer-events: none;
+}
+
+
+@media (max-width: 768px) {
+  .student-card {
+      width: 100%;
+  }
+
+  .gestion h1 {
+    font-size: 25px;
+  }
 }

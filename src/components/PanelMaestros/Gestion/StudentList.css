@@ -1,0 +1,80 @@
+/* StudentList.css */
+.student-list {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .student-list h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .student-list ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .student-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    margin-bottom: 10px;
+    background-color: #f8f8f8;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .student-info {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .student-name {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .student-code {
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .student-actions {
+    display: flex;
+    align-items: center;
+  }
+  
+  .icon {
+    margin-left: 10px;
+    cursor: pointer;
+  }
+  
+  .icon:hover {
+    color: #007bff;
+  }
+  
+  .edit-icon {
+    color: #3498db;
+  }
+  
+  .delete-icon {
+    color: #e74c3c;
+  }
+  
+  @media (max-width: 768px) {
+    .student-item {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .student-actions {
+      margin-top: 10px;
+    }
+  
+    .icon {
+      margin: 5px 0;
+    }
+  }
+  
