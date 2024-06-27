@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './ActividadLv1.css';
 import FinalScreen from '../Final.jsx';
-import guardarPuntuacion from '../../../helpers/guardarPuntuacion.jsx'; // Importar la función de guardar puntuación
+import guardarPuntuacion from '../../../helpers/guardarPuntuacion'; // Importar la función de guardar puntuación
 
 const ActividadLv1 = ({ mostrarActividad, onNextActivity }) => {
     const [clickedLetter, setClickedLetter] = useState('');
@@ -98,7 +98,7 @@ const ActividadLv1 = ({ mostrarActividad, onNextActivity }) => {
                         setShowFinalScreen(true);
                         finalSound.play();
                         // Guardar puntuación al finalizar la actividad
-                        const codigoAcceso = localStorage.getItem('studentCodigoAcceso');
+                        const codigoAcceso = localStorage.getItem('codigoAcceso'); // Ajusta aquí según cómo almacenes el código de acceso
                         await guardarPuntuacion(codigoAcceso, 1, score + 10); // Asumiendo que es Level1
                     } else {
                         setCurrentRound(currentRound + 1);

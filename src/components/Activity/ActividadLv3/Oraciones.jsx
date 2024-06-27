@@ -80,7 +80,7 @@ const Oraciones = ({ mostrarOraciones }) => {
         setCurrentQuestion(currentQuestion + 1);
       } else {
         setShowFinalScreen(true);
-        const codigoAcceso = localStorage.getItem('studentCodigoAcceso');
+        const codigoAcceso = localStorage.getItem('codigoAcceso');
         guardarPuntuacion(codigoAcceso, 3, score); // Guarda la puntuación en Firestore
       }
     }, 2000);

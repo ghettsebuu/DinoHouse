@@ -1,11 +1,11 @@
-// GuardarPuntuacion.js
+// guardarPuntuacion.js
 import { db } from '../Firebase/firebaseConfig';
 import { doc, setDoc, getDoc } from 'firebase/firestore';
 
 const guardarPuntuacion = async (codigoAcceso, level, puntos) => {
   try {
     if (typeof codigoAcceso !== 'string' || typeof level !== 'number' || typeof puntos !== 'number') {
-      throw new Error('Invalid parameters');
+      throw new Error('Parámetros inválidos');
     }
 
     const docRef = doc(db, 'Puntuacion', codigoAcceso);
@@ -24,8 +24,8 @@ const guardarPuntuacion = async (codigoAcceso, level, puntos) => {
     console.log("Puntuación guardada exitosamente");
   } catch (error) {
     console.error("Error al guardar la puntuación:", error);
+    throw error; // Propagar el error para manejarlo en el componente que llama a guardarPuntuacion
   }
 };
 
 export default guardarPuntuacion;
-

@@ -73,7 +73,7 @@ const ActividadLv4 = ({ mostrarActividad }) => {
       setScore(score + CORRECT_SCORE);
       if (round + 1 === TOTAL_ROUNDS) {
         setGameOver(true);
-        const codigoAcceso = localStorage.getItem('studentCodigoAcceso');
+        const codigoAcceso = localStorage.getItem('codigoAcceso');
         guardarPuntuacion(codigoAcceso, 4, score + CORRECT_SCORE); // Guarda la puntuación en Firestore
       } else {
         setRound(round + 1);

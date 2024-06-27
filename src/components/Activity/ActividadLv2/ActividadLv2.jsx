@@ -89,7 +89,7 @@ const ActividadLv2 = () => {
       setCurrentRoundIndex(currentRoundIndex + 1);
     } else {
       setGameComplete(true);
-      const codigoAcceso = localStorage.getItem('studentCodigoAcceso');
+      const codigoAcceso = localStorage.getItem('codigoAcceso');
       guardarPuntuacion(codigoAcceso, 2, score); // Guarda la puntuación en Firestore
     }
   };
