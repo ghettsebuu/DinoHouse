@@ -121,6 +121,7 @@ const ActividadLv4 = ({ mostrarActividad }) => {
   const words = currentParagraph.split(" ");
 
   return (
+    <section className='PlayScena'>
     <div className="actividad4">  
       <h2>Encuentra la palabra</h2> 
       <div className='ronda'>
@@ -160,6 +161,7 @@ const ActividadLv4 = ({ mostrarActividad }) => {
       </p>
       
     </div>
+    </section>
   );
 };
 

@@ -153,7 +153,7 @@ const ActividadLv1 = ({ mostrarActividad, onNextActivity }) => {
         const options = [correctLetter, ...randomAdditionalLetters];
         const shuffledOptions = options.sort(() => Math.random() - 0.5);
 
-        return shuffledOptions;
+        return shuffledOptions; 
     };
 
     const restartActivity = () => {

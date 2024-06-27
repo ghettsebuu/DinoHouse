@@ -4,7 +4,7 @@ import PanelM from '../components/PanelMaestros/PanelM';
 import Inicio from '../components/Inicio/Inicio';
 import LoginEstudiante from '../components/Login/LoginEstudiante';
 import LoginMaestro from '../components/Login/LoginMaestro';
-import SelectLogin from '../components/Login/SelectLogin';
+/* import SelectLogin from '../components/Login/SelectLogin'; */
 import { useAuth } from "../Services/AuthContext";
 import { ProtectorRuta } from "./ProtectorRuta";
 import RequireStudentAuth from './RequireStudentAuth';
@@ -15,14 +15,14 @@ export function Rutas() {
   const { user } = useAuth();
 
   const RequireAuth = ({ children }) => {
-    return user ? children : <Navigate to={"/SelectLogin"} />;
+    return user ? children : <Navigate to={"/"} />;
   };
 
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Inicio />} />
-        <Route path="/SelectLogin" element={<SelectLogin />} />
+       {/*  <Route path="/SelectLogin" element={<SelectLogin />} /> */}
         <Route path="/LoginMaestro" element={<LoginMaestro />} />
         <Route path="/LoginEstudiante" element={<LoginEstudiante />} />
         <Route path="/PanelPlay" element={

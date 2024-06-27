@@ -28,8 +28,8 @@ const PlayButton = () => {
       console.log('Navigating to /PanelPlay');
       navigate('/PanelPlay');
     } else {
-      console.log('Navigating to /SelectLogin');
-      navigate('/SelectLogin');
+      console.log('Navigating to /LoguinEstudiante');
+      navigate('/LoginEstudiante');
     }
   };
   

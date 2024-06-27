@@ -1,8 +1,7 @@
-// ProgresoEstudiantes.jsx
 import React, { useState, useEffect } from 'react';
 import './ProgresoEstudiantes.css';
 import { db } from '../../Firebase/firebaseConfig';
-import { collection, query, where, getDocs } from 'firebase/firestore';
+import { collection, getDocs } from 'firebase/firestore';
 import { useAuth } from '../../Services/AuthContext';
 
 const ProgresoEstudiantes = ({ students }) => {
@@ -13,24 +12,26 @@ const ProgresoEstudiantes = ({ students }) => {
     "Comprensión y Fluidez"
   ];
 
+  const MAX_POINTS_PER_LEVEL = 1000;
+
   const [studentProgress, setStudentProgress] = useState([]);
 
   useEffect(() => {
     const fetchStudentProgress = async () => {
       try {
-        const teacherId = students[0]?.MaestroID; // Usamos el primer estudiante para obtener el MaestroID
-        const studentCodes = students.map(student => student.CodigoAcceso);
-        const progressData = [];
+        const progressCollection = collection(db, 'Puntuacion');
+        const progressSnapshot = await getDocs(progressCollection);
+        const progressData = progressSnapshot.docs.map(doc => ({ CodigoAcceso: doc.id, ...doc.data() }));
 
-        for (const code of studentCodes) {
-          const progressQuery = query(collection(db, 'Puntuacion'), where('CodigoAcceso', '==', code));
-          const progressSnapshot = await getDocs(progressQuery);
-          progressSnapshot.forEach(doc => {
-            progressData.push({ CodigoAcceso: doc.id, ...doc.data() });
-          });
-        }
+        const mappedProgress = students.map(student => {
+          const studentProgressData = progressData.find(progress => progress.CodigoAcceso === student.CodigoAcceso);
+          return {
+            ...student,
+            progress: studentProgressData || {}
+          };
+        });
 
-        setStudentProgress(progressData);
+        setStudentProgress(mappedProgress);
       } catch (error) {
         console.error('Error al obtener el progreso de los estudiantes:', error);
       }
@@ -45,28 +46,31 @@ const ProgresoEstudiantes = ({ students }) => {
     <div className="progreso-estudiantes">
       <h1>Progreso de Estudiantes</h1>
       <ul className="student-progress-list">
-        {students.map((student) => (
+        {studentProgress.map((student) => (
           <li key={student.id} className="student-progress-item">
             <div className="student-info">
               <span className="student-name">{student.Nombre} {student.Apellido}</span>
             </div>
             <div className="progress-info">
               {niveles.map((nivel, index) => {
-                const studentProgressData = studentProgress.find(progress => progress.CodigoAcceso === student.CodigoAcceso);
-                const progress = studentProgressData ? studentProgressData[`Level${index + 1}`] || 0 : 0;
-
+                const points = student.progress[`Level${index + 1}`] || 0;
+                const progressPercentage = (points / MAX_POINTS_PER_LEVEL) * 100;
                 return (
                   <div key={index} className={`progress-level level-${index + 1}`}>
                     <span>{nivel}</span>
                     <div className="progress-bar-container">
                       <div
                         className="progress-bar"
-                        style={{ width: `${progress}%` }}
+                        style={{ width: `${progressPercentage}%` }}
                       ></div>
                     </div>
+                    <span>{points} / {MAX_POINTS_PER_LEVEL}</span>
                   </div>
                 );
               })}
+              <div className="fecha-mas-reciente">
+                <span>Fecha más reciente: {student.progress.fechaMasReciente || 'No disponible'}</span>
+              </div>
             </div>
           </li>
         ))}

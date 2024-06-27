@@ -155,7 +155,8 @@ const ActividadLv2 = () => {
   };
 
   return (
-    <div className="actividad-lv2">
+    <section className='PlayScena'>
+   <div className="actividad-lv2">
       {gameComplete ? (
         <FinalScreen
           score={score}
@@ -204,6 +205,7 @@ const ActividadLv2 = () => {
         </>
       )}
     </div>
+    </section>
   );
 };
 

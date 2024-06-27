@@ -15,7 +15,7 @@ const FinalScreen = ({ score, onRestart, onGoToHome, onNext }) => {
                 <i className="fa-solid fa-chevron-right"></i>
             </button>
         </div>
-    );
+    ); 
 };
 
 export default FinalScreen;

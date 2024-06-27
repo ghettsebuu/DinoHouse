@@ -105,6 +105,7 @@ const Oraciones = ({ mostrarOraciones }) => {
   };
 
   return (
+    <section className='PlayScena'>
     <div className="actividad">
       {showFinalScreen ? (
         <FinalScreen score={score} onRestart={restartActivity} onGoToHome={goToHome} onNext={nextActivity} />
@@ -132,6 +133,7 @@ const Oraciones = ({ mostrarOraciones }) => {
         </>
       )}
     </div>
+    </section>
   );
 };
 

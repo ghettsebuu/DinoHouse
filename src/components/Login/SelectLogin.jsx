@@ -1,4 +1,4 @@
-import React from 'react';
+/* import React from 'react';
 import './login.css'; // Archivo CSS para estilos personalizados
 import { Link } from 'react-router-dom';
 
@@ -13,9 +13,9 @@ const SelectLogin = () => {
       <Link to="/LoginEstudiante" className="login-button boton2">
         <img src="/img/estudiante.png" alt="Estudiante" />
         <span className='tx'>Estudiante</span>
-      </Link>
+      </Link> 
     </div>
   );
 };
 
-export default SelectLogin ;
+export default SelectLogin ; */

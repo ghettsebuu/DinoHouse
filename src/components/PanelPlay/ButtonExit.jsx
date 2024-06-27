@@ -8,7 +8,7 @@ const ExitButtonComponent = () => {
     const cerrarSesion = () => {
         try {
             localStorage.removeItem('studentName');
-            navigate('/SelectLogin'); // Redirige a la página de selección de login
+            navigate('/'); // Redirige a la página de selección de login
         } catch (error) {
             console.error(error);
         }
