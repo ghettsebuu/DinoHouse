@@ -87,7 +87,7 @@ const GestionEstudiantes = () => {
 
   return (
     <div className='gestion'>
-      <h1>Gestión de Estudiantes</h1>
+      
       <StudentList students={students} editStudent={openEditModal} deleteStudent={deleteStudent} />
       <AddStudentModal isOpen={isModalOpen} onClose={closeModal} onSave={addStudent} />
       <EditStudentModal isOpen={isEditModalOpen} onClose={closeEditModal} student={currentStudent} onSave={updateStudent} />

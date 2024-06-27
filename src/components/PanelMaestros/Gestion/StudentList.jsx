@@ -6,7 +6,7 @@ import './StudentList.css';
 const StudentList = ({ students, editStudent, deleteStudent }) => {
   return (
     <div className="student-list">
-      <h1>Lista de Estudiantes</h1>
+      <h1>Gestión de Estudiantes</h1>
       <ul>
         {students.map((student) => (
           <li key={student.id} className="student-item">
