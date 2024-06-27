@@ -23,27 +23,22 @@ const letters = {
   4: Alfabeto
 };
 
-const LetterList = ({ currentLevel, currentSubLevel }) => {
+const LetterList = ({ currentLevel, currentSubLevel, onLetterClick }) => {
   const availableLetters = currentLevel === 0 ? letters[1][currentSubLevel] : letters[currentLevel + 1];
 
-  const handleDragStart = (event, letter) => {
-  event.dataTransfer.setData('letter', letter);
-  };
-  
   return (
-      <div className="letter-list">
-        {availableLetters.map((letter) => (
-          <div
-            key={letter}
-            className="letter"
-            draggable
-            onDragStart={(event) => handleDragStart(event, letter)}
-          >
+    <div className="letter-list">
+      {availableLetters.map((letter) => (
+        <div
+          key={letter}
+          className="letter"
+          onClick={() => onLetterClick(letter)}
+        >
           {letter}
-          </div>
-        ))}
-      </div>
+        </div>
+      ))}
+    </div>
   );
-  };
-  
-  export default LetterList;
+};
+
+export default LetterList;

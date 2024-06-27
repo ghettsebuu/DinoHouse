@@ -1,11 +1,10 @@
-// ActividadLv1.js
 import React, { useState, useEffect } from 'react';
 import './ActividadLv1.css';
 import FinalScreen from '../Final.jsx';
 import guardarPuntuacion from '../../../helpers/guardarPuntuacion.jsx'; // Importar la función de guardar puntuación
 
 const ActividadLv1 = ({ mostrarActividad, onNextActivity }) => {
-    const [draggedLetter, setDraggedLetter] = useState('');
+    const [clickedLetter, setClickedLetter] = useState('');
     const [droppedLetter, setDroppedLetter] = useState('');
     const [correctAnswer, setCorrectAnswer] = useState(false);
     const [currentObjectIndex, setCurrentObjectIndex] = useState(0);
@@ -73,7 +72,6 @@ const ActividadLv1 = ({ mostrarActividad, onNextActivity }) => {
         { name: "Zapato", letter: "Z", image: "/img/ObjetosLv1/Zapato.png" },
     ];
 
-
     useEffect(() => {
         const selectedObjects = [...objectList].sort(() => 0.5 - Math.random()).slice(0, 20);
         const rounds = [];
@@ -84,15 +82,11 @@ const ActividadLv1 = ({ mostrarActividad, onNextActivity }) => {
         setLetterOptions(generateLetterOptions(rounds[0][0]));
     }, []);
 
-    const handleDragStart = (event, letter) => {
-        setDraggedLetter(letter);
-    };
-
-    const handleDrop = async (event) => {
-        event.preventDefault();
-        setDroppedLetter(draggedLetter);
+    const handleLetterClick = async (letter) => {
+        setClickedLetter(letter);
+        setDroppedLetter(letter);
         setShowFeedback(true);
-        if (draggedLetter === roundObjects[currentRound][currentObjectIndex].letter) {
+        if (letter === roundObjects[currentRound][currentObjectIndex].letter) {
             setCorrectAnswer(true);
             correctSound.play();
             setScore(prevScore => prevScore + 10);
@@ -125,10 +119,6 @@ const ActividadLv1 = ({ mostrarActividad, onNextActivity }) => {
                 setDroppedLetter('');
             }, 1000);
         }
-    };
-
-    const handleDragOver = (event) => {
-        event.preventDefault();
     };
 
     const generateLetterOptions = (currentObject) => {
@@ -188,20 +178,20 @@ const ActividadLv1 = ({ mostrarActividad, onNextActivity }) => {
                     <div className="progress-bar">
                         <div className="progress" style={{ width: `${(currentObjectIndex + 1) / 5 * 100}%` }}></div>
                     </div>
-                    <h2>¡Arrastra la Letra!</h2>
+                    <h2>¡Selecciona la Letra!</h2>
                     <div className="score">Puntuación: {score}</div>
                     {roundObjects[currentRound] && roundObjects[currentRound][currentObjectIndex] ? (
                         <>
                             <div className="object-image">
                                 <img src={roundObjects[currentRound][currentObjectIndex].image} alt={roundObjects[currentRound][currentObjectIndex].name} className='imagen' />
                             </div>
-                            <div className={`drop-area ${correctAnswer ? 'correct' : ''}`} onDrop={handleDrop} onDragOver={handleDragOver}>
+                            <div className={`drop-area ${correctAnswer ? 'correct' : ''}`}>
                                 {droppedLetter}
                             </div>
                             {showFeedback && <div className="feedback-message">{correctAnswer ? '¡Bravo!' : 'Intenta de nuevo'}</div>}
                             <div className="letters-container">
                                 {letterOptions.map((letter, index) => (
-                                    <div key={index} className="letter" draggable onDragStart={(e) => handleDragStart(e, letter)}>{letter}</div>
+                                    <div key={index} className="letter" onClick={() => handleLetterClick(letter)}>{letter}</div>
                                 ))}
                             </div>
                         </>

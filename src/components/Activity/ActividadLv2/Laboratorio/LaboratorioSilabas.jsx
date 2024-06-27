@@ -56,6 +56,7 @@ const LaboratorioSilabas = () => {
   const [currentLevel, setCurrentLevel] = useState(0);
   const [currentSubLevel, setCurrentSubLevel] = useState(1);
   const [showCollection, setShowCollection] = useState(false);
+  const [currentSyllable, setCurrentSyllable] = useState('');
 
   const handleSyllableFormed = (syllable) => {
     const validSyllables = currentLevel === 0 ? levels[currentLevel].syllables[currentSubLevel] : levels[currentLevel].syllables;
@@ -97,6 +98,23 @@ const LaboratorioSilabas = () => {
     setShowCollection(!showCollection);
   };
 
+  const handleLetterClick = (letter) => {
+    const newSyllable = currentSyllable + letter;
+    setCurrentSyllable(newSyllable);
+
+    let syllableLength = 2;
+    if (currentLevel === 2 || currentLevel === 3) {
+      syllableLength = 3;
+    }
+
+    if (newSyllable.length === syllableLength) {
+      handleSyllableFormed(newSyllable);
+      setCurrentSyllable('');
+    } else if (newSyllable.length > syllableLength) {
+      setCurrentSyllable('');
+    }
+  };
+
   return (
     <div className="laboratorio-silabas">
       {showCollection ? (
@@ -120,8 +138,8 @@ const LaboratorioSilabas = () => {
                 {formedSyllables[currentLevel][formedSyllables[currentLevel].length - 1] || 'Ninguna sílaba formada'}
               </div>
             </div>
-            <GameArea onSyllableFormed={handleSyllableFormed} currentLevel={currentLevel} currentSubLevel={currentSubLevel} />
-            <LetterList currentLevel={currentLevel} currentSubLevel={currentSubLevel} />
+            <GameArea currentSyllable={currentSyllable} />
+            <LetterList currentLevel={currentLevel} currentSubLevel={currentSubLevel} onLetterClick={handleLetterClick} />
           </div>
         </>
        )} 

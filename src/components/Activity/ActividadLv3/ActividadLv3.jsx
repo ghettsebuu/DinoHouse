@@ -60,23 +60,13 @@ const ActividadLv3 = ({ mostrarActividad }) => {
     setIngredientesDisponibles(shuffleArray(recetaActual.ingredientes));
   }, [ronda]);
 
-  const handleDrop = (event) => {
-    event.preventDefault();
-    const ingrediente = JSON.parse(event.dataTransfer.getData('ingrediente'));
+  const handleIngredientClick = (ingrediente) => {
     if (arrastrados.length < recetaActual.orden.length) {
       const nuevosArrastrados = [...arrastrados, ingrediente];
       setArrastrados(nuevosArrastrados);
       setIngredientesDisponibles(ingredientesDisponibles.filter((ing) => ing.nombre !== ingrediente.nombre));
       verificarOrden(nuevosArrastrados);
     }
-  };
-
-  const handleDragOver = (event) => {
-    event.preventDefault();
-  };
-
-  const handleDragStart = (event, ingrediente) => {
-    event.dataTransfer.setData('ingrediente', JSON.stringify(ingrediente));
   };
 
   const handleRemove = (index) => {
@@ -153,15 +143,12 @@ const ActividadLv3 = ({ mostrarActividad }) => {
                 key={ingrediente.nombre}
                 src={ingrediente.src}
                 alt={ingrediente.nombre}
-                draggable
-                onDragStart={(event) => handleDragStart(event, ingrediente)}
+                onClick={() => handleIngredientClick(ingrediente)}
               />
             ))}
           </div>
           <div
             className={`tazon ${tazonColor}`}
-            onDrop={handleDrop}
-            onDragOver={handleDragOver}
             onClick={handleClickTazon}
           >
             <img src="/img/recetas/tazon.png" alt="Tazón" />
