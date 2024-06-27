@@ -1,4 +1,3 @@
-// GestionEstudiantes.js
 import React, { useState, useEffect } from 'react';
 import { FaPlus } from 'react-icons/fa';
 import './Gestio.css';
@@ -8,28 +7,35 @@ import StudentList from './StudentList';
 import { db } from '../../../Firebase/firebaseConfig';
 import { collection, getDocs, query, where, doc, updateDoc, deleteDoc } from 'firebase/firestore';
 import { auth } from '../../../Firebase/firebaseConfig';
+import { useNavigate } from 'react-router-dom';  // Asegúrate de que react-router-dom esté instalado
 
 const GestionEstudiantes = () => {
   const [students, setStudents] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [currentStudent, setCurrentStudent] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchStudents = async () => {
       try {
-        const teacherId = auth.currentUser.uid;
-        const studentsQuery = query(collection(db, 'Estudiantes'), where('MaestroID', '==', teacherId));
-        const studentsSnapshot = await getDocs(studentsQuery);
-        const studentsData = studentsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-        setStudents(studentsData);
+        if (auth.currentUser) {
+          const teacherId = auth.currentUser.uid;
+          const studentsQuery = query(collection(db, 'Estudiantes'), where('MaestroID', '==', teacherId));
+          const studentsSnapshot = await getDocs(studentsQuery);
+          const studentsData = studentsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+          setStudents(studentsData);
+        } else {
+          console.error('No user is currently logged in');
+          navigate('/login');  // Redirigir a la página de inicio de sesión si no hay usuario autenticado
+        }
       } catch (error) {
         console.error('Error al obtener estudiantes:', error);
       }
     };
 
     fetchStudents();
-  }, []);
+  }, [navigate]);
 
   const openModal = () => {
     setIsModalOpen(true);
