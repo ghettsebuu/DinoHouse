@@ -1,7 +1,7 @@
 .actividad3 {
   text-align: center;
   width: 100%;
-  background-color: #8fd3d8;
+  background-color: #8fd3d893;
   border-radius: 10px;
  
 }
@@ -23,6 +23,7 @@
   margin: 10px;
   width: 80px;
   cursor: pointer;
+  filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.651));
 }
 
 .tazon {

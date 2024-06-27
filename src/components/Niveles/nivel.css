@@ -38,48 +38,56 @@
   width: 20%;
   top: 80%;
   left: 13%;
+  filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.651));
 }
 
 .cohete {
   width: 15%;
   top: 65%;
   left: 32%;
+  filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.651));
 }
 
 .Dado {
   width: 12%;
   top: 82%;
   left: 20%;
+  filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.651));
 }
 
 .memoria {
   width: 15%;
   top: 85%;
   left: 40%;
+  filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.651));
 }
 
 .recetas {
   width: 13%;
   top: 84%;
   left: 47%;
+  filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.651));
 }
 
 .sandia {
   width: 15%;
   top: 88%;
   left: 70%;
+  filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.651));
 }
 
 .historias {
   width: 20%;
   top: 84%;
   left: 15%;
+  filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.651));
 }
 
 .cometa {
   width: 17%;
   top: 37%;
   left: 31%;
+  filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.651));
 }
 
 .D-Nivel1 {
@@ -88,6 +96,7 @@
   /* Coloca la imagen en la mitad superior del contenedor principal */
   left: 70%;
   /* Coloca la imagen en el centro horizontal del contenedor principal */
+  filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.651));
 }
 
 .D-Nivel2 {
@@ -96,6 +105,7 @@
   /* Coloca la imagen en la mitad superior del contenedor principal */
   left: 55%;
   /* Coloca la imagen en el centro horizontal del contenedor principal */
+  filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.651));
 }
 
 .D-Nivel3 {
@@ -104,6 +114,7 @@
   /* Coloca la imagen en la mitad superior del contenedor principal */
   left: 23%;
   /* Coloca la imagen en el centro horizontal del contenedor principal */
+  filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.651));
 }
 
 .D-Nivel4 {
@@ -112,6 +123,7 @@
   /* Coloca la imagen en la mitad superior del contenedor principal */
   left: 57%;
   /* Coloca la imagen en el centro horizontal del contenedor principal */
+  filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.651));
 }
 
 @media screen and (max-width: 425px) {

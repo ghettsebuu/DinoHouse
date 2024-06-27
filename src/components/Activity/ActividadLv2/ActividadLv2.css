@@ -14,6 +14,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 80%;
+  background-color: #99d1c815;
+  height: 90vw;
 }
 
 .image {
@@ -76,7 +79,7 @@
 @media screen and (max-width: 500px) {
   .actividad-lv2 {
 
-    width: 100vw;
+    width: 80vw;
   }
 
   .target {
