@@ -1,46 +1,37 @@
-import {useContext , createContext , useEffect ,
-useState} from 'react'
-import {GoogleAuthProvider , signInWithRedirect ,
-signOut , onAuthStateChanged ,} from 'firebase/auth'
-import {auth} from "../Firebase/firebaseConfig";
+// AuthContext.js
+import { createContext, useContext, useEffect, useState } from 'react';
+import { onAuthStateChanged, signInWithPopup, signOut } from 'firebase/auth';
+import { auth, provider } from '../Firebase/firebaseConfig';
 
+const AuthContext = createContext();
 
-const AuthContext =createContext();
-export const AuthContextProvider=({children})=>{
-    const [user , setUser]=useState({});
-    const googleSingnIn=()=>{
-        const provider = new GoogleAuthProvider();
-        signInWithRedirect(auth,provider);
-    };
-    
-    const logOut = () => {
-        signOut(auth)
-          .then(() => {
-            setUser(null); // Limpiar el usuario después de cerrar sesión
-          })
-          .catch((error) => {
-            console.error("Error al cerrar sesión:", error);
-          });
-      };
-    
-      useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-          setUser(currentUser);
-        });
-        return () => {
-          unsubscribe();
-        };
-        }, []);
+export const AuthContextProvider = ({ children }) => {
+  const [user, setUser] = useState(null);
 
-    return (
-        <AuthContext.Provider value={{googleSingnIn,
-        logOut,user}}>
-            {children}
+  const googleSignIn = () => {
+    signInWithPopup(auth, provider)
+      .then(result => setUser(result.user))
+      .catch(error => console.error("Error during login:", error));
+  };
 
-        </AuthContext.Provider>
-    )
-}
+  const logOut = () => {
+    signOut(auth)
+      .then(() => setUser(null))
+      .catch(error => console.error("Error during logout:", error));
+  };
 
-export const UserAuth = ()=>{
-    return useContext(AuthContext);
-}
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+    return () => unsubscribe();
+  }, []);
+
+  return (
+    <AuthContext.Provider value={{ googleSignIn, logOut, user }}>
+      {children}
+    </AuthContext.Provider>
+  );
+};
+
+export const useAuth = () => useContext(AuthContext);

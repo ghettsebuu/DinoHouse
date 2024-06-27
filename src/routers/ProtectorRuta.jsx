@@ -1,9 +1,10 @@
-import { UserAuth } from "../Services/AuthContext";
+import { useAuth } from "../Services/AuthContext";
 import { Navigate } from "react-router-dom";
-export function ProtectorRuta({children}){
-   const {user} = UserAuth();
-   if(!user){
-     return <Navigate to={"/"}/>
-   }
-   return children;
-} 
+
+export function ProtectorRuta({ children }) {
+  const { user } = useAuth();
+  if (!user) {
+    return <Navigate to={"/"} />;
+  }
+  return children;
+}

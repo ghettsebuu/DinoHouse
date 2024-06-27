@@ -7,29 +7,32 @@ import EditStudentModal from './EditStudentModal';
 import StudentList from './StudentList';
 import { db } from '../../../Firebase/firebaseConfig';
 import { collection, getDocs, query, where, doc, updateDoc, deleteDoc } from 'firebase/firestore';
-import { auth } from '../../../Firebase/firebaseConfig';
+import { useAuth } from '../../../Services/AuthContext';
 
 const GestionEstudiantes = () => {
   const [students, setStudents] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [currentStudent, setCurrentStudent] = useState(null);
+  const { user } = useAuth();
 
   useEffect(() => {
     const fetchStudents = async () => {
-      try {
-        const teacherId = auth.currentUser.uid;
-        const studentsQuery = query(collection(db, 'Estudiantes'), where('MaestroID', '==', teacherId));
-        const studentsSnapshot = await getDocs(studentsQuery);
-        const studentsData = studentsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-        setStudents(studentsData);
-      } catch (error) {
-        console.error('Error al obtener estudiantes:', error);
+      if (user) {
+        try {
+          const teacherId = user.uid;
+          const studentsQuery = query(collection(db, 'Estudiantes'), where('MaestroID', '==', teacherId));
+          const studentsSnapshot = await getDocs(studentsQuery);
+          const studentsData = studentsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+          setStudents(studentsData);
+        } catch (error) {
+          console.error('Error al obtener estudiantes:', error);
+        }
       }
     };
 
     fetchStudents();
-  }, []);
+  }, [user]);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -51,7 +54,7 @@ const GestionEstudiantes = () => {
 
   const addStudent = async (student) => {
     try {
-      const teacherId = auth.currentUser.uid;
+      const teacherId = user.uid;
       const newStudent = { ...student, MaestroID: teacherId };
 
       const newStudentRef = await addDoc(collection(db, 'Estudiantes'), newStudent);

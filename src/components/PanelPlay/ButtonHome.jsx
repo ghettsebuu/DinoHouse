@@ -11,7 +11,7 @@ const HomeButtonComponent = () => {
 
   return (
     <button onClick={goToHome} className="home-button">
-      <i className="fa-solid fa-house"></i>
+      <i className="fa-solid fa-house"></i> 
     </button>
   );
 };

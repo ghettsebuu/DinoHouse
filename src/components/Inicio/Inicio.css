@@ -90,7 +90,7 @@ body {
   transform: translate(-50%, -50%);
   width: 70px;
   height: 70px;
-  background-color: #99cb33;
+  background-color: #f77546;
   border-radius: 50%;
   /* Hace el botón redondo */
   border: none;
@@ -108,7 +108,7 @@ body {
   /* Estilos cuando el ratón está sobre el botón */
   transform: translate(-50%, -50%) scale(1.1);
   /* Agrandar el botón */
-  background-color: #7ea82a;
+  background-color: #dd6235;
   /* Cambiar el color */
 }
 
@@ -169,6 +169,47 @@ body {
   /* Aplicar la animación de serpentear */
 }
 
+/* Inicio.css */
+.home-screen {
+  position: relative;
+}
+
+.user-bubble {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #99cb33;
+  border-radius: 50px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  z-index: 1000; /* Asegúrate de que la burbuja esté encima de otros elementos */
+}
+
+.user-bubble:hover {
+  background-color:#97cf27;
+}
+
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.user-bubble span {
+  font-size: 16px;
+  color: #5c5b5b;
+}
+
+
+
+
+
 
 
 /* Estilos para la animación de los dinosaurios */
@@ -186,7 +227,7 @@ body {
   }
 }
 
-
+/* Responsiveness */
 @media (max-width: 760px) {
 
   .select-nivel {
@@ -198,4 +239,38 @@ body {
   display: flex;
   flex-wrap: wrap;
  }
+
+ .user-bubble {
+  top: 10px;
+  right: 10px;
+  padding: 8px 12px;
+}
+
+.user-avatar {
+  width: 30px;
+  height: 30px;
+  margin-right: 8px;
+}
+
+.user-bubble span {
+  font-size: 14px;
+}
+}
+
+@media (max-width: 480px) {
+  .user-bubble {
+    top: 5px;
+    right: 5px;
+    padding: 5px 8px;
+  }
+
+  .user-avatar {
+    width: 25px;
+    height: 25px;
+    margin-right: 5px;
+  }
+
+  .user-bubble span {
+    font-size: 12px;
+  }
 }

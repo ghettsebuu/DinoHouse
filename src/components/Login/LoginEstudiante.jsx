@@ -19,7 +19,7 @@ const LoginEstudiante = () => {
             const querySnapshot = await getDocs(q);
     
             if (querySnapshot.empty) {
-                setError('Código de acceso no válido');
+                setError('Código de acceso no válido'); 
                 console.log('Error: Código de acceso no válido');
                 return;
             }

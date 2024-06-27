@@ -1,6 +1,7 @@
+// firebaseConfig.js
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { getAuth } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -14,17 +15,17 @@ const firebaseConfig = {
   measurementId: "G-JH303FY75J"
 };
 
-// Inicializa Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 
-// Obtén una instancia de la autenticación
 export const auth = getAuth(app);
-// Obtén una instancia de Firestore
+export const provider = new GoogleAuthProvider();
 export const db = getFirestore(app);
 
-export default app;
+export const signInWithGoogle = () => signInWithPopup(auth, provider);
+export const logOut = () => signOut(auth);
 
+export default app;
 
 
 
