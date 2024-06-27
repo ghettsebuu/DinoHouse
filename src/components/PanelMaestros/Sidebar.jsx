@@ -33,7 +33,7 @@ function Sidebar({ onModuleChange, visible }) {
           <li className="moduleItem" onClick={() => handleModuleClick('gestion')}>Gestión de Estudiantes</li>
           <li className="moduleItem" onClick={() => handleModuleClick('progreso')}>Progreso de Estudiantes</li>
         </ul>
-        <button onClick={goToHome} className="buttonCerrarSesion">Inicio</button>
+        <button onClick={goToHome} className="buttonCerrarSesion"> Ir a inicio</button>
         <button className="buttonCerrarSesion" onClick={cerrarSesion}>Cerrar sesión</button>
       </div>
     </div>
