@@ -38,8 +38,8 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  /* background-color: rgba(255, 255, 255, 0.5); */
-  /* Color blanco semi-transparente */
+   background-color: rgba(255, 255, 255, 0.274); 
+  /* Color blanco semi-transparente 
   z-index: 0;
   /* Coloca la superposición detrás de otros elementos */
 }
@@ -57,10 +57,11 @@ body {
 .title {
   font-size: 65px;
   /* Tamaño grande */
-  color: #fead76;
+  color: #fe8a76;
   /* Color naranja */
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
   /* Sombra de texto */
+
 }
 
 
