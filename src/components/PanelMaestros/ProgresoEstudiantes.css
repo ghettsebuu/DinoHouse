@@ -81,6 +81,26 @@
   background-color: #e74c3c;
 }
 
+.fecha-mas-reciente {
+  margin-top: 10px;
+  font-size: 1rem;
+  color: #555;
+  background-color: #f9f9f9;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.fecha-mas-reciente span {
+  display: inline-block;
+  padding: 5px 10px;
+  background: #e0f7fa;
+  border-radius: 5px;
+  font-weight: 600;
+}
+
+
 @media (max-width: 768px) {
   .student-progress-item {
     padding: 10px;

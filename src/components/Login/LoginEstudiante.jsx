@@ -12,7 +12,7 @@ const LoginEstudiante = () => {
     const handleLogin = async () => {
         try {
             console.log('Intentando iniciar sesión...');
-         /*    console.log('Código de acceso:', codigoAcceso); */
+            console.log('Código de acceso:', codigoAcceso);
     
             const studentsRef = collection(db, 'Estudiantes');
             const q = query(studentsRef, where('CodigoAcceso', '==', codigoAcceso));
@@ -31,8 +31,11 @@ const LoginEstudiante = () => {
     
             if (studentData) {
                 localStorage.setItem('studentName', studentData.Nombre);
-                localStorage.setItem('studentCodigoAcceso', codigoAcceso); // Guarda el código de acceso
+                localStorage.setItem('codigoAcceso', codigoAcceso); // Guarda el código de acceso
     
+                console.log('Nombre del estudiante:', studentData.Nombre);
+                console.log('Código de acceso guardado en localStorage:', codigoAcceso);
+
                 navigate('/PanelPlay');
             }
         } catch (error) {
@@ -40,7 +43,6 @@ const LoginEstudiante = () => {
             console.error('Error al iniciar sesión:', error);
         }
     };
-    
 
     return (
         <div className="login-estudiante-container">

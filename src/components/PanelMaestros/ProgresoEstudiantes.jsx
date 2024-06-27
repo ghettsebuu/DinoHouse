@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import './ProgresoEstudiantes.css';
 import { db } from '../../Firebase/firebaseConfig';
 import { collection, getDocs } from 'firebase/firestore';
-import { useAuth } from '../../Services/AuthContext';
 
 const ProgresoEstudiantes = ({ students }) => {
   const niveles = [
@@ -42,6 +41,17 @@ const ProgresoEstudiantes = ({ students }) => {
     }
   }, [students]);
 
+  const formatFechaMasReciente = (fechaStr) => {
+    const fecha = new Date(fechaStr);
+    const opcionesFecha = { day: '2-digit', month: '2-digit', year: 'numeric' };
+    const opcionesHora = { hour: '2-digit', minute: '2-digit', hour12: true };
+
+    const fechaFormateada = fecha.toLocaleDateString('es-ES', opcionesFecha);
+    const horaFormateada = fecha.toLocaleTimeString('es-ES', opcionesHora);
+
+    return `${fechaFormateada} a las ${horaFormateada}`;
+  };
+
   return (
     <div className="progreso-estudiantes">
       <h1>Progreso de Estudiantes</h1>
@@ -69,7 +79,7 @@ const ProgresoEstudiantes = ({ students }) => {
                 );
               })}
               <div className="fecha-mas-reciente">
-                <span>Fecha más reciente: {student.progress.fechaMasReciente || 'No disponible'}</span>
+                <span>Fecha más reciente: {student.progress.fechaMasReciente ? formatFechaMasReciente(student.progress.fechaMasReciente) : 'No disponible'}</span>
               </div>
             </div>
           </li>
