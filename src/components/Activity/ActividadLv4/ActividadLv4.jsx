@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react';
 import FinalScreen from '../Final';
 import guardarPuntuacion from '../../../helpers/guardarPuntuacion.jsx';
 import './ActividadLv4.css';
+import AudioPlayer from '../../../helpers/AudioPlayer';
 
 const TOTAL_ROUNDS = 5;
 const CORRECT_SCORE = 20;
 const INCORRECT_PENALTY = 5;
 
 const ActividadLv4 = ({ mostrarActividad }) => {
+  const [audioKey, setAudioKey] = useState('ActividadLv4'); // Estado para el audio actual
   const [gameOver, setGameOver] = useState(false);
   const [selectedWord, setSelectedWord] = useState(null);
   const [correct, setCorrect] = useState(false);
@@ -24,6 +26,22 @@ const ActividadLv4 = ({ mostrarActividad }) => {
     "La maestra explicó la lección con mucha paciencia.",
     "En el bosque viven muchos animales como ciervos, conejos y pájaros."
   ];
+
+  useEffect(() => {
+    // Reproducir audio de instrucciones después del audio de bienvenida
+    if (audioKey === 'ActividadLv4') {
+      const timer = setTimeout(() => {
+        setAudioKey('InstruccionLv4');
+      }, 5000); // Ajusta el tiempo según la duración del audio de bienvenida
+      return () => clearTimeout(timer);
+    }
+    if (audioKey === 'InstruccionLv4') {
+      const timer = setTimeout(() => {
+        setAudioKey('AyudaLv4');
+      }, 5000); // Ajusta el tiempo según la duración del audio de bienvenida
+      return () => clearTimeout(timer);
+    }
+  }, [audioKey]);
 
   useEffect(() => {
     startNewGame();
@@ -123,6 +141,7 @@ const ActividadLv4 = ({ mostrarActividad }) => {
   return (
     <section className='PlayScena'>
     <div className="actividad4">  
+    <AudioPlayer audioKey={audioKey} />
       <h2>Encuentra la palabra</h2> 
       <div className='ronda'>
         <p>Escucha atentamente</p>

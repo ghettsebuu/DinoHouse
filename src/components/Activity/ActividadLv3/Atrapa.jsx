@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import FinalScreen from '../Final';
 import './Atrapa.css';
+import AudioPlayer from '../../../helpers/AudioPlayer'; 
 
 const frutas = ['Naranja', 'Sandia', 'Banana', 'Manzana', 'Mango', 'Guayaba', 'Fresa', 'Pera'];
 
@@ -8,15 +9,26 @@ const getRandomFruta = () => frutas[Math.floor(Math.random() * frutas.length)];
 const shuffleArray = (array) => array.sort(() => Math.random() - 0.5);
 
 const Atrapa = () => {
+  const [audioKey, setAudioKey] = useState('Fruta'); // Estado para el audio actual
   const [frutaObjetivo, setFrutaObjetivo] = useState(getRandomFruta());
   const [puntos, setPuntos] = useState(0);
-  const [mensaje, setMensaje] = useState('');
+  const [mensaje, setMensaje] = useState(''); 
   const [ronda, setRonda] = useState(1);
   const [frutasAleatorias, setFrutasAleatorias] = useState(shuffleArray([...frutas]));
   const [cambios, setCambios] = useState(0);
   const [showFinalScreen, setShowFinalScreen] = useState(false);
 
   const intervalosPorRonda = [10000, 8000, 6000];
+
+  useEffect(() => {
+    // Reproducir audio de instrucciones después del audio de bienvenida
+    if (audioKey === 'Fruta') {
+      const timer = setTimeout(() => {
+        setAudioKey('InstruccionFruta');
+      }, 2000); // Ajusta el tiempo según la duración del audio de bienvenida
+      return () => clearTimeout(timer);
+    }
+  }, [audioKey]);
 
   useEffect(() => {
     const cambiarFrutaYReordenar = () => {
@@ -71,6 +83,7 @@ const Atrapa = () => {
 
   return (
     <div className="Atrapa">
+      <AudioPlayer audioKey={audioKey} /> 
       <h2>Atrapa la fruta</h2>
       <div className="tablero">
         <p>Ronda: {ronda}/3</p>

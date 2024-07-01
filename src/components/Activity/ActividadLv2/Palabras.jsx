@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Palabras.css';
 import FinalScreen from '../Final';
+import AudioPlayer from '../../../helpers/AudioPlayer'; 
 
 
 const palabrasData = {
@@ -76,6 +77,7 @@ const getRandomWord = (difficulty) => {
 };
 
 const Palabras = () => {
+  const [audioKey, setAudioKey] = useState('Misterio'); // Estado para el audio actual
   const [currentRound, setCurrentRound] = useState(0);
   const [currentWord, setCurrentWord] = useState(null);
   const [shuffledSilabas, setShuffledSilabas] = useState([]);
@@ -84,6 +86,16 @@ const Palabras = () => {
   const [revealImage, setRevealImage] = useState(false);
   const [score, setScore] = useState(0);
 
+  useEffect(() => {
+    // Reproducir audio de instrucciones después del audio de bienvenida
+    if (audioKey === 'Misterio') {
+        const timer = setTimeout(() => {
+            setAudioKey('InstruccionMisterio');
+        }, 2000); // Ajusta el tiempo según la duración del audio de bienvenida
+        return () => clearTimeout(timer);
+    }
+ 
+}, [audioKey]);
   useEffect(() => {
     const difficultyLevels = ['facil', 'medio', 'dificil'];
     if (currentRound < difficultyLevels.length) {
@@ -191,7 +203,8 @@ const Palabras = () => {
 
   return (
     <div className="Palabras">
-      <h2>Descubre las Palabras</h2>
+      <AudioPlayer audioKey={audioKey} /> 
+      <h2>Descubre la imagen secreta</h2>
       <div className="score">Puntuación: {score}</div>
       <div className="image-container">
         {revealImage ? (

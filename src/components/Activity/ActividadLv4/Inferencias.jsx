@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect } from 'react';
 import './Inferencias.css';
 import FinalScreen from '../Final';
+import AudioPlayer from '../../../helpers/AudioPlayer'; 
 
 const questions = [
   {
@@ -18,9 +19,10 @@ const questions = [
     image: '/img/Adivinanzas/adivina.png',
     text: 'Soy un ser de otro planeta, con ojos grandes y piel verde. ¿Quién soy?',
     options: [
-      { id: 1, image:'/img/Adivinanzas/alien.png', correct: true },
-      { id: 2, image: '/img/Adivinanzas/dinosaurio.png', correct: false },
-      { id: 3, image: '/img/Adivinanzas/dragon.png', correct: false }
+      
+      { id: 1, image: '/img/Adivinanzas/dinosaurio.png', correct: false },
+      { id: 2, image: '/img/Adivinanzas/dragon.png', correct: false },
+      { id: 3, image:'/img/Adivinanzas/alien.png', correct: true }
     ]
   },
   {
@@ -28,8 +30,9 @@ const questions = [
     image: '/img/Adivinanzas/adivina.png',
     text: 'Soy el planeta azul, el hogar de millones de seres vivos. ¿Quién soy?',
     options: [
-      { id: 1, image: '/img/Adivinanzas/tierra.png', correct: true },
-      { id: 2, image: '/img/Adivinanzas/martes.png', correct: false },
+      
+      { id: 1, image: '/img/Adivinanzas/martes.png', correct: false },
+      { id: 2, image: '/img/Adivinanzas/tierra.png', correct: true },
       { id: 3, image: '/img/Adivinanzas/saturno.png', correct: false }
     ]
   },
@@ -48,18 +51,30 @@ const questions = [
     image: '/img/Adivinanzas/adivina.png',
     text: 'Soy el satélite natural de la Tierra, brillando en el cielo nocturno. ¿Quién soy?',
     options: [
-      { id: 1, image: '/img/Adivinanzas/luna.png', correct: true },
-      { id: 2, image: '/img/Adivinanzas/satelite.png', correct: false },
-      { id: 3, image: '/img/Adivinanzas/meteorito.png', correct: false }
+      
+      { id: 1, image: '/img/Adivinanzas/satelite.png', correct: false },
+      { id: 2, image: '/img/Adivinanzas/meteorito.png', correct: false },
+      { id: 3, image: '/img/Adivinanzas/luna.png', correct: true }
     ]
   },
         
 ];
 
 const JuegoInferencias = () => {
+  const [audioKey, setAudioKey] = useState('Adivinanzas'); // Estado para el audio actual
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
   const [showResult, setShowResult] = useState(false);
+
+  useEffect(() => {
+    // Reproducir audio de instrucciones después del audio de bienvenida
+    if (audioKey === 'Adivinanzas') {
+      const timer = setTimeout(() => {
+        setAudioKey('InstruccionAdivinanzas');
+      }, 5000); // Ajusta el tiempo según la duración del audio de bienvenida
+      return () => clearTimeout(timer);
+    }
+  }, [audioKey]);
 
   const handleOptionClick = (option) => {
     if (option.correct) {
@@ -82,6 +97,7 @@ const JuegoInferencias = () => {
 
   return (
     <div className="juego-inferencias">
+        <AudioPlayer audioKey={audioKey} />
       <h2>Adivinanzas</h2>
       {showResult ? (
         <FinalScreen

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import FinalScreen from '../Final';
 import './recetas.css';
+import AudioPlayer from '../../../helpers/AudioPlayer'; 
 
 const recetas = [ 
   {
@@ -49,12 +50,23 @@ const shuffleArray = (array) => {
 
 const ActividadLv3 = ({ mostrarActividad }) => {
   const [ronda, setRonda] = useState(0);
+  const [audioKey, setAudioKey] = useState('Recetas'); // Estado para el audio actual
   const [arrastrados, setArrastrados] = useState([]);
   const [actividadCompletada, setActividadCompletada] = useState(false);
   const [score, setScore] = useState(0); // Añadido: estado de puntuación
   const recetaActual = recetas[ronda];
   const [ingredientesDisponibles, setIngredientesDisponibles] = useState(shuffleArray(recetaActual.ingredientes));
   const [tazonColor, setTazonColor] = useState('');
+
+  useEffect(() => {
+    // Reproducir audio de instrucciones después del audio de bienvenida
+    if (audioKey === 'Recetas') {
+      const timer = setTimeout(() => {
+        setAudioKey('InstruccionRecetas');
+      }, 2000); // Ajusta el tiempo según la duración del audio de bienvenida
+      return () => clearTimeout(timer);
+    }
+  }, [audioKey]);
 
   useEffect(() => {
     setIngredientesDisponibles(shuffleArray(recetaActual.ingredientes));
@@ -65,6 +77,7 @@ const ActividadLv3 = ({ mostrarActividad }) => {
       const nuevosArrastrados = [...arrastrados, ingrediente];
       setArrastrados(nuevosArrastrados);
       setIngredientesDisponibles(ingredientesDisponibles.filter((ing) => ing.nombre !== ingrediente.nombre));
+      setAudioKey(ingrediente.nombre); // Reproducir el audio del ingrediente
       verificarOrden(nuevosArrastrados);
     }
   };
@@ -121,6 +134,7 @@ const ActividadLv3 = ({ mostrarActividad }) => {
 
   return (
     <div className="actividad3">
+      <AudioPlayer audioKey={audioKey} /> 
       <h2>Recetas de Cocina</h2>
       <div className="score">Puntuación: {score}</div> {/* Añadido: mostrar la puntuación */}
       {actividadCompletada ? (

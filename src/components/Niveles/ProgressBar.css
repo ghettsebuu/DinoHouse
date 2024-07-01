@@ -1,0 +1,48 @@
+.progress-barN {
+    position: absolute;
+    top: 17%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70%;
+    height: 30px;
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+  
+.progressN {
+    height: 100%;
+    transition: width 0.5s;
+}
+
+.progress-barN span {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    line-height: 30px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.progressN-level1 {
+    background: linear-gradient(90deg, #e6b276 0%, #e76b18 100%);
+   
+}
+
+.progressN-level2 {
+    background: linear-gradient(90deg, #b983ce 0%, #ae42b8 100%);
+}
+
+.progressN-level3 {
+    background: linear-gradient(90deg, #8ed1bd 0%, #34a37e 100%);
+   
+}
+
+.progressN-level4 {
+    background: linear-gradient(90deg, #ff6f4e 0%, #fc4e27 100%);
+    
+}
+

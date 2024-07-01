@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import './actividadLv3.css';
 import FinalScreen from '../Final.jsx';
 import guardarPuntuacion from '../../../helpers/guardarPuntuacion.jsx'; // Importa la función guardarPuntuacion
+import AudioPlayer from '../../../helpers/AudioPlayer'; 
 
 const Oraciones = ({ mostrarOraciones }) => {
+  const [audioKey, setAudioKey] = useState('Oraciones'); // Estado para el audio actual
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0); 
   const [showFeedback, setShowFeedback] = useState(false);
@@ -53,6 +55,16 @@ const Oraciones = ({ mostrarOraciones }) => {
       ],
     },
   ];
+
+  useEffect(() => {
+    // Reproducir audio de instrucciones después del audio de bienvenida
+    if (audioKey === 'Oraciones') {
+      const timer = setTimeout(() => {
+        setAudioKey('InstruccionOraciones');
+      }, 5000); // Ajusta el tiempo según la duración del audio de bienvenida
+      return () => clearTimeout(timer);
+    }
+  }, [audioKey]);
 
   useEffect(() => {
     const shuffledQuestions = originalQuestions.map(question => ({
@@ -107,6 +119,7 @@ const Oraciones = ({ mostrarOraciones }) => {
   return (
     <section className='PlayScena'>
     <div className="actividad">
+    <AudioPlayer audioKey={audioKey} /> 
       {showFinalScreen ? (
         <FinalScreen score={score} onRestart={restartActivity} onGoToHome={goToHome} onNext={nextActivity} />
       ) : (

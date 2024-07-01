@@ -3,21 +3,23 @@ import update from "immutability-helper";
 import "./ActividadLv2.css";
 import FinalScreen from "../Final";
 import guardarPuntuacion from '../../../helpers/guardarPuntuacion.jsx';
+import AudioPlayer from '../../../helpers/AudioPlayer'; 
 
 const ActividadLv2 = () => {
   const rounds = [
-    { word: "CASA", image: "/img/ObjetosLv1/Casa.png" },
-    { word: "PELOTA", image: "/img/ObjetosLv1/Pelota.png" },
-    { word: "GATO", image: "/img/ObjetosLv1/Gato.png" },
-    { word: "BOTAS", image: "/img/ObjetosLv1/Botas.png" },
-    { word: "DELFIN", image: "/img/ObjetosLv1/Delfin.png" },
-    { word: "JIRAFA", image: "/img/ObjetosLv1/Jirafa.png" },
-    { word: 'TORO', image: '/img/ObjetosLv1/Toro.png' },
-    { word: 'KARATE', image: '/img/ObjetosLv1/Karate.png' },
-    { word: 'OLLA', image: '/img/ObjetosLv1/Olla.png' },
-    { word: 'LEON', image: '/img/ObjetosLv1/Leon.png' }
+    { word: "CASA", image: "/img/ObjetosLv1/Casa.png", audio:'casa' },
+    { word: "PELOTA", image: "/img/ObjetosLv1/Pelota.png" ,audio:'pelota'},
+    { word: "GATO", image: "/img/ObjetosLv1/Gato.png" ,audio:'gato'},
+    { word: "BOTAS", image: "/img/ObjetosLv1/Botas.png",audio:'botas' },
+    { word: "DELFIN", image: "/img/ObjetosLv1/Delfin.png" ,audio:'delfin'},
+    { word: "JIRAFA", image: "/img/ObjetosLv1/Jirafa.png" ,audio:'jirafa'},
+    { word: 'TORO', image: '/img/ObjetosLv1/Toro.png', audio:'toro'},
+    { word: 'KARATE', image: '/img/ObjetosLv1/Karate.png' , audio:'karate'},
+    { word: 'OLLA', image: '/img/ObjetosLv1/Olla.png' ,audio:'olla'},
+    { word: 'LEON', image: '/img/ObjetosLv1/Leon.png', audio:'leon' } 
   ];
 
+  const [audioKey, setAudioKey] = useState('ActividadLv2'); // Estado para el audio actual
   const [currentRoundIndex, setCurrentRoundIndex] = useState(0);
   const [letters, setLetters] = useState([]);
   const [currentWord, setCurrentWord] = useState([]);
@@ -28,6 +30,17 @@ const ActividadLv2 = () => {
   const [scoreUpdated, setScoreUpdated] = useState(false);
 
   const currentRound = rounds[currentRoundIndex];
+
+  useEffect(() => {
+    // Reproducir audio de instrucciones después del audio de bienvenida
+    if (audioKey === 'ActividadLv2') {
+        const timer = setTimeout(() => {
+            setAudioKey('InstruccionLv2');
+        }, 5000); // Ajusta el tiempo según la duración del audio de bienvenida
+        return () => clearTimeout(timer);
+    }
+ 
+}, [audioKey]);
 
   useEffect(() => {
     const shuffledLetters = currentRound.word.split("").sort(() => 0.5 - Math.random());
@@ -94,9 +107,14 @@ const ActividadLv2 = () => {
     }
   };
 
+const handleClickObjeto = (audio) => {
+    setAudioKey(audio); // Reproducir audio del objeto seleccionado
+};
+
   return (
     <section className='PlayScena'>
       <div className="actividad-lv2">
+      <AudioPlayer audioKey={audioKey} /> 
         {gameComplete ? (
           <FinalScreen
             score={score}
@@ -115,7 +133,7 @@ const ActividadLv2 = () => {
         ) : (
           <>
             <h2>Forma la palabra</h2>
-            <img src={currentRound.image} alt={currentRound.word} className="image" />
+            <img src={currentRound.image} alt={currentRound.word} className="image"onClick={() => handleClickObjeto(currentRound.audio)} />
             <div className="target">
               {currentWord.map((letter, index) => {
                 const isCorrect = letter === currentRound.word[index];

@@ -21,6 +21,8 @@ import Atrapa from '../Activity/ActividadLv3/Atrapa.jsx';
 import Inferencias from '../Activity/ActividadLv4/Inferencias.jsx';
 import HistoriasInteractivas from '../Activity/ActividadLv4/HistoriasInteractivas/HistoriasInteractivas.jsx';
 
+import LoadingScreen from '../LoadingScreen/LoadingScreen';
+
 const SceneComponent = ({
   nivelActual,
   mostrarActividad,
@@ -33,7 +35,9 @@ const SceneComponent = ({
   mostrarInferencias,
   mostrarHistorias,
   actividadMostrada,
-  handleVolverALetras
+  handleVolverALetras,
+  codigoAcceso,
+  onLevelUp // Recibe onLevelUp como prop
 }) => {
   let NivelComponent;
   let ActividadComponent;
@@ -80,6 +84,8 @@ const SceneComponent = ({
           mostrarAtrapa={mostrarAtrapa}
           mostrarInferencias={mostrarInferencias}
           mostrarHistorias={mostrarHistorias} 
+          codigoAcceso={codigoAcceso}
+          onLevelUp={onLevelUp} // Pasar onLevelUp a NivelComponent
         />
       ) : actividadMostrada === 'actividad' ? (
         <ActividadComponent mostrarActividad={mostrarActividad} />

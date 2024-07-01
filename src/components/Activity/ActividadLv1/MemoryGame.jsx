@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import './ActividadLv1.css';
 import FinalScreen from '../Final'; // Importar el componente FinalScreen
 import guardarPuntuacion from '../../../helpers/guardarPuntuacion.jsx';
+import AudioPlayer from '../../../helpers/AudioPlayer'; 
 
 const MemoryGame = ({ onNext }) => {
+    const [audioKey, setAudioKey] = useState('Memorias'); // Estado para el audio actual
     const [cartas, setCartas] = useState([]);
     const [cartasVolteadas, setCartasVolteadas] = useState([]);
     const [cartasCoincidentes, setCartasCoincidentes] = useState([]);
@@ -12,6 +14,9 @@ const MemoryGame = ({ onNext }) => {
     const [finJuego, setFinJuego] = useState(false);
     const [puntuacion, setPuntuacion] = useState(0);
     const maxRondas = 3;
+   
+
+    
 
     const datosCartas = [
         { id: 1, tipo: 'objeto', nombre: 'Abeja', imagen: '/img/ObjetosLv1/Abeja.png' },
@@ -93,6 +98,21 @@ const MemoryGame = ({ onNext }) => {
         { id: 77, tipo: 'letra', letra: 'Z', imagen: '/img/Letras/Z.png' },
     ];
 
+    useEffect(() => {
+        // Reproducir audio de instrucciones después del audio de bienvenida
+        if (audioKey === 'Memorias') {
+            const timer = setTimeout(() => {
+                setAudioKey('InstruccionMemorias');
+            }, 3000); // Ajusta el tiempo según la duración del audio de bienvenida
+            return () => clearTimeout(timer);
+        }
+        if (audioKey === 'InstruccionMemorias') {
+            const timer = setTimeout(() => {
+                setAudioKey('EjemploMemoria');
+            }, 7000); // Ajusta el tiempo según la duración del audio de bienvenida
+            return () => clearTimeout(timer);
+        }
+    }, [audioKey]);
 
     // Función para obtener cartas aleatorias
     const obtenerCartasAleatorias = (numCartas) => {
@@ -199,6 +219,7 @@ const MemoryGame = ({ onNext }) => {
     // Renderizar el juego de memoria mientras se esté jugando
     return (
         <div className="memory-game">
+            <AudioPlayer audioKey={audioKey} /> 
             <h2>Juego de Memoria</h2>
             <div className="movimientos">Movimientos: {movimientos}</div>
             <div className="rondas">Ronda: {rondas}/{maxRondas}</div>
