@@ -16,7 +16,7 @@ const HistoriasInteractivas = () => {
     if (audioKey === 'Historias') {
       const timer = setTimeout(() => {
         setAudioKey('ClicHistoria');
-      }, 3000); // Ajusta el tiempo según la duración del audio de bienvenida
+      }, 4000); // Ajusta el tiempo según la duración del audio de bienvenida
       return () => clearTimeout(timer);
     }
     if (audioKey === 'ClicHistoria') {

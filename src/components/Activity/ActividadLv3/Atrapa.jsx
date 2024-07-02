@@ -8,6 +8,10 @@ const frutas = ['Naranja', 'Sandia', 'Banana', 'Manzana', 'Mango', 'Guayaba', 'F
 const getRandomFruta = () => frutas[Math.floor(Math.random() * frutas.length)];
 const shuffleArray = (array) => array.sort(() => Math.random() - 0.5);
 
+const correctSound = new Audio('/sounds/correct-6033.mp3');
+const incorrectSound = new Audio('/sounds/wronganswer-37702.mp3');
+const finalSound = new Audio('/sounds/level-win-6416.mp3');
+
 const Atrapa = () => {
   const [audioKey, setAudioKey] = useState('Fruta'); // Estado para el audio actual
   const [frutaObjetivo, setFrutaObjetivo] = useState(getRandomFruta());
@@ -18,14 +22,14 @@ const Atrapa = () => {
   const [cambios, setCambios] = useState(0);
   const [showFinalScreen, setShowFinalScreen] = useState(false);
 
-  const intervalosPorRonda = [10000, 8000, 6000];
+  const intervalosPorRonda = [10000, 9500, 8000];
 
   useEffect(() => {
     // Reproducir audio de instrucciones después del audio de bienvenida
     if (audioKey === 'Fruta') {
       const timer = setTimeout(() => {
         setAudioKey('InstruccionFruta');
-      }, 2000); // Ajusta el tiempo según la duración del audio de bienvenida
+      }, 3000); // Ajusta el tiempo según la duración del audio de bienvenida
       return () => clearTimeout(timer);
     }
   }, [audioKey]);
@@ -48,6 +52,7 @@ const Atrapa = () => {
         setRonda(ronda + 1);
         setCambios(0);
       } else {
+        finalSound.play(); // Reproducir el sonido final cuando termine el juego
         setShowFinalScreen(true);
       }
     }
@@ -55,9 +60,11 @@ const Atrapa = () => {
 
   const atraparFruta = (fruta) => {
     if (fruta === frutaObjetivo) {
+      correctSound.play(); // Reproducir sonido correcto
       setPuntos(puntos + 10);
       setMensaje('¡Correcto!');
     } else {
+      incorrectSound.play(); // Reproducir sonido incorrecto
       setPuntos(puntos > 0 ? puntos - 5 : 0);
       setMensaje('Incorrecto. Pierdes 5 puntos.');
     }

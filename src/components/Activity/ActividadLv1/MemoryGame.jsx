@@ -4,6 +4,12 @@ import FinalScreen from '../Final'; // Importar el componente FinalScreen
 import guardarPuntuacion from '../../../helpers/guardarPuntuacion.jsx';
 import AudioPlayer from '../../../helpers/AudioPlayer'; 
 
+const correctSound = new Audio('/sounds/correct-6033.mp3');
+const incorrectSound = new Audio('/sounds/wronganswer-37702.mp3');
+const finalSound = new Audio('/sounds/level-win-6416.mp3');
+const positiveFeedbackSound = new Audio('/sounds/bien.mp3');
+const AyudaFeedbackSound = new Audio('/sounds/intenta.mp3');
+
 const MemoryGame = ({ onNext }) => {
     const [audioKey, setAudioKey] = useState('Memorias'); // Estado para el audio actual
     const [cartas, setCartas] = useState([]);
@@ -150,10 +156,14 @@ const MemoryGame = ({ onNext }) => {
             ) {
                 setCartasCoincidentes([...cartasCoincidentes, primeraCarta, carta]);
                 setPuntuacion(puntuacion + 10); // Añadir puntos
+                correctSound.play(); // Reproducir sonido de acierto
+                positiveFeedbackSound.play()
                 setCartasVolteadas([]);
             } else {
                 setTimeout(() => {
                     setCartasVolteadas([]);
+                    incorrectSound.play(); // Reproducir sonido de error
+                    AyudaFeedbackSound.play();
                 }, 1000);
             }
         }
@@ -184,6 +194,7 @@ const MemoryGame = ({ onNext }) => {
                 }, 1000);
             } else {
                 setFinJuego(true);
+                finalSound.play(); // Reproducir sonido de finalización del juego
                 const codigoAcceso = localStorage.getItem('studentCodigoAcceso');
                 guardarPuntuacion(codigoAcceso, 1, puntuacion); // Guarda la puntuación en Firestore
             }

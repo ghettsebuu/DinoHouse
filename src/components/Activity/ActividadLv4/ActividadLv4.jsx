@@ -8,6 +8,12 @@ const TOTAL_ROUNDS = 5;
 const CORRECT_SCORE = 20;
 const INCORRECT_PENALTY = 5;
 
+const correctSound = new Audio('/sounds/correct-6033.mp3');
+const incorrectSound = new Audio('/sounds/wronganswer-37702.mp3');
+const finalSound = new Audio('/sounds/level-win-6416.mp3');
+const positiveFeedbackSound = new Audio('/sounds/bien.mp3');
+const AyudaFeedbackSound = new Audio('/sounds/intenta.mp3');
+
 const ActividadLv4 = ({ mostrarActividad }) => {
   const [audioKey, setAudioKey] = useState('ActividadLv4'); // Estado para el audio actual
   const [gameOver, setGameOver] = useState(false);
@@ -32,13 +38,13 @@ const ActividadLv4 = ({ mostrarActividad }) => {
     if (audioKey === 'ActividadLv4') {
       const timer = setTimeout(() => {
         setAudioKey('InstruccionLv4');
-      }, 5000); // Ajusta el tiempo según la duración del audio de bienvenida
+      }, 6000); // Ajusta el tiempo según la duración del audio de bienvenida
       return () => clearTimeout(timer);
     }
     if (audioKey === 'InstruccionLv4') {
       const timer = setTimeout(() => {
         setAudioKey('AyudaLv4');
-      }, 5000); // Ajusta el tiempo según la duración del audio de bienvenida
+      }, 7000); // Ajusta el tiempo según la duración del audio de bienvenida
       return () => clearTimeout(timer);
     }
   }, [audioKey]);
@@ -46,12 +52,6 @@ const ActividadLv4 = ({ mostrarActividad }) => {
   useEffect(() => {
     startNewGame();
   }, []);
-
-  useEffect(() => {
-    if (targetWord && !audioPlayed) {
-      playAudio(targetWord);
-    }
-  }, [targetWord]);
 
   const startNewGame = () => {
     const randomParagraph = paragraphs[Math.floor(Math.random() * paragraphs.length)];
@@ -87,10 +87,13 @@ const ActividadLv4 = ({ mostrarActividad }) => {
     setSelectedWord(word);
     if (word === targetWord) {
       setCorrect(true);
+      correctSound.play();
+      positiveFeedbackSound.play();
       setScoreChange(CORRECT_SCORE);
       setScore(score + CORRECT_SCORE);
       if (round + 1 === TOTAL_ROUNDS) {
         setGameOver(true);
+        finalSound.play(); // Reproduce el sonido final al terminar el juego
         const codigoAcceso = localStorage.getItem('codigoAcceso');
         guardarPuntuacion(codigoAcceso, 4, score + CORRECT_SCORE); // Guarda la puntuación en Firestore
       } else {
@@ -99,6 +102,8 @@ const ActividadLv4 = ({ mostrarActividad }) => {
       }
     } else {
       setCorrect(false);
+      incorrectSound.play();
+      AyudaFeedbackSound.play();
       setScoreChange(-INCORRECT_PENALTY);
       setScore(score - INCORRECT_PENALTY);
     }
@@ -118,11 +123,11 @@ const ActividadLv4 = ({ mostrarActividad }) => {
   };
 
   const playAudio = (word) => {
-    const audio = new Audio(`/audios/${word.toLowerCase()}.mp3`);
-    audio.onended = () => {
-      setAudioPlayed(true); // Mark audio as played once it ends
+    // Retorna solo la función de reproducción, no la reproducción automática
+    return () => {
+      const audio = new Audio(`/audios/${word.toLowerCase()}.mp3`);
+      audio.play();
     };
-    audio.play();
   };
 
   if (gameOver) {
@@ -144,12 +149,12 @@ const ActividadLv4 = ({ mostrarActividad }) => {
     <AudioPlayer audioKey={audioKey} />
       <h2>Encuentra la palabra</h2> 
       <div className='ronda'>
-        <p>Escucha atentamente</p>
+        {/* <p>Escucha atentamente</p> */}
         <p>Ronda: {round + 1}/{TOTAL_ROUNDS}</p>
       </div>
       
       <div className="audio-container">
-        <button onClick={() => playAudio(targetWord)} className="audio-button">
+        <button onClick={playAudio(targetWord)} className="audio-button">
           <i className="fa-solid fa-volume-high"></i>
         </button>
         <span className="target-word">{targetWord}</span>

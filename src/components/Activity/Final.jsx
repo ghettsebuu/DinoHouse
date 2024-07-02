@@ -1,4 +1,5 @@
 import React from 'react';
+/* import './Final.css' */
 
 const FinalScreen = ({ score, onRestart, onGoToHome, onNext }) => {
     return (
@@ -8,12 +9,12 @@ const FinalScreen = ({ score, onRestart, onGoToHome, onNext }) => {
             <button onClick={onRestart} aria-label="Reiniciar">
                 <i className="fa-solid fa-arrow-rotate-left"></i>
             </button>
-            <button onClick={onGoToHome} aria-label="Ir al inicio">
+            {/* <button onClick={onGoToHome} aria-label="Ir al inicio">
                 <i className="fa-regular fa-square"></i>
             </button>
             <button onClick={onNext} aria-label="Siguiente actividad">
                 <i className="fa-solid fa-chevron-right"></i>
-            </button>
+            </button> */}
         </div>
     ); 
 };

@@ -1,24 +1,37 @@
-// Nivel1.jsx
-import React from 'react';
-/* import React, { useState, useEffect } from 'react'; */
+// src/components/Niveles/Nivel1.jsx
+import React, { useState, useEffect } from 'react';
 import './nivel.css';
 import AudioPlayer from '../../helpers/AudioPlayer';
 import ProgressBar from './ProgressBar'; // Ajustar la importación según la estructura de carpetas
-/* import LoadingScreen from '../LoadingScreen/LoadingScreen'; // Importa el componente de pantalla de carga */
 
 const Nivel1 = ({ mostrarActividad, mostrarMemoryGame, mostrarCartilla, codigoAcceso }) => {
- /*  const [loading, setLoading] = useState(true); // Estado para controlar la carga */
+  const [isLoading, setIsLoading] = useState(true);
 
-/*   useEffect(() => {
-    // Simula una carga asincrónica (puedes adaptarlo a tu lógica real)
-    const simulateLoading = async () => {
-      // Simula una carga de 2 segundos
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      setLoading(false); // Cambia el estado de loading una vez completada la carga
-    }; 
+  useEffect(() => {
+    const loadResources = async () => {
+      const images = [
+        '/img/level1.jpg',
+        '/img/dinoazul2.png',
+        '/img/memoria.png',
+        '/img/dados.png'
+      ];
 
-    simulateLoading();
-  }, []); */
+      const imagePromises = images.map(src => {
+        return new Promise((resolve, reject) => {
+          const img = new Image();
+          img.src = src;
+          img.onload = resolve;
+          img.onerror = reject;
+        });
+      });
+
+      await Promise.all(imagePromises);
+
+      setIsLoading(false);
+    };
+
+    loadResources();
+  }, []);
 
   const handleMostrarActividadClick = () => {
     mostrarActividad();
@@ -32,9 +45,9 @@ const Nivel1 = ({ mostrarActividad, mostrarMemoryGame, mostrarCartilla, codigoAc
     mostrarCartilla();
   };
 
- /*  if (loading) {
-    return <LoadingScreen />; // Muestra la pantalla de carga mientras se carga el nivel
-  } */
+  if (isLoading) {
+    return <p>Cargando...</p>;
+  }
 
   return (
     <div className='nivel'>

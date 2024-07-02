@@ -3,6 +3,12 @@ import './Palabras.css';
 import FinalScreen from '../Final';
 import AudioPlayer from '../../../helpers/AudioPlayer'; 
 
+const correctSound = new Audio('/sounds/correct-6033.mp3');
+const incorrectSound = new Audio('/sounds/wronganswer-37702.mp3');
+const finalSound = new Audio('/sounds/level-win-6416.mp3');
+const positiveFeedbackSound = new Audio('/sounds/bien.mp3');
+const AyudaFeedbackSound = new Audio('/sounds/intenta.mp3');
+
 
 const palabrasData = {
   facil: [
@@ -166,17 +172,26 @@ const Palabras = () => {
   }, [userInput]);
 
   const checkWord = () => {
-    if (currentWord && userInput.join('').toLowerCase() === currentWord.silabas.join('').toLowerCase()) {
-      setRevealImage(true);
-      setScore((prevScore) => prevScore + 50);
-      if (currentRound < 2) {
-        setTimeout(() => {
-          setCurrentRound((prevRound) => prevRound + 1);
-        }, 1000);
+    if (currentWord && userInput.every((silaba) => silaba !== '')) {
+      if (userInput.join('').toLowerCase() === currentWord.silabas.join('').toLowerCase()) {
+        correctSound.play();
+        positiveFeedbackSound.play();
+        setRevealImage(true);
+        setScore((prevScore) => prevScore + 50);
+        if (currentRound < 2) {
+          setTimeout(() => {
+            setCurrentRound((prevRound) => prevRound + 1);
+          }, 1000);
+        } else {
+          setTimeout(() => {
+            setIsGameComplete(true);
+            finalSound.play();
+          }, 1000);
+        }
       } else {
-        setTimeout(() => {
-          setIsGameComplete(true);
-        }, 1000);
+        incorrectSound.play();
+        AyudaFeedbackSound.play();
+        setScore((prevScore) => prevScore - 10);
       }
     }
   };

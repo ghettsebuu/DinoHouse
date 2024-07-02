@@ -4,6 +4,12 @@ import FinalScreen from '../Final.jsx';
 import guardarPuntuacion from '../../../helpers/guardarPuntuacion.jsx'; // Importa la función guardarPuntuacion
 import AudioPlayer from '../../../helpers/AudioPlayer'; 
 
+const correctSound = new Audio('/sounds/correct-6033.mp3');
+const incorrectSound = new Audio('/sounds/wronganswer-37702.mp3');
+const finalSound = new Audio('/sounds/level-win-6416.mp3');
+const positiveFeedbackSound = new Audio('/sounds/bien.mp3');
+const AyudaFeedbackSound = new Audio('/sounds/intenta.mp3');
+
 const Oraciones = ({ mostrarOraciones }) => {
   const [audioKey, setAudioKey] = useState('Oraciones'); // Estado para el audio actual
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -80,9 +86,13 @@ const Oraciones = ({ mostrarOraciones }) => {
 
   const handleOptionClick = (isCorrect) => {
     if (isCorrect) {
+      correctSound.play();
+      positiveFeedbackSound.play();
       setScore(score + 10); // Sumar 10 puntos por respuesta correcta
       setFeedback("¡Correcto! Buen trabajo.");
     } else {
+      incorrectSound.play();
+      AyudaFeedbackSound.play();
       setFeedback("No es correcto. Intenta de nuevo.");
     }
     setShowFeedback(true);
@@ -94,6 +104,7 @@ const Oraciones = ({ mostrarOraciones }) => {
         setShowFinalScreen(true);
         const codigoAcceso = localStorage.getItem('codigoAcceso');
         guardarPuntuacion(codigoAcceso, 3, score); // Guarda la puntuación en Firestore
+        finalSound.play(); // Reproduce el sonido al llegar al final del juego
       }
     }, 2000);
   };
@@ -151,3 +162,4 @@ const Oraciones = ({ mostrarOraciones }) => {
 };
 
 export default Oraciones;
+

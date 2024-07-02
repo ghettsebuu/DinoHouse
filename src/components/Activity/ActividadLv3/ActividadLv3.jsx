@@ -3,6 +3,12 @@ import FinalScreen from '../Final';
 import './recetas.css';
 import AudioPlayer from '../../../helpers/AudioPlayer'; 
 
+const correctSound = new Audio('/sounds/correct-6033.mp3');
+const incorrectSound = new Audio('/sounds/wronganswer-37702.mp3');
+const finalSound = new Audio('/sounds/level-win-6416.mp3');
+const positiveFeedbackSound = new Audio('/sounds/bien.mp3');
+const AyudaFeedbackSound = new Audio('/sounds/intenta.mp3');
+
 const recetas = [ 
   {
     nombre: 'Galletas de Chocolate',
@@ -105,7 +111,7 @@ const ActividadLv3 = ({ mostrarActividad }) => {
       setRonda(ronda + 1);
       reiniciarActividad();
     } else {
-      setActividadCompletada(true);
+      handleFinishGame();
     }
   };
 
@@ -117,15 +123,24 @@ const ActividadLv3 = ({ mostrarActividad }) => {
       }
     });
     if (correcto && nuevosArrastrados.length === recetaActual.orden.length) {
+      correctSound.play();
+      positiveFeedbackSound.play();
       setTazonColor('correcto');
       setScore((prevScore) => prevScore + 50); // Añadido: sumar puntos por receta correcta
       setTimeout(siguienteActividad, 1000);
     } else if (correcto) {
       setTazonColor('correcto-parcial');
     } else {
+      incorrectSound.play();
+      AyudaFeedbackSound.play();
       setTazonColor('incorrecto');
       setScore((prevScore) => prevScore - 10); // Añadido: restar puntos por ingrediente incorrecto
     }
+  };
+
+  const handleFinishGame = () => {
+    finalSound.play();
+    setActividadCompletada(true);
   };
 
   const handleClickTazon = () => {

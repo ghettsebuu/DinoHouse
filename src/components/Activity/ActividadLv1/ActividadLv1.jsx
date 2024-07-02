@@ -21,6 +21,8 @@ const ActividadLv1 = ({ mostrarActividad, onNextActivity }) => {
     const correctSound = new Audio('/sounds/correct-6033.mp3');
     const incorrectSound = new Audio('/sounds/wronganswer-37702.mp3');
     const finalSound = new Audio('/sounds/level-win-6416.mp3');
+    const positiveFeedbackSound = new Audio('/sounds/bien.mp3');
+    const AyudaFeedbackSound = new Audio('/sounds/intenta.mp3');
 
     const objectList = [
         { name: "Abeja", letter: "A", image: "/img/ObjetosLv1/Abeja.png", audio: "abeja" },
@@ -97,6 +99,9 @@ const ActividadLv1 = ({ mostrarActividad, onNextActivity }) => {
         setLetterOptions(generateLetterOptions(rounds[0][0]));
     }, []);
 
+   
+    
+
     const handleClickObjeto = (audio) => {
         setAudioKey(audio); // Reproducir audio del objeto seleccionado
     };
@@ -107,11 +112,12 @@ const ActividadLv1 = ({ mostrarActividad, onNextActivity }) => {
         setShowFeedback(true);
        
         // Reproducir el audio de la letra seleccionada
-        setAudioKey(`letra${letter}`);
+    /*     setAudioKey(`letra${letter}`); */
 
         if (letter === roundObjects[currentRound][currentObjectIndex].letter) {
             setCorrectAnswer(true);
             correctSound.play();
+            positiveFeedbackSound.play();
             setScore(prevScore => prevScore + 10);
             setTimeout(async () => {
                 setShowFeedback(false);
@@ -127,7 +133,7 @@ const ActividadLv1 = ({ mostrarActividad, onNextActivity }) => {
                         setCurrentRound(currentRound + 1);
                         setCurrentObjectIndex(0);
                         setLetterOptions(generateLetterOptions(roundObjects[currentRound + 1][0]));
-                    }
+                    } 
                 } else {
                     setCurrentObjectIndex(currentObjectIndex + 1);
                     setLetterOptions(generateLetterOptions(roundObjects[currentRound][currentObjectIndex + 1]));
@@ -136,6 +142,7 @@ const ActividadLv1 = ({ mostrarActividad, onNextActivity }) => {
         } else {
             setCorrectAnswer(false);
             incorrectSound.play();
+            AyudaFeedbackSound.play();
             setScore(prevScore => Math.max(prevScore - 1, 0)); // Restar 1 punto por respuesta incorrecta
             setTimeout(() => {
                 setShowFeedback(false);
