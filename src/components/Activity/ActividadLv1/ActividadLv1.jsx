@@ -21,8 +21,8 @@ const ActividadLv1 = ({ mostrarActividad, onNextActivity }) => {
     const correctSound = new Audio('/sounds/correct-6033.mp3');
     const incorrectSound = new Audio('/sounds/wronganswer-37702.mp3');
     const finalSound = new Audio('/sounds/level-win-6416.mp3');
-    const positiveFeedbackSound = new Audio('/sounds/bien.mp3');
-    const AyudaFeedbackSound = new Audio('/sounds/intenta.mp3');
+    const positiveFeedbackSound = new Audio('/sounds/Nivel1/bien.mp3');
+    const AyudaFeedbackSound = new Audio('/sounds/Nivel1/intenta.mp3');
 
     const objectList = [
         { name: "Abeja", letter: "A", image: "/img/ObjetosLv1/Abeja.png", audio: "abeja" },
@@ -118,7 +118,7 @@ const ActividadLv1 = ({ mostrarActividad, onNextActivity }) => {
             setCorrectAnswer(true);
             correctSound.play();
             positiveFeedbackSound.play();
-            setScore(prevScore => prevScore + 10);
+            setScore(prevScore => prevScore + 30);
             setTimeout(async () => {
                 setShowFeedback(false);
                 setDroppedLetter('');

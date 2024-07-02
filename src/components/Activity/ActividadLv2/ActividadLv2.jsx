@@ -8,8 +8,8 @@ import AudioPlayer from '../../../helpers/AudioPlayer';
 const correctSound = new Audio('/sounds/correct-6033.mp3');
 const incorrectSound = new Audio('/sounds/wronganswer-37702.mp3');
 const finalSound = new Audio('/sounds/level-win-6416.mp3');
-const positiveFeedbackSound = new Audio('/sounds/bien.mp3');
-const AyudaFeedbackSound = new Audio('/sounds/intenta.mp3');
+const positiveFeedbackSound = new Audio('/sounds/Nivel1/bien.mp3');
+const AyudaFeedbackSound = new Audio('/sounds/Nivel2/palabraincorrect.mp3');
 
 const ActividadLv2 = () => {
   const rounds = [

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import FinalScreen from '../Final';
 import './Atrapa.css';
 import AudioPlayer from '../../../helpers/AudioPlayer'; 
+import guardarPuntuacion from '../../../helpers/guardarPuntuacion.jsx'; // Importa la función guardarPuntuacion
 
 const frutas = ['Naranja', 'Sandia', 'Banana', 'Manzana', 'Mango', 'Guayaba', 'Fresa', 'Pera'];
 
@@ -53,6 +54,8 @@ const Atrapa = () => {
         setCambios(0);
       } else {
         finalSound.play(); // Reproducir el sonido final cuando termine el juego
+        const codigoAcceso = localStorage.getItem('codigoAcceso');
+        guardarPuntuacion(codigoAcceso, 3, puntos); // Guarda la puntuación en Firestore
         setShowFinalScreen(true);
       }
     }

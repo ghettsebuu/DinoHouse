@@ -5,10 +5,10 @@ import guardarPuntuacion from '../../../helpers/guardarPuntuacion.jsx';
 import AudioPlayer from '../../../helpers/AudioPlayer'; 
 
 const correctSound = new Audio('/sounds/correct-6033.mp3');
-const incorrectSound = new Audio('/sounds/wronganswer-37702.mp3');
+const incorrectSound = new Audio('/sounds/flipcard-91468.mp3');
 const finalSound = new Audio('/sounds/level-win-6416.mp3');
-const positiveFeedbackSound = new Audio('/sounds/bien.mp3');
-const AyudaFeedbackSound = new Audio('/sounds/intenta.mp3');
+const positiveFeedbackSound = new Audio('/sounds/Nivel1/bien.mp3');
+/* const AyudaFeedbackSound = new Audio('/sounds/Nivel1/memoria-sigueb.mp3'); */ 
 
 const MemoryGame = ({ onNext }) => {
     const [audioKey, setAudioKey] = useState('Memorias'); // Estado para el audio actual
@@ -19,7 +19,7 @@ const MemoryGame = ({ onNext }) => {
     const [rondas, setRondas] = useState(1);
     const [finJuego, setFinJuego] = useState(false);
     const [puntuacion, setPuntuacion] = useState(0);
-    const maxRondas = 3;
+    const maxRondas = 2;
    
 
     
@@ -163,7 +163,7 @@ const MemoryGame = ({ onNext }) => {
                 setTimeout(() => {
                     setCartasVolteadas([]);
                     incorrectSound.play(); // Reproducir sonido de error
-                    AyudaFeedbackSound.play();
+                   /*  AyudaFeedbackSound.play(); */
                 }, 1000);
             }
         }
@@ -171,7 +171,7 @@ const MemoryGame = ({ onNext }) => {
 
     // Función para iniciar una nueva ronda
     const iniciarNuevaRonda = () => {
-        const numCartasPorRonda = [8, 12, 16];
+        const numCartasPorRonda = [8, 12];
         if (rondas < maxRondas) {
             const numCartas = numCartasPorRonda[rondas];
             setRondas(rondas + 1);
@@ -195,7 +195,8 @@ const MemoryGame = ({ onNext }) => {
             } else {
                 setFinJuego(true);
                 finalSound.play(); // Reproducir sonido de finalización del juego
-                const codigoAcceso = localStorage.getItem('studentCodigoAcceso');
+                // Guardar puntuación al finalizar la actividad
+                const codigoAcceso = localStorage.getItem('codigoAcceso'); // Ajusta aquí según cómo almacenes el código de acceso
                 guardarPuntuacion(codigoAcceso, 1, puntuacion); // Guarda la puntuación en Firestore
             }
         }

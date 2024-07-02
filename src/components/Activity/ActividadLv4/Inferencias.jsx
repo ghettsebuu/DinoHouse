@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './Inferencias.css';
 import FinalScreen from '../Final';
 import AudioPlayer from '../../../helpers/AudioPlayer';
+import guardarPuntuacion from '../../../helpers/guardarPuntuacion.jsx';
 
 const questions = [
   {
@@ -59,8 +60,8 @@ const questions = [
 const correctSound = new Audio('/sounds/correct-6033.mp3');
 const incorrectSound = new Audio('/sounds/wronganswer-37702.mp3');
 const finalSound = new Audio('/sounds/level-win-6416.mp3');
-const positiveFeedbackSound = new Audio('/sounds/bien.mp3');
-const ayudaFeedbackSound = new Audio('/sounds/intenta.mp3');
+const positiveFeedbackSound = new Audio('/sounds/Nivel1/bien.mp3');
+const ayudaFeedbackSound = new Audio('/sounds/Nivel4/adiviIncorrect.mp3');
 
 const JuegoInferencias = () => {
   const [audioKey, setAudioKey] = useState('Adivinanzas'); // Estado para el audio actual
@@ -92,6 +93,8 @@ const JuegoInferencias = () => {
       } else {
         setShowResult(true);
         finalSound.play(); // Reproduce el sonido final al terminar el juego
+        const codigoAcceso = localStorage.getItem('codigoAcceso');
+        guardarPuntuacion(codigoAcceso, 4, score ); // Guarda la puntuación en Firestore
       }
     } else {
       incorrectSound.play();

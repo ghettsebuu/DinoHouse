@@ -2,12 +2,13 @@ import React, { useState, useEffect } from 'react';
 import './Palabras.css';
 import FinalScreen from '../Final';
 import AudioPlayer from '../../../helpers/AudioPlayer'; 
+import guardarPuntuacion from '../../../helpers/guardarPuntuacion.jsx';
 
 const correctSound = new Audio('/sounds/correct-6033.mp3');
 const incorrectSound = new Audio('/sounds/wronganswer-37702.mp3');
 const finalSound = new Audio('/sounds/level-win-6416.mp3');
-const positiveFeedbackSound = new Audio('/sounds/bien.mp3');
-const AyudaFeedbackSound = new Audio('/sounds/intenta.mp3');
+const positiveFeedbackSound = new Audio('/sounds/Nivel1/bien.mp3');
+const AyudaFeedbackSound = new Audio('/sounds/Nivel2/silabasIncorrect.mp3');
 
 
 const palabrasData = {
@@ -186,6 +187,8 @@ const Palabras = () => {
           setTimeout(() => {
             setIsGameComplete(true);
             finalSound.play();
+            const codigoAcceso = localStorage.getItem('codigoAcceso');
+            guardarPuntuacion(codigoAcceso, 2, score); // Guarda la puntuación en Firestore
           }, 1000);
         }
       } else {

@@ -2,12 +2,13 @@ import React, { useState, useEffect } from 'react';
 import FinalScreen from '../Final';
 import './recetas.css';
 import AudioPlayer from '../../../helpers/AudioPlayer'; 
+import guardarPuntuacion from '../../../helpers/guardarPuntuacion.jsx'; // Importa la función guardarPuntuacion
 
 const correctSound = new Audio('/sounds/correct-6033.mp3');
 const incorrectSound = new Audio('/sounds/wronganswer-37702.mp3');
 const finalSound = new Audio('/sounds/level-win-6416.mp3');
-const positiveFeedbackSound = new Audio('/sounds/bien.mp3');
-const AyudaFeedbackSound = new Audio('/sounds/intenta.mp3');
+const positiveFeedbackSound = new Audio('/sounds/Nivel1/bien.mp3');
+const AyudaFeedbackSound = new Audio('/sounds/Nivel3/recetaIncorrect.mp3');
 
 const recetas = [ 
   {
@@ -140,6 +141,8 @@ const ActividadLv3 = ({ mostrarActividad }) => {
 
   const handleFinishGame = () => {
     finalSound.play();
+    const codigoAcceso = localStorage.getItem('codigoAcceso');
+    guardarPuntuacion(codigoAcceso, 3, score); // Guarda la puntuación en Firestore
     setActividadCompletada(true);
   };
 

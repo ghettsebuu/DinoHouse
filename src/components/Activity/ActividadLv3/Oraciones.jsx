@@ -7,8 +7,8 @@ import AudioPlayer from '../../../helpers/AudioPlayer';
 const correctSound = new Audio('/sounds/correct-6033.mp3');
 const incorrectSound = new Audio('/sounds/wronganswer-37702.mp3');
 const finalSound = new Audio('/sounds/level-win-6416.mp3');
-const positiveFeedbackSound = new Audio('/sounds/bien.mp3');
-const AyudaFeedbackSound = new Audio('/sounds/intenta.mp3');
+const positiveFeedbackSound = new Audio('/sounds/Nivel1/bien.mp3');
+const AyudaFeedbackSound = new Audio('/sounds/Nivel3/OracionesIncorrect.mp3');
 
 const Oraciones = ({ mostrarOraciones }) => {
   const [audioKey, setAudioKey] = useState('Oraciones'); // Estado para el audio actual
@@ -93,11 +93,11 @@ const Oraciones = ({ mostrarOraciones }) => {
     } else {
       incorrectSound.play();
       AyudaFeedbackSound.play();
-      setFeedback("No es correcto. Intenta de nuevo.");
+      setFeedback("oh ohhh.");
     }
     setShowFeedback(true);
     setTimeout(() => {
-      setShowFeedback(false);
+      setShowFeedback(false); 
       if (currentQuestion < questions.length - 1) {
         setCurrentQuestion(currentQuestion + 1);
       } else {
