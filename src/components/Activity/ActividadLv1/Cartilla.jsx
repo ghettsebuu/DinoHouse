@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './Cartilla.css';
 import AudioPlayer from '../../../helpers/AudioPlayer'; 
+import instructionGif from '/Gif/cartilla.gif'; // Importa tu GIF
+
 
 const datosCartas = [
     { letra: 'A', nombre: 'Abeja', imagen: '/img/ObjetosLv1/Abeja.png', audio: 'abeja' },
@@ -89,13 +91,17 @@ const datosLetras = [
 const Cartilla = ({ onBack }) => {
     const [letraSeleccionada, setLetraSeleccionada] = useState(null);
     const [audioKey, setAudioKey] = useState('cartilla'); // Estado para el audio actual
+    const [interactable, setInteractable] = useState(false); // Estado para controlar la interacción
+    const [showGif, setShowGif] = useState(false);
+
 
     useEffect(() => {
         // Reproducir audio de instrucciones después del audio de bienvenida
         if (audioKey === 'cartilla') {
+            setShowGif(true);
             const timer = setTimeout(() => {
                 setAudioKey('SelecCartilla');
-            }, 7000); // Ajusta el tiempo según la duración del audio de bienvenida
+            }, 8000); // Ajusta el tiempo según la duración del audio de bienvenida
             return () => clearTimeout(timer);
         }
         if (audioKey === 'SelecCartilla') {
@@ -106,7 +112,18 @@ const Cartilla = ({ onBack }) => {
         }
     }, [audioKey]);
 
+    useEffect(() => {
+        if (audioKey === 'PulsarImg') {
+            const timer = setTimeout(() => {
+                setShowGif(false);
+                setInteractable(true);
+            }, 5000); // ajusta el tiempo según la duración total de las instrucciones
+            return () => clearTimeout(timer);
+        }
+    }, [audioKey]);
+
     const handleClickLetra = (letra) => {
+        if (!interactable) return; // Evitar interacción si no es interactuable
         setLetraSeleccionada(letra);
         setAudioKey(`letra${letra}`); // Reproducir audio de la letra seleccionada
     };
@@ -120,6 +137,11 @@ const Cartilla = ({ onBack }) => {
             <div className='tituloCartilla'>
                 <h2>Cartilla del Abecedario</h2>
             </div>
+            {showGif && (
+                 <div className="overlayGif">
+                    <img src={instructionGif} alt="Instruction Gif" className="instruction-gif" />
+                </div>
+            )}
             <AudioPlayer audioKey={audioKey} /> 
             {!letraSeleccionada ? (
                 <div className='letras'>

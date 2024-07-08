@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import './ActividadLv1.css';
-import FinalScreen from '../Final'; // Importar el componente FinalScreen
+import FinalScreen from '../Final';
 import guardarPuntuacion from '../../../helpers/guardarPuntuacion.jsx';
-import AudioPlayer from '../../../helpers/AudioPlayer'; 
+import AudioPlayer from '../../../helpers/AudioPlayer';
+import instructionGif from '/Gif/Memoria.gif'; // Importa tu GIF
 
 const correctSound = new Audio('/sounds/correct-6033.mp3');
 const incorrectSound = new Audio('/sounds/flipcard-91468.mp3');
 const finalSound = new Audio('/sounds/level-win-6416.mp3');
 const positiveFeedbackSound = new Audio('/sounds/Nivel1/bien.mp3');
-/* const AyudaFeedbackSound = new Audio('/sounds/Nivel1/memoria-sigueb.mp3'); */ 
 
 const MemoryGame = ({ onNext }) => {
     const [audioKey, setAudioKey] = useState('Memorias'); // Estado para el audio actual
@@ -19,10 +19,9 @@ const MemoryGame = ({ onNext }) => {
     const [rondas, setRondas] = useState(1);
     const [finJuego, setFinJuego] = useState(false);
     const [puntuacion, setPuntuacion] = useState(0);
+    const [interactable, setInteractable] = useState(false); // Estado para controlar la interactividad
+    const [showGif, setShowGif] = useState(false);
     const maxRondas = 2;
-   
-
-    
 
     const datosCartas = [
         { id: 1, tipo: 'objeto', nombre: 'Abeja', imagen: '/img/ObjetosLv1/Abeja.png' },
@@ -107,15 +106,22 @@ const MemoryGame = ({ onNext }) => {
     useEffect(() => {
         // Reproducir audio de instrucciones después del audio de bienvenida
         if (audioKey === 'Memorias') {
+            setShowGif(true);
             const timer = setTimeout(() => {
                 setAudioKey('InstruccionMemorias');
             }, 3000); // Ajusta el tiempo según la duración del audio de bienvenida
             return () => clearTimeout(timer);
         }
+     
+    }, [audioKey]);
+
+    // Efecto para activar la interactividad después de las instrucciones
+    useEffect(() => {
         if (audioKey === 'InstruccionMemorias') {
             const timer = setTimeout(() => {
-                setAudioKey('EjemploMemoria');
-            }, 7000); // Ajusta el tiempo según la duración del audio de bienvenida
+                setShowGif(false);
+                setInteractable(true);
+            }, 9000); // Ajusta el tiempo según la duración del audio de ejemplo
             return () => clearTimeout(timer);
         }
     }, [audioKey]);
@@ -142,7 +148,7 @@ const MemoryGame = ({ onNext }) => {
 
     // Función para manejar el clic en las cartas
     const manejarClicCarta = (carta) => {
-        if (cartasVolteadas.length === 2 || cartasCoincidentes.includes(carta)) return;
+        if (!interactable || cartasVolteadas.length === 2 || cartasCoincidentes.includes(carta)) return;
         const nuevasCartasVolteadas = [...cartasVolteadas, carta];
         setCartasVolteadas(nuevasCartasVolteadas);
 
@@ -157,13 +163,12 @@ const MemoryGame = ({ onNext }) => {
                 setCartasCoincidentes([...cartasCoincidentes, primeraCarta, carta]);
                 setPuntuacion(puntuacion + 10); // Añadir puntos
                 correctSound.play(); // Reproducir sonido de acierto
-                positiveFeedbackSound.play()
+                positiveFeedbackSound.play();
                 setCartasVolteadas([]);
             } else {
                 setTimeout(() => {
                     setCartasVolteadas([]);
                     incorrectSound.play(); // Reproducir sonido de error
-                   /*  AyudaFeedbackSound.play(); */
                 }, 1000);
             }
         }
@@ -180,6 +185,7 @@ const MemoryGame = ({ onNext }) => {
             setCartasCoincidentes([]);
             setMovimientos(0);
             setPuntuacion(puntuacion); // Mantener la puntuación acumulada
+            
         } else {
             setFinJuego(true);
         }
@@ -212,18 +218,7 @@ const MemoryGame = ({ onNext }) => {
         return (
             <FinalScreen
                 score={puntuacion}
-                onRestart={() => {
-                    setCartas([]);
-                    setCartasVolteadas([]);
-                    setCartasCoincidentes([]);
-                    setMovimientos(0);
-                    setRondas(1);
-                    setFinJuego(false);
-                    setPuntuacion(0);
-                    setCartas(obtenerCartasAleatorias(8));
-                }}
-                onGoToHome={() => console.log("Ir al inicio")} // Definir acción para ir al inicio
-                onNext={onNext}
+                
             />
         );
     }
@@ -231,7 +226,12 @@ const MemoryGame = ({ onNext }) => {
     // Renderizar el juego de memoria mientras se esté jugando
     return (
         <div className="memory-game">
-            <AudioPlayer audioKey={audioKey} /> 
+              {showGif && (
+                <div className="overlayGif">
+                    <img src={instructionGif} alt="Instruction Gif" className="instruction-gif" />
+                </div>
+              )}
+            <AudioPlayer audioKey={audioKey} />
             <h2>Juego de Memoria</h2>
             <div className="movimientos">Movimientos: {movimientos}</div>
             <div className="rondas">Ronda: {rondas}/{maxRondas}</div>

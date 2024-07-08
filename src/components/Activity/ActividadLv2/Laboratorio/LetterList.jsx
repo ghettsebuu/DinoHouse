@@ -3,7 +3,7 @@ import './LetterList.css';
 
 const consonantsLevel1 = {
   1: ['M', 'P', 'L', 'D', 'N', 'F', 'T'],
-  2: ['R', 'B', 'V', 'G', 'J', 'C', 'Q', 'S', 'Z', 'Y'],
+  2: ['R', 'B', 'V', 'G', 'J', 'C','S', 'Z', 'Y'],
   3: ['H', 'K', 'Ñ', 'X', 'W']
 };
 

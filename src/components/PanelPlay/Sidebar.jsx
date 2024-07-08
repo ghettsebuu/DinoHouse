@@ -15,7 +15,7 @@ const SidebarComponent = ({ avatar, Nombre, level, mostrarSelectNivel, onBackBut
       <div className={`avatar-card ${hidden}`}>
         <img src="/img/perfil/1.png" alt="Avatar" className="avatar" />
         <div className="user-info">
-          <div className="username-container">
+          <div className="username-container"> 
             <p>{Nombre}</p>
           </div>
           <div className="level-container" onClick={handleMostrarSelectNivel}>

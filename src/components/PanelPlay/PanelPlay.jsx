@@ -1,4 +1,3 @@
-// src/components/PanelPlay/PanelPlay.jsx
 import React, { useState, useEffect } from 'react';
 import SidebarComponent from './Sidebar';
 import SceneComponent from './Scene';
@@ -122,6 +121,7 @@ const PanelPlay = () => {
           handleVolverALetras={handleVolverALetras}
           codigoAcceso={codigoAcceso}
           onLevelUp={handleLevelUp} // Pasar handleLevelUp a SceneComponent
+          mostrarSelectNivel={() => handleMostrar('selectNivel')} // Pasar mostrarSelectNivel a SceneComponent
         />
       )}
       <ButtonPanel

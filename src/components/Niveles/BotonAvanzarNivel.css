@@ -1,0 +1,57 @@
+/* src/components/BotonAvanzarNivel/BotonAvanzarNivel.css */
+.boton-avanzar-nivel {
+    position: absolute; /* Posiciona el botón de forma absoluta */
+    top: 85%;
+    left: 90%;
+    padding: 10px 20px;
+    font-size: 20px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: grey;
+    color: white;
+    z-index: 10; /* Asegura que el botón esté sobre otros elementos */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.651));
+    
+  }
+  
+  .boton-avanzar-nivel svg {
+    margin-left: 10px;
+  }
+  
+  .boton-avanzar-nivel.activo {
+    background-color: rgb(243, 105, 50);
+  
+    
+  }
+  
+  .boton-avanzar-nivel.activo:hover {
+    background-color: rgb(207, 73, 19);
+    
+  }
+  .boton-avanzar-nivel.inactivo {
+    background-color: grey;
+  }
+  
+  @media (max-width: 768px) {
+    .boton-avanzar-nivel {
+      top: 88%;
+      left: 80%;
+      font-size: 18px;
+      padding: 8px 16px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .boton-avanzar-nivel {
+        top: 87%;
+        left: 77%;
+      font-size: 16px;
+      padding: 6px 12px;
+    }
+  }
+  
+ 

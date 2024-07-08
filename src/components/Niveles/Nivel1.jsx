@@ -3,8 +3,9 @@ import React, { useState, useEffect } from 'react';
 import './nivel.css';
 import AudioPlayer from '../../helpers/AudioPlayer';
 import ProgressBar from './ProgressBar'; // Ajustar la importación según la estructura de carpetas
+import BotonAvanzarNivel from './BotonAvanzarNivel';
 
-const Nivel1 = ({ mostrarActividad, mostrarMemoryGame, mostrarCartilla, codigoAcceso }) => {
+const Nivel1 = ({ mostrarActividad, mostrarMemoryGame, mostrarCartilla, codigoAcceso,onLevelUp }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -53,6 +54,7 @@ const Nivel1 = ({ mostrarActividad, mostrarMemoryGame, mostrarCartilla, codigoAc
     <div className='nivel'>
       <AudioPlayer audioKey="Nivel1" />
       <ProgressBar codigoAcceso={codigoAcceso} level={1} />
+      <BotonAvanzarNivel codigoAcceso={codigoAcceso} level={1} onLevelUp={onLevelUp} />
       <img src="/img/level1.jpg" alt="Fondo-nivel1" className='background-image'/>
       <img onClick={handleMostrarActividadClick} src="/img/dinoazul2.png" alt="Rex" className='foreground-image D-Nivel1' />
       <img onClick={handleMostrarMemoryGameClick} src="/img/memoria.png" alt="playjuego" className='foreground-image memoria' />

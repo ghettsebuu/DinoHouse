@@ -37,7 +37,8 @@ const SceneComponent = ({
   actividadMostrada,
   handleVolverALetras,
   codigoAcceso,
-  onLevelUp // Recibe onLevelUp como prop
+  onLevelUp, // Recibe onLevelUp como prop
+  mostrarSelectNivel // Añadir esta prop
 }) => {
   let NivelComponent;
   let ActividadComponent;
@@ -83,9 +84,10 @@ const SceneComponent = ({
           mostrarPalabras={mostrarPalabras} 
           mostrarAtrapa={mostrarAtrapa}
           mostrarInferencias={mostrarInferencias}
-          mostrarHistorias={mostrarHistorias} 
+          mostrarHistorias={mostrarHistorias}  
           codigoAcceso={codigoAcceso}
           onLevelUp={onLevelUp} // Pasar onLevelUp a NivelComponent
+          mostrarSelectNivel={mostrarSelectNivel} // Añadir esta prop
         />
       ) : actividadMostrada === 'actividad' ? (
         <ActividadComponent mostrarActividad={mostrarActividad} />

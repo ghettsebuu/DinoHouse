@@ -2,8 +2,9 @@ import React from 'react';
 import './nivel.css';
 import AudioPlayer from '../../helpers/AudioPlayer';
 import ProgressBar from './ProgressBar'; // Ajustar la importación según la estructura de carpetas
+import BotonAvanzarNivel from './BotonAvanzarNivel';
 
-const Nivel3 = ({ mostrarActividad, mostrarMemoryGame, mostrarOraciones, mostrarAtrapa, seleccionarNivel, codigoAcceso }) => {
+const Nivel3 = ({ mostrarActividad, mostrarMemoryGame, mostrarOraciones, mostrarAtrapa, seleccionarNivel, codigoAcceso,onLevelUp }) => {
  
 
   
@@ -31,6 +32,7 @@ const Nivel3 = ({ mostrarActividad, mostrarMemoryGame, mostrarOraciones, mostrar
         <div className='nivel'>
             <AudioPlayer audioKey="Nivel3" />
             <ProgressBar codigoAcceso={codigoAcceso} level={3} />
+            <BotonAvanzarNivel codigoAcceso={codigoAcceso} level={3} onLevelUp={onLevelUp} />
             <img src="/img/level3.jpg" alt="Fondo-nivel3" className='background-image' />
             <img onClick={handleMostrarOracionesClick} src="/img/dinoverde.png" alt="Tito" className='foreground-image D-Nivel3' />
             <img onClick={handleMostrarActividadClick} src="/img/sopa2.png" alt="playjuego" className='foreground-image recetas' />

@@ -123,12 +123,34 @@
   /* Coloca la imagen en la mitad superior del contenedor principal */
   left: 57%;
   /* Coloca la imagen en el centro horizontal del contenedor principal */
+
  
 }
 .Dado, .memoria, .D-Nivel1, .D-Nivel2, .D-Nivel3, .D-Nivel4, .laboratorio, .cohete, .recetas, .sandia, .historias, .cometa {
   filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.651));
 }
 
+.NivelesB{
+  position: absolute; /* Posiciona el botón de forma absoluta */
+    top: 85%;
+    left: 80%;
+    padding: 10px 20px;
+    font-size: 25px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #e66b1a;
+    color: white;
+    z-index: 10; /* Asegura que el botón esté sobre otros elementos */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.651));
+}
+
+.NivelesB:hover{
+  background-color:#e2642a ;
+}
   
 
 
@@ -150,5 +172,10 @@
     width: 21%;
     top: 71%;
     left: 87%;
+  }
+  .NivelesB{
+    top: 84%;
+    left: 63%;
+    font-size: 12px;
   }
 }

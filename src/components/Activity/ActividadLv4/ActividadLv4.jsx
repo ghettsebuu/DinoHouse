@@ -3,6 +3,7 @@ import FinalScreen from '../Final';
 import guardarPuntuacion from '../../../helpers/guardarPuntuacion.jsx';
 import './ActividadLv4.css';
 import AudioPlayer from '../../../helpers/AudioPlayer';
+import instructionGif from '/Gif/ActividadLv4.gif'; // Importa tu GIF
 
 const TOTAL_ROUNDS = 5;
 const CORRECT_SCORE = 20;
@@ -25,6 +26,8 @@ const ActividadLv4 = ({ mostrarActividad }) => {
   const [audioPlayed, setAudioPlayed] = useState(false);
   const [score, setScore] = useState(0);
   const [scoreChange, setScoreChange] = useState(0);
+  const [interactable, setInteractable] = useState(false); // Estado para controlar la interacción
+  const [showGif, setShowGif] = useState(false);
 
   const paragraphs = [
     "María compró caramelos y los repartió entre todos sus amigos.",
@@ -36,6 +39,7 @@ const ActividadLv4 = ({ mostrarActividad }) => {
   useEffect(() => {
     // Reproducir audio de instrucciones después del audio de bienvenida
     if (audioKey === 'ActividadLv4') {
+      setShowGif(true);
       const timer = setTimeout(() => {
         setAudioKey('InstruccionLv4');
       }, 6000); // Ajusta el tiempo según la duración del audio de bienvenida
@@ -52,6 +56,17 @@ const ActividadLv4 = ({ mostrarActividad }) => {
   useEffect(() => {
     startNewGame();
   }, []);
+
+  useEffect(() => {
+    // Activar la interacción después de que se reproduzcan todas las instrucciones
+    if (audioKey === 'AyudaLv4') {
+        const timer = setTimeout(() => {
+            setShowGif(false);
+            setInteractable(true);
+        }, 7000); // ajusta el tiempo según la duración total de las instrucciones
+        return () => clearTimeout(timer);
+    }
+}, [audioKey]);
 
   const startNewGame = () => {
     const randomParagraph = paragraphs[Math.floor(Math.random() * paragraphs.length)];
@@ -82,8 +97,16 @@ const ActividadLv4 = ({ mostrarActividad }) => {
     setCorrect(false);
     setAudioPlayed(false); // Reset audio played state
   };
+  const playAudio = (word) => {
+    if (!interactable) return; // Evitar interacción si no es interactuable
+    return () => {
+      const audio = new Audio(`/audios/${word.toLowerCase()}.mp3`);
+      audio.play();
+    };
+  };
 
   const handleWordClick = (word) => {
+    if (!interactable) return; // Evitar interacción si no es interactuable
     setSelectedWord(word);
     if (word === targetWord) {
       setCorrect(true);
@@ -109,33 +132,13 @@ const ActividadLv4 = ({ mostrarActividad }) => {
     }
   };
 
-  const handleRestart = () => {
-    startNewGame();
-  };
 
-  const handleGoToHome = () => {
-    mostrarActividad(false);
-  };
 
-  const handleNext = () => {
-    // Implementa la lógica para ir a la siguiente actividad si la tienes
-    console.log("Next activity");
-  };
-
-  const playAudio = (word) => {
-    // Retorna solo la función de reproducción, no la reproducción automática
-    return () => {
-      const audio = new Audio(`/audios/${word.toLowerCase()}.mp3`);
-      audio.play();
-    };
-  };
+ 
 
   if (gameOver) {
     return (
       <FinalScreen
-        onRestart={handleRestart}
-        onGoToHome={handleGoToHome}
-        onNext={handleNext}
         score={score}
       />
     );
@@ -146,6 +149,11 @@ const ActividadLv4 = ({ mostrarActividad }) => {
   return (
     <section className='PlayScena'>
     <div className="actividad4">  
+    {showGif && (
+            <div className="overlayGif">
+                   <img src={instructionGif} alt="Instruction Gif" className="instruction-gif" />
+            </div>
+    )}
     <AudioPlayer audioKey={audioKey} />
       <h2>Encuentra la palabra</h2> 
       <div className='ronda'>

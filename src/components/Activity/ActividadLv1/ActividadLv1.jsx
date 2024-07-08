@@ -3,7 +3,7 @@ import './ActividadLv1.css';
 import FinalScreen from '../Final.jsx';
 import guardarPuntuacion from '../../../helpers/guardarPuntuacion'; // Importar la función de guardar puntuación
 import AudioPlayer from '../../../helpers/AudioPlayer'; 
-
+import instructionGif from '/Gif/ActividadLv1.gif'; // Importa tu GIF
 
 const ActividadLv1 = ({ mostrarActividad, onNextActivity }) => {
     const [audioKey, setAudioKey] = useState('ActividadLv1'); // Estado para el audio actual
@@ -17,6 +17,8 @@ const ActividadLv1 = ({ mostrarActividad, onNextActivity }) => {
     const [showFeedback, setShowFeedback] = useState(false);
     const [currentRound, setCurrentRound] = useState(0);
     const [roundObjects, setRoundObjects] = useState([]);
+    const [interactable, setInteractable] = useState(false); // Estado para controlar la interacción
+    const [showGif, setShowGif] = useState(false);
 
     const correctSound = new Audio('/sounds/correct-6033.mp3');
     const incorrectSound = new Audio('/sounds/wronganswer-37702.mp3');
@@ -76,17 +78,17 @@ const ActividadLv1 = ({ mostrarActividad, onNextActivity }) => {
         { name: "Zanahoria", letter: "Z", image: "/img/ObjetosLv1/Zanahoria.png", audio: "zanahoria" },
         { name: "Zapato", letter: "Z", image: "/img/ObjetosLv1/Zapato.png", audio: "zapato" },
     ];
-    
 
     useEffect(() => {
-        // Reproducir audio de instrucciones después del audio de bienvenida
+        // Mostrar GIF y reproducir audio de instrucciones
         if (audioKey === 'ActividadLv1') {
+            setShowGif(true);
             const timer = setTimeout(() => {
                 setAudioKey('InstruccionLv1');
-            }, 6000); // Ajusta el tiempo según la duración del audio de bienvenida
+                
+            }, 8000); // Ajusta el tiempo según la duración del audio de bienvenida
             return () => clearTimeout(timer);
         }
-     
     }, [audioKey]);
 
     useEffect(() => {
@@ -99,20 +101,26 @@ const ActividadLv1 = ({ mostrarActividad, onNextActivity }) => {
         setLetterOptions(generateLetterOptions(rounds[0][0]));
     }, []);
 
-   
-    
+    useEffect(() => {
+        if (audioKey === 'InstruccionLv1') {
+            const timer = setTimeout(() => {
+                setShowGif(false);
+                setInteractable(true);
+            }, 5000); // ajusta el tiempo según la duración total de las instrucciones
+            return () => clearTimeout(timer);
+        }
+    }, [audioKey]);
 
     const handleClickObjeto = (audio) => {
+        if (!interactable) return; // Evitar interacción si no es interactuable
         setAudioKey(audio); // Reproducir audio del objeto seleccionado
     };
 
     const handleLetterClick = async (letter) => {
+        if (!interactable) return; // Evitar interacción si no es interactuable
         setClickedLetter(letter);
         setDroppedLetter(letter);
         setShowFeedback(true);
-       
-        // Reproducir el audio de la letra seleccionada
-    /*     setAudioKey(`letra${letter}`); */
 
         if (letter === roundObjects[currentRound][currentObjectIndex].letter) {
             setCorrectAnswer(true);
@@ -176,36 +184,20 @@ const ActividadLv1 = ({ mostrarActividad, onNextActivity }) => {
         return shuffledOptions; 
     };
 
-    const restartActivity = () => {
-        const selectedObjects = objectList.sort(() => 0.5 - Math.random()).slice(0, 20);
-        const rounds = [];
-        for (let i = 0; i < 4; i++) {
-            rounds.push(selectedObjects.slice(i * 5, i * 5 + 5));
-        }
-        setRoundObjects(rounds);
-        setCurrentRound(0);
-        setCurrentObjectIndex(0);
-        setLetterOptions(generateLetterOptions(rounds[0][0]));
-        setShowFinalScreen(false);
-        setScore(0);
-        setShowFeedback(false);
-    };
 
-    const goToHome = () => {
-        mostrarActividad(false);
-    };
-
-    const nextActivity = () => {
-        onNextActivity();
-    };
 
     return (
         <section className='PlayScena'>
             {showFinalScreen ? (
-                <FinalScreen score={score} onRestart={restartActivity} onGoToHome={goToHome} onNext={nextActivity} />
+                <FinalScreen score={score} />
             ) : (
                 <div className="actividad-lv1">
-                    <AudioPlayer audioKey={audioKey} /> 
+                       {showGif && (
+                            <div className="overlayGif">
+                                <img src={instructionGif} alt="Instruction Gif" className="instruction-gif" />
+                            </div>
+                        )}
+                    <AudioPlayer audioKey={audioKey} />
                     <div className="progress-bar">
                         <div className="progress" style={{ width: `${(currentObjectIndex + 1) / 5 * 100}%` }}></div>
                     </div>
@@ -213,7 +205,7 @@ const ActividadLv1 = ({ mostrarActividad, onNextActivity }) => {
                     <div className="score">Puntuación: {score}</div>
                     {roundObjects[currentRound] && roundObjects[currentRound][currentObjectIndex] ? (
                         <>
-                            <div className="object-image">
+                            <div className={`object-image ${!interactable ? 'blocked' : ''}`}>
                                 <img onClick={() => handleClickObjeto(roundObjects[currentRound][currentObjectIndex].audio)} src={roundObjects[currentRound][currentObjectIndex].image} alt={roundObjects[currentRound][currentObjectIndex].name} className='imagen' />
                             </div>
                             <div className={`drop-area ${correctAnswer ? 'correct' : ''}`}>
@@ -221,18 +213,20 @@ const ActividadLv1 = ({ mostrarActividad, onNextActivity }) => {
                             </div>
                             {showFeedback && <div className="feedback-message">{correctAnswer ? '¡Bravo!' : 'Intenta de nuevo'}</div>}
                             <div className="letters-container">
-                                {letterOptions.map((letter, index) => (
-                                    <div key={index} className="letter" onClick={() => handleLetterClick(letter)}>{letter}</div>
+                                {letterOptions.map(letter => (
+                                    <div key={letter} onClick={() => handleLetterClick(letter)} className={`letter ${!interactable ? 'blocked' : ''}`}>
+                                        {letter}
+                                    </div>
                                 ))}
                             </div>
                         </>
                     ) : (
-                        <div>Cargando...</div>
+                        <p>No hay más objetos.</p>
                     )}
                 </div>
             )}
         </section>
     );
-}
+};
 
 export default ActividadLv1;

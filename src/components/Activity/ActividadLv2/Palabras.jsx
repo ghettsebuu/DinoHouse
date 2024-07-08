@@ -3,6 +3,7 @@ import './Palabras.css';
 import FinalScreen from '../Final';
 import AudioPlayer from '../../../helpers/AudioPlayer'; 
 import guardarPuntuacion from '../../../helpers/guardarPuntuacion.jsx';
+import instructionGif from '/Gif/silabas.gif'; // Importa tu GIF
 
 const correctSound = new Audio('/sounds/correct-6033.mp3');
 const incorrectSound = new Audio('/sounds/wronganswer-37702.mp3');
@@ -92,10 +93,13 @@ const Palabras = () => {
   const [isGameComplete, setIsGameComplete] = useState(false);
   const [revealImage, setRevealImage] = useState(false);
   const [score, setScore] = useState(0);
+  const [interactable, setInteractable] = useState(false); // Estado para controlar la interacción
+  const [showGif, setShowGif] = useState(false);
 
   useEffect(() => {
     // Reproducir audio de instrucciones después del audio de bienvenida
     if (audioKey === 'Misterio') {
+        setShowGif(true);
         const timer = setTimeout(() => {
             setAudioKey('InstruccionMisterio');
         }, 2000); // Ajusta el tiempo según la duración del audio de bienvenida
@@ -103,6 +107,7 @@ const Palabras = () => {
     }
  
 }, [audioKey]);
+
   useEffect(() => {
     const difficultyLevels = ['facil', 'medio', 'dificil'];
     if (currentRound < difficultyLevels.length) {
@@ -117,9 +122,22 @@ const Palabras = () => {
     }
   }, [currentRound]);
 
+  useEffect(() => {
+    // Activar la interacción después de que se reproduzcan todas las instrucciones
+    if (audioKey === 'InstruccionMisterio') {
+        const timer = setTimeout(() => {
+            setShowGif(false);
+            setInteractable(true);
+        }, 8500); // ajusta el tiempo según la duración total de las instrucciones
+        return () => clearTimeout(timer);
+    }
+}, [audioKey]);
+
   const handleSilabaClick = (index) => {
+    if (!interactable) return; // Evitar interacción si no es interactuable
     const silaba = shuffledSilabas[index];
     const firstEmptyIndex = userInput.findIndex((input) => input === '');
+    
     if (firstEmptyIndex !== -1) {
       const newInput = [...userInput];
       newInput[firstEmptyIndex] = silaba;
@@ -141,6 +159,7 @@ const Palabras = () => {
   };
 
   const handleInputClick = (index) => {
+    
     if (userInput[index] !== '') {
       const newShuffled = [...shuffledSilabas];
       const silaba = userInput[index];
@@ -203,24 +222,21 @@ const Palabras = () => {
     setScore((prevScore) => prevScore - 10);
   };
 
-  const restartGame = () => {
-    setCurrentRound(0);
-    setIsGameComplete(false);
-    setCurrentWord(null);
-    setShuffledSilabas([]);
-    setUserInput([]);
-    setRevealImage(false);
-    setScore(0);
-  };
+ 
 
   if (isGameComplete) {
-    return <FinalScreen score={score} onRestart={restartGame} onGoToHome={() => {}} onNext={() => {}} />;
+    return <FinalScreen score={score} />;
   }
 
   if (!currentWord) return null;
 
   return (
     <div className="Palabras">
+       {showGif && (
+            <div className="overlayGif">
+                   <img src={instructionGif} alt="Instruction Gif" className="instruction-gif" />
+            </div>
+        )}
       <AudioPlayer audioKey={audioKey} /> 
       <h2>Descubre la imagen secreta</h2>
       <div className="score">Puntuación: {score}</div>

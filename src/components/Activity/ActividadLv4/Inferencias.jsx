@@ -3,6 +3,7 @@ import './Inferencias.css';
 import FinalScreen from '../Final';
 import AudioPlayer from '../../../helpers/AudioPlayer';
 import guardarPuntuacion from '../../../helpers/guardarPuntuacion.jsx';
+import instructionGif from '/Gif/Adivinanzas.gif'; // Importa tu GIF
 
 const questions = [
   {
@@ -69,10 +70,13 @@ const JuegoInferencias = () => {
   const [score, setScore] = useState(0);
   const [showResult, setShowResult] = useState(false);
   const [retryAvailable, setRetryAvailable] = useState(false); // Estado para controlar si está disponible el reintentar
+  const [interactable, setInteractable] = useState(false); // Estado para controlar la interacción
+  const [showGif, setShowGif] = useState(false);
 
   useEffect(() => {
     // Reproducir audio de instrucciones después del audio de bienvenida
     if (audioKey === 'Adivinanzas') {
+      setShowGif(true);
       const timer = setTimeout(() => {
         setAudioKey('InstruccionAdivinanzas');
       }, 6000); // Ajusta el tiempo según la duración del audio de bienvenida
@@ -80,7 +84,19 @@ const JuegoInferencias = () => {
     }
   }, [audioKey]);
 
+  useEffect(() => {
+    // Activar la interacción después de que se reproduzcan todas las instrucciones
+    if (audioKey === 'InstruccionAdivinanzas') {
+        const timer = setTimeout(() => {
+            setShowGif(false);
+            setInteractable(true);
+        }, 4000); // ajusta el tiempo según la duración total de las instrucciones
+        return () => clearTimeout(timer);
+    }
+}, [audioKey]);
+
   const handleOptionClick = (option) => {
+    if (!interactable) return; // Evitar interacción si no es interactuable
     if (option.correct) {
       correctSound.play();
       positiveFeedbackSound.play();
@@ -107,22 +123,21 @@ const JuegoInferencias = () => {
     setRetryAvailable(false); // Deshabilitar la opción de reintentar
   };
 
-  const handleRestart = () => {
-    setCurrentQuestion(0);
-    setScore(0);
-    setShowResult(false);
-    setRetryAvailable(false); // Reiniciar la opción de reintentar
-  };
+
 
   return (
     <div className="juego-inferencias">
+      {showGif && (
+            <div className="overlayGif">
+                   <img src={instructionGif} alt="Instruction Gif" className="instruction-gif" />
+            </div>
+        )}
       <AudioPlayer audioKey={audioKey} />
       <h2>Adivinanzas</h2>
       {showResult ? (
         <FinalScreen
           score={score}
-          onRestart={handleRestart}
-          // Implementa las funciones para onGoToHome y onNext según sea necesario
+          
         />
       ) : (
         <div className="question-card">

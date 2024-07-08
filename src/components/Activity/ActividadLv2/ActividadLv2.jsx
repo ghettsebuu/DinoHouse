@@ -4,6 +4,7 @@ import "./ActividadLv2.css";
 import FinalScreen from "../Final";
 import guardarPuntuacion from '../../../helpers/guardarPuntuacion.jsx';
 import AudioPlayer from '../../../helpers/AudioPlayer';
+import instructionGif from '/Gif/Palabras.gif'; // Importa tu GIF
 
 const correctSound = new Audio('/sounds/correct-6033.mp3');
 const incorrectSound = new Audio('/sounds/wronganswer-37702.mp3');
@@ -34,12 +35,15 @@ const ActividadLv2 = () => {
   const [attempts, setAttempts] = useState(0);
   const [score, setScore] = useState(0);
   const [scoreUpdated, setScoreUpdated] = useState(false);
+  const [interactable, setInteractable] = useState(false); // Estado para controlar la interacción
+  const [showGif, setShowGif] = useState(false);
 
   const currentRound = rounds[currentRoundIndex];
 
   useEffect(() => {
     // Reproducir audio de instrucciones después del audio de bienvenida
     if (audioKey === 'ActividadLv2') {
+      setShowGif(true);
       const timer = setTimeout(() => {
         setAudioKey('InstruccionLv2');
       }, 5000); // Ajusta el tiempo según la duración del audio de bienvenida
@@ -56,7 +60,20 @@ const ActividadLv2 = () => {
     setScoreUpdated(false);
   }, [currentRoundIndex]);
 
+  
+  useEffect(() => {
+    // Activar la interacción después de que se reproduzcan todas las instrucciones
+    if (audioKey === 'InstruccionLv2') {
+        const timer = setTimeout(() => {
+            setShowGif(false);
+            setInteractable(true);
+        }, 12000); // ajusta el tiempo según la duración total de las instrucciones
+        return () => clearTimeout(timer);
+    }
+}, [audioKey]);
+
   const moveLetter = (letter, toIndex) => {
+    if (!interactable) return; // Evitar interacción si no es interactuable
     const fromIndex = letters.indexOf(letter);
     const newCurrentWord = update(currentWord, {
       [toIndex]: { $set: letter },
@@ -119,27 +136,24 @@ const ActividadLv2 = () => {
   };
 
   const handleClickObjeto = (audio) => {
+    if (!interactable) return; // Evitar interacción si no es interactuable
     setAudioKey(audio); // Reproducir audio del objeto seleccionado
+   
   };
 
   return (
     <section className='PlayScena'>
       <div className="actividad-lv2">
+      {showGif && (
+            <div className="overlayGif">
+                   <img src={instructionGif} alt="Instruction Gif" className="instruction-gif" />
+            </div>
+        )}
         <AudioPlayer audioKey={audioKey} />
         {gameComplete ? (
           <FinalScreen
             score={score}
-            onRestart={() => {
-              setGameComplete(false);
-              setCurrentRoundIndex(0);
-              setScore(0);
-            }}
-            onGoToHome={() => {
-              // Lógica para ir a la pantalla de inicio, si es necesario
-            }}
-            onNext={() => {
-              // Lógica para ir a la siguiente actividad, si es necesario
-            }}
+           
           />
         ) : (
           <>

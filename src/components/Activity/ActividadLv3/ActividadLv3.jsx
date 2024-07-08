@@ -3,6 +3,7 @@ import FinalScreen from '../Final';
 import './recetas.css';
 import AudioPlayer from '../../../helpers/AudioPlayer'; 
 import guardarPuntuacion from '../../../helpers/guardarPuntuacion.jsx'; // Importa la función guardarPuntuacion
+import instructionGif from '/Gif/recetas.gif'; // Importa tu GIF
 
 const correctSound = new Audio('/sounds/correct-6033.mp3');
 const incorrectSound = new Audio('/sounds/wronganswer-37702.mp3');
@@ -64,10 +65,13 @@ const ActividadLv3 = ({ mostrarActividad }) => {
   const recetaActual = recetas[ronda];
   const [ingredientesDisponibles, setIngredientesDisponibles] = useState(shuffleArray(recetaActual.ingredientes));
   const [tazonColor, setTazonColor] = useState('');
+  const [interactable, setInteractable] = useState(false); // Estado para controlar la interacción
+  const [showGif, setShowGif] = useState(false);
 
   useEffect(() => {
     // Reproducir audio de instrucciones después del audio de bienvenida
     if (audioKey === 'Recetas') {
+      setShowGif(true);
       const timer = setTimeout(() => {
         setAudioKey('InstruccionRecetas');
       }, 2000); // Ajusta el tiempo según la duración del audio de bienvenida
@@ -79,7 +83,19 @@ const ActividadLv3 = ({ mostrarActividad }) => {
     setIngredientesDisponibles(shuffleArray(recetaActual.ingredientes));
   }, [ronda]);
 
+  useEffect(() => {
+    // Activar la interacción después de que se reproduzcan todas las instrucciones
+    if (audioKey === 'InstruccionRecetas') {
+        const timer = setTimeout(() => {
+          setShowGif(false);
+            setInteractable(true);
+        }, 4000); // ajusta el tiempo según la duración total de las instrucciones
+        return () => clearTimeout(timer);
+    }
+}, [audioKey]);
+
   const handleIngredientClick = (ingrediente) => {
+    if (!interactable) return; // Evitar interacción si no es interactuable
     if (arrastrados.length < recetaActual.orden.length) {
       const nuevosArrastrados = [...arrastrados, ingrediente];
       setArrastrados(nuevosArrastrados);
@@ -90,6 +106,7 @@ const ActividadLv3 = ({ mostrarActividad }) => {
   };
 
   const handleRemove = (index) => {
+
     const ingredienteRemovido = arrastrados[index];
     const nuevosArrastrados = arrastrados.filter((_, i) => i !== index);
     setArrastrados(nuevosArrastrados);
@@ -101,12 +118,11 @@ const ActividadLv3 = ({ mostrarActividad }) => {
     setArrastrados([]);
     setTazonColor('');
     setIngredientesDisponibles(shuffleArray(recetaActual.ingredientes));
+    
+    
   };
 
-  const irAlInicio = () => {
-    // Implementa la lógica para ir al inicio
-  };
-
+ 
   const siguienteActividad = () => {
     if (ronda < recetas.length - 1) {
       setRonda(ronda + 1);
@@ -147,20 +163,24 @@ const ActividadLv3 = ({ mostrarActividad }) => {
   };
 
   const handleClickTazon = () => {
+    if (!interactable) return; // Evitar interacción si no es interactuable
     reiniciarActividad();
   };
 
   return (
     <div className="actividad3">
+      {showGif && (
+            <div className="overlayGif">
+                   <img src={instructionGif} alt="Instruction Gif" className="instruction-gif" />
+            </div>
+        )}
       <AudioPlayer audioKey={audioKey} /> 
       <h2>Recetas de Cocina</h2>
       <div className="score">Puntuación: {score}</div> {/* Añadido: mostrar la puntuación */}
       {actividadCompletada ? (
         <FinalScreen
           score={score} // Añadido: pasar puntuación a la pantalla final
-          onRestart={() => { setRonda(0); reiniciarActividad(); setActividadCompletada(false); setScore(0); }} // Añadido: reiniciar la puntuación
-          onGoToHome={irAlInicio}
-          onNext={siguienteActividad}
+          
         />
       ) : (
         <>

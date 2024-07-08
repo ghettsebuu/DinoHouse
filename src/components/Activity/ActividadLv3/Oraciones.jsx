@@ -18,6 +18,7 @@ const Oraciones = ({ mostrarOraciones }) => {
   const [feedback, setFeedback] = useState("");
   const [questions, setQuestions] = useState([]);
   const [showFinalScreen, setShowFinalScreen] = useState(false);
+  const [interactable, setInteractable] = useState(false); // Estado para controlar la interacción
 
   const originalQuestions = [
     {
@@ -82,9 +83,21 @@ const Oraciones = ({ mostrarOraciones }) => {
 
   const shuffleArray = (array) => {
     return array.sort(() => Math.random() - 0.5);
+
   };
 
+  useEffect(() => {
+    // Activar la interacción después de que se reproduzcan todas las instrucciones
+    if (audioKey === 'InstruccionOraciones') {
+        const timer = setTimeout(() => {
+            setInteractable(true);
+        }, 8000); // ajusta el tiempo según la duración total de las instrucciones
+        return () => clearTimeout(timer);
+    }
+}, [audioKey]);
+
   const handleOptionClick = (isCorrect) => {
+    if (!interactable) return; // Evitar interacción si no es interactuable
     if (isCorrect) {
       correctSound.play();
       positiveFeedbackSound.play();
@@ -109,30 +122,14 @@ const Oraciones = ({ mostrarOraciones }) => {
     }, 2000);
   };
 
-  const restartActivity = () => {
-    setShowFinalScreen(false);
-    setCurrentQuestion(0);
-    setScore(0);
-    setQuestions(shuffleArray(originalQuestions.map(question => ({
-      ...question,
-      options: shuffleArray(question.options),
-    }))));
-  };
 
-  const goToHome = () => {
-    mostrarOraciones(false);
-  };
-
-  const nextActivity = () => {
-    // Lógica para ir a la siguiente actividad
-  };
 
   return (
     <section className='PlayScena'>
     <div className="actividad">
     <AudioPlayer audioKey={audioKey} /> 
       {showFinalScreen ? (
-        <FinalScreen score={score} onRestart={restartActivity} onGoToHome={goToHome} onNext={nextActivity} />
+        <FinalScreen score={score} />
       ) : (
         <>
           <h2 className='tituloActividad'>Oraciones</h2>

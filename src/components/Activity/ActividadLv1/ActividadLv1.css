@@ -8,6 +8,7 @@
 }
 
 
+
 .PlayScena { 
   flex: 1;
   display: flex;
@@ -235,7 +236,43 @@ h2 {
 
 .memory-game .fin-juego button:hover {
   background-color: #f3d422;
+
 }
+
+/* ActividadLv1.css */
+.overlayGif {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.61); /* Manto oscuro con opacidad del 50% */
+  z-index: 10; /* Asegura que el overlay esté por encima de otros elementos */
+}
+
+.instruction-gif {
+  position: relative;
+  z-index: 11; /* Asegura que el GIF esté por encima del overlay */
+  display: block;
+  margin: 0 auto;
+  width: 80%;
+  max-width: 700px; /* Asegura que no crezca más allá de 700px */
+  height: auto; /* Mantiene la proporción del GIF */
+  border-radius: 15px;
+  transform: translateY(-50%);
+  top: 50%;
+}
+
+/* .instruction-gif {
+  position: absolute;
+  top: 30%;
+  left: 60%;
+  transform: translate(-50%, -20%);
+  width: 700px;
+  height: auto;
+  z-index: 1000; 
+} */
+
 
 @media screen and (max-width: 500px) {
   .PlayScena {
