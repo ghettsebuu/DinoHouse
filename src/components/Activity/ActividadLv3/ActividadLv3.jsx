@@ -158,7 +158,7 @@ const ActividadLv3 = ({ mostrarActividad }) => {
   const handleFinishGame = () => {
     finalSound.play();
     const codigoAcceso = localStorage.getItem('codigoAcceso');
-    guardarPuntuacion(codigoAcceso, 3, score); // Guarda la puntuación en Firestore
+    guardarPuntuacion(codigoAcceso, 3, score + 50); // Guarda la puntuación en Firestore
     setActividadCompletada(true);
   };
 

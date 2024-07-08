@@ -75,7 +75,7 @@ const Atrapa = () => {
       } else {
         finalSound.play(); // Reproducir el sonido final cuando termine el juego
         const codigoAcceso = localStorage.getItem('codigoAcceso');
-        guardarPuntuacion(codigoAcceso, 3, puntos); // Guarda la puntuación en Firestore
+        guardarPuntuacion(codigoAcceso, 3, puntos + 10); // Guarda la puntuación en Firestore
         setShowFinalScreen(true);
       }
     }

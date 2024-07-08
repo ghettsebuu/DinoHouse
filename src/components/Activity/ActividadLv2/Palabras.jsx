@@ -207,8 +207,9 @@ const Palabras = () => {
             setIsGameComplete(true);
             finalSound.play();
             const codigoAcceso = localStorage.getItem('codigoAcceso');
-            guardarPuntuacion(codigoAcceso, 2, score); // Guarda la puntuación en Firestore
+            guardarPuntuacion(codigoAcceso, 2, score + 50); // Ajusta la puntuación final
           }, 1000);
+          
         }
       } else {
         incorrectSound.play();

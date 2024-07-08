@@ -85,7 +85,6 @@ const ActividadLv1 = ({ mostrarActividad, onNextActivity }) => {
             setShowGif(true);
             const timer = setTimeout(() => {
                 setAudioKey('InstruccionLv1');
-                
             }, 8000); // Ajusta el tiempo según la duración del audio de bienvenida
             return () => clearTimeout(timer);
         }
@@ -126,7 +125,8 @@ const ActividadLv1 = ({ mostrarActividad, onNextActivity }) => {
             setCorrectAnswer(true);
             correctSound.play();
             positiveFeedbackSound.play();
-            setScore(prevScore => prevScore + 30);
+            setScore(prevScore => prevScore + 10);
+            
             setTimeout(async () => {
                 setShowFeedback(false);
                 setDroppedLetter('');
@@ -136,7 +136,7 @@ const ActividadLv1 = ({ mostrarActividad, onNextActivity }) => {
                         finalSound.play();
                         // Guardar puntuación al finalizar la actividad
                         const codigoAcceso = localStorage.getItem('codigoAcceso'); // Ajusta aquí según cómo almacenes el código de acceso
-                        await guardarPuntuacion(codigoAcceso, 1, score + 10); // Asumiendo que es Level1
+                        await guardarPuntuacion(codigoAcceso, 1, score + 10); // Asumiendo que es Level1, +10 para incluir la última respuesta correcta
                     } else {
                         setCurrentRound(currentRound + 1);
                         setCurrentObjectIndex(0);
@@ -152,6 +152,7 @@ const ActividadLv1 = ({ mostrarActividad, onNextActivity }) => {
             incorrectSound.play();
             AyudaFeedbackSound.play();
             setScore(prevScore => Math.max(prevScore - 1, 0)); // Restar 1 punto por respuesta incorrecta
+           
             setTimeout(() => {
                 setShowFeedback(false);
                 setDroppedLetter('');
@@ -183,8 +184,6 @@ const ActividadLv1 = ({ mostrarActividad, onNextActivity }) => {
 
         return shuffledOptions; 
     };
-
-
 
     return (
         <section className='PlayScena'>

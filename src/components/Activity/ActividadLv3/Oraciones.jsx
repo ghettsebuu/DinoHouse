@@ -3,6 +3,7 @@ import './actividadLv3.css';
 import FinalScreen from '../Final.jsx';
 import guardarPuntuacion from '../../../helpers/guardarPuntuacion.jsx'; // Importa la función guardarPuntuacion
 import AudioPlayer from '../../../helpers/AudioPlayer'; 
+import instructionGif from '/Gif/oraciones.gif'; // Importa tu GIF
 
 const correctSound = new Audio('/sounds/correct-6033.mp3');
 const incorrectSound = new Audio('/sounds/wronganswer-37702.mp3');
@@ -19,6 +20,7 @@ const Oraciones = ({ mostrarOraciones }) => {
   const [questions, setQuestions] = useState([]);
   const [showFinalScreen, setShowFinalScreen] = useState(false);
   const [interactable, setInteractable] = useState(false); // Estado para controlar la interacción
+  const [showGif, setShowGif] = useState(false);
 
   const originalQuestions = [
     {
@@ -66,6 +68,7 @@ const Oraciones = ({ mostrarOraciones }) => {
   useEffect(() => {
     // Reproducir audio de instrucciones después del audio de bienvenida
     if (audioKey === 'Oraciones') {
+      setShowGif(true);
       const timer = setTimeout(() => {
         setAudioKey('InstruccionOraciones');
       }, 5000); // Ajusta el tiempo según la duración del audio de bienvenida
@@ -90,43 +93,53 @@ const Oraciones = ({ mostrarOraciones }) => {
     // Activar la interacción después de que se reproduzcan todas las instrucciones
     if (audioKey === 'InstruccionOraciones') {
         const timer = setTimeout(() => {
+          setShowGif(false);
             setInteractable(true);
         }, 8000); // ajusta el tiempo según la duración total de las instrucciones
         return () => clearTimeout(timer);
     }
 }, [audioKey]);
 
-  const handleOptionClick = (isCorrect) => {
-    if (!interactable) return; // Evitar interacción si no es interactuable
-    if (isCorrect) {
-      correctSound.play();
-      positiveFeedbackSound.play();
-      setScore(score + 10); // Sumar 10 puntos por respuesta correcta
-      setFeedback("¡Correcto! Buen trabajo.");
+const handleOptionClick = (isCorrect) => {
+  if (!interactable) return; // Evitar interacción si no es interactuable
+  if (isCorrect) {
+    correctSound.play();
+    positiveFeedbackSound.play();
+    setScore(score + 10); // Sumar 10 puntos por respuesta correcta
+    setFeedback("¡Correcto! Buen trabajo.");
+  } else {
+    incorrectSound.play();
+    AyudaFeedbackSound.play();
+    setFeedback("Oh ohhh.");
+  }
+  setShowFeedback(true);
+
+  // Actualizar puntaje después de mostrar retroalimentación
+  setTimeout(() => {
+    setShowFeedback(false); 
+    if (currentQuestion < questions.length - 1) {
+      setCurrentQuestion(currentQuestion + 1);
     } else {
-      incorrectSound.play();
-      AyudaFeedbackSound.play();
-      setFeedback("oh ohhh.");
+      setShowFinalScreen(true);
+      const codigoAcceso = localStorage.getItem('codigoAcceso');
+      // Guardar el puntaje actualizado
+      guardarPuntuacion(codigoAcceso, 3, isCorrect ? score + 10 : score);
+      finalSound.play(); // Reproduce el sonido al llegar al final del juego
     }
-    setShowFeedback(true);
-    setTimeout(() => {
-      setShowFeedback(false); 
-      if (currentQuestion < questions.length - 1) {
-        setCurrentQuestion(currentQuestion + 1);
-      } else {
-        setShowFinalScreen(true);
-        const codigoAcceso = localStorage.getItem('codigoAcceso');
-        guardarPuntuacion(codigoAcceso, 3, score); // Guarda la puntuación en Firestore
-        finalSound.play(); // Reproduce el sonido al llegar al final del juego
-      }
-    }, 2000);
-  };
+  }, 2000);
+};
+
 
 
 
   return (
     <section className='PlayScena'>
     <div className="actividad">
+    {showGif && (
+            <div className="overlayGif">
+                   <img src={instructionGif} alt="Instruction Gif" className="instruction-gif" />
+            </div>
+        )}
     <AudioPlayer audioKey={audioKey} /> 
       {showFinalScreen ? (
         <FinalScreen score={score} />
