@@ -4,7 +4,7 @@ import { db } from '../../Firebase/firebaseConfig';
 import { doc, getDoc } from 'firebase/firestore';
 import './ProgressBar.css';
 import LoadingScreen from '../LoadingScreen/LoadingScreen'; // Importa el componente de pantalla de carga
-import Insignia from './insignia';
+/* import Insignia from './insignia'; */
 
 const ProgressBar = ({ codigoAcceso, level, onLevelUp }) => {
   const [puntos, setPuntos] = useState(0);
@@ -61,7 +61,7 @@ const ProgressBar = ({ codigoAcceso, level, onLevelUp }) => {
           <span>{puntos} / 1000</span>
         </div>
       </div>
-      <Insignia level={level} puntos={puntos} />
+     {/*  <Insignia level={level} puntos={puntos} /> */}
     </div>
   );
 };
